@@ -21,7 +21,7 @@ const Home = () => {
                     <p className='py-3'>Discover our best Economy class deals on flights departing from </p>
                     <div className='border-none ml-3 py-2'>
                         <select id="citySelect" value={selectedCity} onChange={handleCityChange} className="w-full border-b border-black p-1 bg-transparent focus:outline-none focus:border-none focus:border-b focus:border-black active:outline-none active:border-none active:border-b active:border-black">
-                            <option value="Lagos" className='bg-transparent'>Lagos</option>
+                            <option value="Lagos" className='bg-transparent'>Lagoss</option>
                             <option value="Abuja" className='bg-transparent'>Abuja</option>
                         </select>
                     </div>

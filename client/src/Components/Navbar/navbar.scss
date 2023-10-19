@@ -1,0 +1,44 @@
+#navhero {
+  margin: 10px 40px 10px 40px;
+}
+#navtop {
+  display: flex;
+  justify-content: space-between;
+}
+#navbottom {
+  display: flex;
+}
+#navtopside {
+  display: flex;
+  margin-top: 10px;
+}
+#navtopside img {
+  width: 23px;
+  height: 15px;
+}
+#navtopside p {
+  font-weight: bold;
+}
+#navtopsidecontent {
+  display: flex;
+  margin-right: 20px;
+}
+#navtopsideimg {
+  margin-top: 4px;
+  margin-right: 10px;
+}
+
+#navbottom p {
+  margin-right: 40px;
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+#bodybck {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+}
+#tripinputs {
+  display: flex;
+}

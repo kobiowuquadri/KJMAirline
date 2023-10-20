@@ -4,6 +4,10 @@ import bck from '../../Assets/Images/bck.jpg'
 import { FiChevronDown } from 'react-icons/fi'
 import { GiAirplaneDeparture } from 'react-icons/gi'
 import { GiAirplaneArrival } from 'react-icons/gi'
+import { BiChevronRight, BiCoinStack } from 'react-icons/bi'
+import { IoAirplaneSharp, IoClose } from 'react-icons/io5'
+import { BsCalendar2DateFill } from 'react-icons/bs'
+import './Home.scss'
 
 function Home () {
   const [selectedCity, setSelectedCity] = useState('Lagos') // State to hold the selected city
@@ -21,21 +25,54 @@ function Home () {
         <div>
           <img src={bck} alt='background' id='bodybck' />
         </div>
-
+        <div id='tripfuture'>
+          <h1>Contributing to a sustainable future</h1>
+          <p id='tripfuturep1'>Here's what we are doing and how we can help</p>
+          <div id="learnmore">
+            <p>Learn More </p>
+            <BiChevronRight id='learnmoreicon'/>
+          </div> 
+        </div>
+        <div id="tripbook">
+          <p id='tripflight'> <IoAirplaneSharp id='tripbookicon'/> Book a flight</p>
+          <p id='tripmiles'> <BiCoinStack id='tripbookicon'/> Book with miles</p>
+        </div>
         <div id='tripcont'>
-          <select name='trips' id='hometrip'>
-            <option value='round' selected>
-              Round trip
-            </option>
-            <option value='One-way'>One-way</option>
-            <option value='Multi city'>Multi city</option>
-          </select>
-          <div id='tripinputs'>
-            <input type='text' value={<GiAirplaneDeparture />} />
-            <input type='text' value={<GiAirplaneArrival />} />
-            <p>Continue</p>
-            <FiChevronDown />
-          </div>
+          <div id="tripconttop">
+            <select name='trips' id='hometrip'>
+              <option value='round' selected>
+                Round trip
+              </option>
+              <option value='One-way'>One-way</option>
+              <option value='Multi city'>Multi city</option>
+            </select>
+              <GiAirplaneDeparture id='tripicon' size={15}/>
+              <input type='text' id='tripinputs' placeholder='Departing from'/>
+              <GiAirplaneArrival id='tripicon' size={15}/>
+              <input type='text'  id='tripinputs' placeholder='Arriving at'/>
+              <div id='tripcontinue'>
+                <p>Continue</p>
+                <FiChevronDown />
+              </div>
+            </div>
+              <div>
+                <div id='tripextended'>
+                  <input type='date'  id='tripinputs2'/>
+                  <input type='text'  id='tripinputs2' placeholder='1 adult'/>
+                  <select name='trips' id='tripinputs2'>
+                    <option value='economy' selected>
+                      Economy Class
+                    </option>
+                    <option value='premium'>Premium Comfort Class</option>
+                    <option value='business'>Business Class</option>
+                    <option value='premiere'>La Premiere</option>
+                  </select>
+                </div>
+              <div id='tripsearch'>
+                <p>I want to book with a bluebiz or corporate contract</p>
+                 <button>Search flights</button>
+              </div>
+            </div>
         </div>
       </div>
 

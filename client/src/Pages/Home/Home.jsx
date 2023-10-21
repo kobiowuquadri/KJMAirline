@@ -23,7 +23,7 @@ function Home () {
       <div className='IFE'>
         <Navbar />
         <div>
-          <img src={bck} alt='background' id='bodybck' />
+          <img src={'https://img.static-kl.com/transform/11bc98fe-6f4d-4875-b837-410565e2f2f3/?io=transform:fill,width:1440,height:480'} alt='background' id='bodybck' />
         </div>
         <div id='tripfuture'>
           <h1>Contributing to a sustainable future</h1>

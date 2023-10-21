@@ -5,6 +5,9 @@
   display: flex;
   justify-content: space-between;
 }
+#logo{
+  width:20px;
+}
 #navbottom {
   display: flex;
 }
@@ -22,16 +25,32 @@
 #navtopsidecontent {
   display: flex;
   margin-right: 20px;
+  color: #052c49;
+}
+#navtoplink{
+  color: #052c49;
+  font-weight: bold;
+  text-decoration: none;
+}
+#navtopsidecontent:hover{
+  background-color: #eaebed;
 }
 #navtopsideimg {
   margin-top: 4px;
   margin-right: 10px;
+  color: #052c49;
 }
 
-#navbottom p {
+#navbottom a {
   margin-right: 40px;
   margin-top: 15px;
   font-size: 20px;
+  color: #052c49;
+  padding: 5px;
+  text-decoration: none;
+}
+#navbottom a:hover{
+  background-color: #eaebed;
 }
 
 #bodybck {

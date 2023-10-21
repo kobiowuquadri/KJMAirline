@@ -6,7 +6,7 @@
     padding: 30px;
     border-radius: 5px;
     position: relative;
-    top: -200px;
+    top: -300px;
     box-shadow: 0px 5px 15px rgba( 0, 0, 0, 0.25);
     justify-content: space-between;
 }
@@ -16,15 +16,17 @@
     padding-bottom: 30px;
 }
 #tripinputs{
-    border: 1px solid blue;
+    border: 1px solid #6f7376;
+    outline:#6d747a;
     padding: 10px;
-    padding-right: 30px;
+    padding-left: 30px;
     width: 450px;
     border-radius: 3px;
 }
 #hometrip{
     padding: 10px;
-    border: 1px solid blue;
+    border: 1px solid #6f7376;
+    outline:#6d747a;
     width: 200px;
     border-radius: 3px;
 }
@@ -45,13 +47,13 @@
 #tripflight{
     margin-right: 80px;
     background-color: white;
-    color: blue;
+    color: #042d37;
     padding: 10px;
     display: flex;
     font-weight: bold;
 }
 #tripmiles{
-    background-color: blue;
+    background-color: #042d37;
     color: white;
     padding: 10px;
     display: flex;
@@ -60,12 +62,20 @@
 #tripfuture{
     position: relative;
     bottom: 300px;
-    left: 800px;
-    background-color: blue;
-    width: 350px;
+    left: 750px;
+    background-color: #1c393f;
+    opacity: 0.9;
+    width: 400px;
     padding: 20px;
     border-radius: 8px;
     color: white;
+}
+#learnmore a{
+    text-decoration: none;
+    color: white;
+}
+#learnmore a:hover{
+    text-decoration: dashed;
 }
 #tripfuturep1{
     font-size: 15px;
@@ -79,7 +89,8 @@
     padding-bottom: 30px;
 }
 #tripinputs2{
-    border: 1px solid blue;
+    border: 1px solid #6f7376;
+    outline:#6d747a;
     padding: 10px;
     width: 370px;
     border-radius: 3px;
@@ -90,7 +101,8 @@
 }
 #tripsearch button{
     color: white;
-    background-color: blue;
+    font-weight: bold;
+    background-color: #0076cd;
     border-radius: 3px;
     padding:20px;
 }

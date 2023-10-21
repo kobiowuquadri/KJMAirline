@@ -1,8 +1,9 @@
 import React from 'react'
 import ng from '../../Assets/Images/NG.svg'
-import logo from '../../Assets/Images/kl-logo-2022.svg'
+import logo from '../../Assets/Images/kjm-logo.png'
 import { CgProfile } from 'react-icons/cg'
 import { MdDirectionsWalk } from 'react-icons/md'
+import { Link } from 'react-router-dom'
 import './navbar.scss'
 
 function Navbar() {
@@ -11,7 +12,7 @@ function Navbar() {
       <div id='navhero'>
        <div id='navtop'>
            <div>
-              <img src={logo} alt="Logo" />
+              <img src={logo} alt="Logo" id='logo'/>
             </div>
             <div id='navtopside'>
                 <div id='navtopsidecontent'>
@@ -20,19 +21,31 @@ function Navbar() {
                 </div>
                 <div id='navtopsidecontent'>
                   <CgProfile id='navtopsideimg'/>
+                  <Link to='/login' id='navtoplink'>
                   <p>Log in</p>
+                  </Link>
                 </div>
                 <div id='navtopsidecontent'>
                   <MdDirectionsWalk id='navtopsideimg'/>
+                  <Link to='/signup' id='navtoplink'>
                   <p>Sign Up</p>
+                  </Link>
                 </div>
             </div>
        </div>
        <div id='navbottom'>
+        <Link to='/'>
           <p>Home</p>
-          <p>My Trip</p>
-          <p>Check-in</p>
-          <p>Information</p>
+        </Link>
+        <Link to='/mytrip'>
+        <p>My Trip</p>
+        </Link>
+        <Link to='/checkin'>
+        <p>Check-in</p>
+        </Link>
+        <Link to='/information'>
+        <p>Information</p>
+        </Link>
        </div>
       </div>
     </div>

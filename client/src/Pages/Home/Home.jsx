@@ -5,8 +5,8 @@ import { FiChevronDown } from 'react-icons/fi'
 import { GiAirplaneDeparture } from 'react-icons/gi'
 import { GiAirplaneArrival } from 'react-icons/gi'
 import { BiChevronRight, BiCoinStack } from 'react-icons/bi'
-import { IoAirplaneSharp, IoClose } from 'react-icons/io5'
-import { BsCalendar2DateFill } from 'react-icons/bs'
+import { IoAirplaneSharp } from 'react-icons/io5'
+import { Link } from 'react-router-dom'
 import './Home.scss'
 
 function Home () {
@@ -23,13 +23,15 @@ function Home () {
       <div className='IFE'>
         <Navbar />
         <div>
-          <img src={bck} alt='background' id='bodybck' />
+          <img src={'https://img.static-kl.com/transform/11bc98fe-6f4d-4875-b837-410565e2f2f3/?io=transform:fill,width:1440,height:480'} alt='background' id='bodybck' />
         </div>
         <div id='tripfuture'>
           <h1>Contributing to a sustainable future</h1>
           <p id='tripfuturep1'>Here's what we are doing and how we can help</p>
           <div id="learnmore">
+            <Link to='/learnmore'>
             <p>Learn More </p>
+            </Link>
             <BiChevronRight id='learnmoreicon'/>
           </div> 
         </div>

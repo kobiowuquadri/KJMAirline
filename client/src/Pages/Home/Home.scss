@@ -1,14 +1,13 @@
 #tripcont{
     display: grid;
-    width: 95%;
+    width: 100%;
     margin: 0 auto;
     background-color: white;
     padding: 30px;
     border-radius: 5px;
-    position: relative;
-    top: -300px;
     box-shadow: 0px 5px 15px rgba( 0, 0, 0, 0.25);
     justify-content: space-between;
+    z-index: -1;
 }
 #tripconttop{
     display: flex;
@@ -19,9 +18,10 @@
     border: 1px solid #6f7376;
     outline:#6d747a;
     padding: 10px;
-    padding-left: 30px;
-    width: 450px;
+    padding-left: 50px;
+    width: 430px;
     border-radius: 3px;
+    margin-right: 20px;
 }
 #hometrip{
     padding: 10px;
@@ -37,11 +37,17 @@
 }
 #tripcontinue{
     display: flex;
+    color:#0076cd;
+    font-weight: bold;
+    margin-top: 10px;
+}
+#tripcontinue:hover{
+    background-color: #eaebed;
 }
 #tripbook{
     display: flex;
-    position: relative;
-    bottom: 250px;
+    // position: relative;
+    // bottom: 250px;
     margin-left:34px;
 }
 #tripflight{
@@ -104,7 +110,7 @@
     font-weight: bold;
     background-color: #0076cd;
     border-radius: 3px;
-    padding:20px;
+    padding:10px 20px 10px 20px;
 }
 #learnmore{
     display: flex;
@@ -115,4 +121,81 @@
 }
 #learnmoreicon{
     margin-top: 5px;
+}
+#continueicon{
+    margin-top: 5px;
+}
+#tripposition{
+    position: absolute;
+    top: 500px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width:900px){
+    #tripposition{
+        position: relative;
+        top: 0px;
+    }
+    #tripconttop{
+        display: grid;
+    }
+    #tripextended{
+        display:grid;
+    }
+    #tripsearch{
+        display: grid;
+    }
+    #tripbook{
+        margin-left: 0px;
+    }
+    #tripflight{
+        margin-right: 40px;
+    }
+    #hometrip{
+        width: 430px;
+        margin-bottom: 20px;
+        height: 60px;
+    }
+    #tripinputs{
+        margin-bottom: 20px;
+        height: 60px;
+    }
+    #tripinputs2{
+        width: 430px;
+        margin-bottom: 40px;
+        height: 60px;
+    }
+    #tripsearch p{
+        margin-bottom: 20px;
+    }
+    #tripsearch button{
+        margin-bottom: 20px;
+    }
+    #tripicon{
+        position:relative;
+        left: 20px;
+        top: 35px;
+    }
+    #tripfuture{
+        position: relative;
+        left: 20px;
+        bottom: 50px;
+        opacity: 1;
+    }
 }

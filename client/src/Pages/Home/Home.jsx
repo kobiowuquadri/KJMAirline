@@ -22,8 +22,52 @@ function Home () {
     <>
       <div className='IFE'>
         <Navbar />
+        <div id="tripposition">
+          <div id="tripbook">
+            <p id='tripflight'> <IoAirplaneSharp id='tripbookicon'/> Book a flight</p>
+            <p id='tripmiles'> <BiCoinStack id='tripbookicon'/> Book with miles</p>
+          </div>
+          <div id='tripcont'>
+            <div id="tripconttop">
+              <select name='trips' id='hometrip'>
+                <option value='round' selected>
+                  Round trip
+                </option>
+                <option value='One-way'>One-way</option>
+                <option value='Multi city'>Multi city</option>
+              </select>
+                <GiAirplaneDeparture id='tripicon' size={15}/>
+                <input type='text' id='tripinputs' placeholder='Departing from'/>
+                <GiAirplaneArrival id='tripicon' size={15}/>
+                <input type='text'  id='tripinputs' placeholder='Arriving at'/>
+                <div id='tripcontinue'>
+                  <p>Continue</p>
+                  <FiChevronDown id='continueicon' />
+                </div>
+              </div>
+                <div>
+                  <div id='tripextended'>
+                    <input type='date'  id='tripinputs2'/>
+                    <input type='text'  id='tripinputs2' placeholder='1 adult'/>
+                    <select name='trips' id='tripinputs2'>
+                      <option value='economy' selected>
+                        Economy Class
+                      </option>
+                      <option value='premium'>Premium Comfort Class</option>
+                      <option value='business'>Business Class</option>
+                      <option value='premiere'>La Premiere</option>
+                    </select>
+                  </div>
+                <div id='tripsearch'>
+                  <p>I want to book with a bluebiz or corporate contract</p>
+                   <button>Search flights</button>
+                </div>
+              </div>
+          </div>
+        </div>
         <div>
           <img src={'https://img.static-kl.com/transform/11bc98fe-6f4d-4875-b837-410565e2f2f3/?io=transform:fill,width:1440,height:480'} alt='background' id='bodybck' />
+          {/* <img src={bck} alt='background' id='bodybck' /> */}
         </div>
         <div id='tripfuture'>
           <h1>Contributing to a sustainable future</h1>
@@ -34,47 +78,6 @@ function Home () {
             </Link>
             <BiChevronRight id='learnmoreicon'/>
           </div> 
-        </div>
-        <div id="tripbook">
-          <p id='tripflight'> <IoAirplaneSharp id='tripbookicon'/> Book a flight</p>
-          <p id='tripmiles'> <BiCoinStack id='tripbookicon'/> Book with miles</p>
-        </div>
-        <div id='tripcont'>
-          <div id="tripconttop">
-            <select name='trips' id='hometrip'>
-              <option value='round' selected>
-                Round trip
-              </option>
-              <option value='One-way'>One-way</option>
-              <option value='Multi city'>Multi city</option>
-            </select>
-              <GiAirplaneDeparture id='tripicon' size={15}/>
-              <input type='text' id='tripinputs' placeholder='Departing from'/>
-              <GiAirplaneArrival id='tripicon' size={15}/>
-              <input type='text'  id='tripinputs' placeholder='Arriving at'/>
-              <div id='tripcontinue'>
-                <p>Continue</p>
-                <FiChevronDown />
-              </div>
-            </div>
-              <div>
-                <div id='tripextended'>
-                  <input type='date'  id='tripinputs2'/>
-                  <input type='text'  id='tripinputs2' placeholder='1 adult'/>
-                  <select name='trips' id='tripinputs2'>
-                    <option value='economy' selected>
-                      Economy Class
-                    </option>
-                    <option value='premium'>Premium Comfort Class</option>
-                    <option value='business'>Business Class</option>
-                    <option value='premiere'>La Premiere</option>
-                  </select>
-                </div>
-              <div id='tripsearch'>
-                <p>I want to book with a bluebiz or corporate contract</p>
-                 <button>Search flights</button>
-              </div>
-            </div>
         </div>
       </div>
 

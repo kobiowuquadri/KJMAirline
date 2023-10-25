@@ -301,7 +301,9 @@ function Home() {
 
 
 
-      <div className='BOSS'></div>
+      <div className='BOSS'>
+        
+      </div>
     </>
   )
 }

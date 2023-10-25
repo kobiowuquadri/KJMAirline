@@ -87,13 +87,13 @@ function Home() {
 
 
 
-      <div className='SHAKIROH mt-40 w-3/4 mx-auto '>
+      <div className='SHAKIROH sm:my-10 md:my-32 lg:my-40 xl:my-40 2xl:my-40 w-3/4 mx-auto '>
         <h2 className='mt-16 text-4xl'>Destinations and deals</h2>
         <div className='flex my-7'>
           <p className='py-3'>
             Discover our best Economy class deals on flights departing from{' '}
           </p>
-          <div className='border-none ml-3 py-2'>
+          <div className='border-none ml-3 sm:ml-2 py-2'>
             <select
               id='citySelect'
               value={selectedCity}
@@ -110,7 +110,10 @@ function Home() {
           </div>
         </div>
 
-        <div className='flex flex-col space-y-4'>
+
+        {/* Bigger screen */}
+
+        <div className='hidden sm:hidden md:hidden lg:block xl:block 2xl:block flex flex-col space-y-4'>
           <div className='flex justify-between items-center py-5'>
             <div className='w-1/3 text-gray-900'>Houston <span className='text-gray-700'>(United States)</span></div>
             <div className='text-gray-900'>From USD 1,343*</div>
@@ -154,6 +157,71 @@ function Home() {
           </div>
         </div>
 
+        {/* Smaller screen */}
+
+        <div className='flex flex-col lg:hidden xl:hidden 2xl:hidden'>
+          <div className='flex justify-between w-full py-3'>
+            <div>
+              <div className='text-gray-900 pb-1'>Houston <span className='text-gray-700'>(United States)</span></div>
+              <div className='flex'>
+                <div className='text-gray-900'>From USD 1,343*</div>
+                <div className='flex ml-4'><BsArrowLeftRight className='mt-1'/><span className='text-gray-700 ml-2'>Round trip</span></div>
+              </div>
+            </div>
+            <div className='mt-4'><BiSolidErrorCircle /></div>
+          </div>
+          <div className='flex justify-between w-full py-3'>
+            <div>
+              <div className='text-gray-900 pb-1'>Washington <span className='text-gray-700'>(United States)</span></div>
+              <div className='flex'>
+                <div className='text-gray-900'>From USD 1,343*</div>
+                <div className='flex ml-4'><BsArrowLeftRight className='mt-1'/><span className='text-gray-700 ml-2'>Round trip</span></div>
+              </div>
+            </div>
+            <div className='mt-4'><BiSolidErrorCircle /></div>
+          </div>
+          <div className='flex justify-between w-full py-3'>
+            <div>
+              <div className='text-gray-900 pb-1'>Montreal <span className='text-gray-700'>(Canada)</span></div>
+              <div className='flex'>
+                <div className='text-gray-900'>From USD 1,343*</div>
+                <div className='flex ml-4'><BsArrowLeftRight className='mt-1'/><span className='text-gray-700 ml-2'>Round trip</span></div>
+              </div>
+            </div>
+            <div className='mt-4'><BiSolidErrorCircle /></div>
+          </div>
+          <div className='flex justify-between w-full py-3'>
+            <div>
+              <div className='text-gray-900 pb-1'>Birmingham <span className='text-gray-700'>(United Kingdom)</span></div>
+              <div className='flex'>
+                <div className='text-gray-900'>From USD 1,343*</div>
+                <div className='flex ml-4'><BsArrowLeftRight className='mt-1'/><span className='text-gray-700 ml-2'>Round trip</span></div>
+              </div> 
+            </div>
+            <div className='mt-4'><BiSolidErrorCircle /></div>
+          </div>
+          <div className='flex justify-between w-full py-3'>
+            <div>
+              <div className='text-gray-900 pb-1'>Toronto <span className='text-gray-700'>(Canada)</span></div>
+              <div className='flex'>
+                <div className='text-gray-900'>From USD 1,343*</div>
+                <div className='flex ml-4'><BsArrowLeftRight className='mt-1'/><span className='text-gray-700 ml-2'>Round trip</span></div>
+              </div>
+            </div>
+            <div className='mt-4'><BiSolidErrorCircle /></div>
+          </div>
+          <div className='flex justify-between w-full py-3'>
+            <div>
+              <div className='text-gray-900 pb-1'>Paris <span className='text-gray-700'>(France)</span></div>
+              <div className='flex'>
+                <div className='text-gray-900'>From USD 1,343*</div>
+                <div className='flex ml-4'><BsArrowLeftRight className='mt-1'/><span className='text-gray-700 ml-2'>Round trip</span></div>
+              </div>
+            </div>
+            <div className='mt-4'><BiSolidErrorCircle /></div>
+          </div>
+        </div>
+
         <p className='my-5 text-gray-500'>
           {' '}
           *All amounts are in USD. Taxes and surcharges are included. No booking
@@ -190,7 +258,7 @@ function Home() {
               </figure>
               <div className='card-body text-gray-600 p-5'>
                 <h2 className='card-title text-2xl'>Join Flying Blue</h2>
-                <p className='p-3'>
+                <p className='py-3'>
                   Save time booking flights, earn Miles and recieve special
                   offers and deals.
                 </p>
@@ -207,7 +275,7 @@ function Home() {
               </figure>
               <div className='card-body text-gray-600 p-5'>
                 <h2 className='card-title text-2xl'>Discover the best deals</h2>
-                <p className='3'>
+                <p className='py-3'>
                   Browse our selection of deals at the most favourable fares.
                 </p>
               </div>
@@ -221,7 +289,7 @@ function Home() {
               </figure>
               <div className='card-body text-gray-600 p-5'>
                 <h2 className='card-title text-2xl'>World Business Class</h2>
-                <p className='3'>
+                <p className='py-3'>
                   Travel in style with more privacy, comfort, and full attention
                   from our cabin crew.
                 </p>

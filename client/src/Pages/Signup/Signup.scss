@@ -1,0 +1,31 @@
+#logoacct{
+    width:250px;
+}
+#signupnav{
+    // background-color: white;
+    box-shadow: 0px 5px 15px rgba(152, 151, 151, 0.25);
+}
+#signuphero{
+    background-image:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(../../Assets/Images/signupbck.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+#signupform{
+    background-color: white;
+    padding:30px;
+    margin-left: 200px;
+}
+#forminput{
+    margin-bottom: 20px;
+    width: 400px;
+    height: 60px;
+    border: 1px solid #0076cd;
+}
+#signupsubmit{
+    color: white;
+    font-weight: bold;
+    background-color: #0076cd;
+    border-radius: 3px;
+    padding:10px 20px 10px 20px;
+}

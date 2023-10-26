@@ -10,13 +10,14 @@ function Signup() {
         </div>
         <div id='signuphero'>
 
-        <form action="">
-            <input type="text" />
-            <input type="text" />
-            <input type="email" />
-            <input type="password" />
-            <input type="t" />
-        </form>
+        <div id='signupform'>
+            <input type="text" id='forminput' placeholder='Full Name' />
+            <input type="text" id='forminput' placeholder='User Name' />
+            <input type="email" id='forminput' placeholder='Email Address' />
+            <input type="password" id='forminput' placeholder='Password' />
+            <input type="password" id='forminput' placeholder='Confirm Password' />
+            <button id='signupsubmit'>Submit</button>
+        </div>
 
         </div>
     </div>

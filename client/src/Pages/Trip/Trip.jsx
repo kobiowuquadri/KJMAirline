@@ -34,6 +34,13 @@ function Trip() {
         <img src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="plane" id='planeimg' />
         </div>
       </div>
+      <div id='tripfooterlinks'>
+        <a href="">Legal information</a>
+        <a href="">Privacy policy</a>
+        <a href="">Accessibility statement</a>
+        <a href="">2023 KJM</a>
+        <a href="">Cookie settings</a>
+      </div>
     </div>
    
   )

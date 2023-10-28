@@ -17,6 +17,7 @@
     margin-bottom: 10px;
     width: 400px;
     height: 60px;
+    cursor: pointer;
 }
 #mytripinput::placeholder{
     color: #042d37;
@@ -61,4 +62,28 @@
 #planeimg{
     height: 600px;
     object-fit: cover;
+}
+#tripfooterlinks{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+#tripfooterlinks a{
+    color: gray;
+    margin-right: 40px;
+}
+
+
+@media(max-width: 900px){
+    #planeimg{
+        display: none;
+    }
+    #mytriphero{
+        margin: 30px 0px 0px 40px;
+    }
+    #tripfooterlinks a{
+        color: gray;
+        margin-right: 5px;
+    }
 }

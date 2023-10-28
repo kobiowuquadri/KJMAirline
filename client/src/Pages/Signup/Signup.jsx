@@ -11,11 +11,12 @@ function Signup() {
         <div id='signuphero'>
 
         <div id='signupform'>
-            <input type="text" id='forminput' placeholder='Full Name' />
-            <input type="text" id='forminput' placeholder='User Name' />
-            <input type="email" id='forminput' placeholder='Email Address' />
-            <input type="password" id='forminput' placeholder='Password' />
-            <input type="password" id='forminput' placeholder='Confirm Password' />
+            <h2>Create an Account</h2>
+            <input type="text" id='forminput' placeholder='Full Name' /> <br/>
+            <input type="text" id='forminput' placeholder='User Name' /> <br/>
+            <input type="email" id='forminput' placeholder='Email Address' /> <br/>
+            <input type="password" id='forminput' placeholder='Password' /> <br/>
+            <input type="password" id='forminput' placeholder='Confirm Password' /> <br/>
             <button id='signupsubmit'>Submit</button>
         </div>
 

@@ -40,9 +40,6 @@ function Navbar() {
         <Link to='/mytrip'>
         <p>My Trip</p>
         </Link>
-        <Link to='/checkin'>
-        <p>Check-in</p>
-        </Link>
         <Link to='/information'>
         <p>Information</p>
         </Link>

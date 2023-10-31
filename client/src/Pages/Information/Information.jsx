@@ -1,9 +1,11 @@
 import React from 'react'
 import InformationData from '../../Assets/Data/Information.json'
+import Navbar from '../../Components/Navbar/Navbar';
 
 function Information() {
   return (
     <>
+    <Navbar/>
       <div className='w-3/4 mx-auto my-10'>
         <h1 className='text-3xl text-gray-700 mb-6'>Information</h1>
         <h4 className='py-6'>

@@ -1,8 +1,8 @@
 import React from 'react'
-import './Signup.scss'
+import '../Signup/Signup.scss'
 import logo from '../../Assets/Images/kjm-logo.png'
 
-function Signup() {
+function SignIn() {
   return (
     <div>
        <div id='signupnav'>
@@ -11,10 +11,7 @@ function Signup() {
         <div id='signuphero'>
 
         <div id='signupform'>
-            <h2>Create an Account</h2>
-            <label htmlFor="fullName"></label>
-            <input type="text" id='forminput' placeholder='Full Name' name='fullname' /> <br/>
-            <input type="text" id='forminput' placeholder='User Name' name='username' /> <br/>
+            <h2>Login to your account</h2>
             <input type="email" id='forminput' placeholder='Email Address' name='email' /> <br/>
             <input type="password" id='forminput' placeholder='Password' name='passowrd' /> <br/>
             <button id='signupsubmit'>Submit</button>
@@ -25,4 +22,4 @@ function Signup() {
   )
 }
 
-export default Signup
+export default SignIn

@@ -1,6 +1,5 @@
 import { useState, React } from 'react'
 import Navbar from '../../Components/Navbar/Navbar'
-import bck from '../../Assets/Images/bck.jpg'
 import { FiChevronDown } from 'react-icons/fi'
 import { GiAirplaneDeparture } from 'react-icons/gi'
 import { GiAirplaneArrival } from 'react-icons/gi'
@@ -10,6 +9,7 @@ import { Link } from 'react-router-dom'
 import './Home.scss'
 import { BsArrowLeftRight } from 'react-icons/bs'
 import { BiSolidErrorCircle } from 'react-icons/bi'
+import {Destinations} from '../Data'
 
 function Home() {
   const [selectedCity, setSelectedCity] = useState('Lagos') // State to hold the selected city
@@ -19,6 +19,8 @@ function Home() {
     setSelectedCity(event.target.value)
   }
   const customBackgroundColor = 'rgb(194, 219, 234)'
+
+  const {search, setSearch} = useState('')
 
   return (
     <>
@@ -41,7 +43,7 @@ function Home() {
               <GiAirplaneDeparture id='tripicon' size={15} />
               <input type='text' id='tripinputs' placeholder='Departing from' />
               <GiAirplaneArrival id='tripicon' size={15} />
-              <input type='text' id='tripinputs' placeholder='Arriving at' />
+              <input type='text' id='tripinputs' placeholder='Arriving at' onChange={(e) => setSearch(e.target.value)} />
               <div id='tripcontinue'>
                 <p>Continue</p>
                 <FiChevronDown id='continueicon' />
@@ -69,7 +71,6 @@ function Home() {
         </div>
         <div>
           <img src={'https://img.static-kl.com/transform/11bc98fe-6f4d-4875-b837-410565e2f2f3/?io=transform:fill,width:1440,height:480'} alt='background' id='bodybck' />
-          {/* <img src={bck} alt='background' id='bodybck' /> */}
         </div>
         <div id='tripfuture'>
           <h1>Contributing to a sustainable future</h1>
@@ -114,7 +115,24 @@ function Home() {
         {/* Bigger screen */}
 
         <div className='hidden sm:hidden md:hidden lg:block xl:block 2xl:block flex flex-col space-y-4'>
-          <div className='flex justify-between items-center py-5'>
+
+          {
+            Destinations.filter((deals) => {
+              return search.toLowerCase() === ''
+              ? deals
+              : deals.country.toLowerCase().includes(search);
+            }).map((deals, index) =>(
+
+              <div className='flex justify-between items-center py-5' key={index}>
+              <div className='w-1/3 text-gray-900'>{deals.state} <span className='text-gray-700'>{deals.country}</span></div>
+              <div className='text-gray-900'>{deals.amount}</div>
+              <div className='flex'><BsArrowLeftRight /><span className='text-gray-700 ml-2'>{deals.trip}</span></div>
+              <div><BiSolidErrorCircle /></div>
+            </div>
+
+            ))
+          }
+          {/* <div className='flex justify-between items-center py-5'>
             <div className='w-1/3 text-gray-900'>Houston <span className='text-gray-700'>(United States)</span></div>
             <div className='text-gray-900'>From USD 1,343*</div>
             <div className='flex'><BsArrowLeftRight /><span className='text-gray-700 ml-2'>Round trip</span></div>
@@ -154,13 +172,34 @@ function Home() {
             <div className='text-gray-900'>From USD 1,023*</div>
             <div className='flex'><BsArrowLeftRight /><span className='text-gray-700 ml-2'>Round trip</span></div>
             <div><BiSolidErrorCircle /></div>
-          </div>
+          </div> */}
         </div>
 
         {/* Smaller screen */}
 
         <div className='flex flex-col lg:hidden xl:hidden 2xl:hidden'>
-          <div className='flex justify-between w-full py-3'>
+
+        {
+            Destinations.filter((deals) => {
+              return search.toLowerCase() === ''
+              ? deals
+              : deals.country.toLowerCase().includes(search);
+            }).map((deals, index) =>(
+
+              <div className='flex justify-between w-full py-3' key={index}>
+              <div>
+                <div className='text-gray-900 pb-1'>{deals.state} <span className='text-gray-700'>{deals.country}</span></div>
+                <div className='flex'>
+                  <div className='text-gray-900'>{deals.amount}</div>
+                  <div className='flex ml-4'><BsArrowLeftRight className='mt-1'/><span className='text-gray-700 ml-2'>{deals.trip}</span></div>
+                </div>
+              </div>
+              <div className='mt-4'><BiSolidErrorCircle /></div>
+            </div>
+
+            ))
+          }
+          {/* <div className='flex justify-between w-full py-3'>
             <div>
               <div className='text-gray-900 pb-1'>Houston <span className='text-gray-700'>(United States)</span></div>
               <div className='flex'>
@@ -219,7 +258,7 @@ function Home() {
               </div>
             </div>
             <div className='mt-4'><BiSolidErrorCircle /></div>
-          </div>
+          </div> */}
         </div>
 
         <p className='my-5 text-gray-500'>

@@ -22,8 +22,6 @@ import {
   MDBListGroupItem
 } from 'mdb-react-ui-kit';
 
-// import logoIcon from '../../../assets/images/logo.svg'
-
 
 const SideBar = () =>  {
   const [showShow, setShowShow] = useState(false);

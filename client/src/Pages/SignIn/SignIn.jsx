@@ -10,29 +10,28 @@ function SignIn () {
   const navigate = useNavigate()
 
   const handleSubmit = async event => {
-    event.preventDefault();
-  
+    event.preventDefault()
+
     try {
       const response = await axios.post(
         'https://kjm.zuuroo.com/api/auth/login',
         {
           email,
-          password,
+          password
         }
-      );
-  
+      )
+
       // Store user data in local storage
       // localStorage.setItem('user', JSON.stringify(response.data));
       console.log(response.data)
-  
+
       // Redirect to the '/bookflight' page
-      navigate('/bookflight');
+      navigate('/bookflight')
     } catch (error) {
-      console.error(error.response.data);
+      console.error(error.response.data)
       // Handle error
     }
-  };
-  
+  }
 
   return (
     <div>

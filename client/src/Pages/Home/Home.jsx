@@ -1,5 +1,6 @@
 import { useState, React } from 'react'
 import Navbar from '../../Components/Navbar/Navbar'
+import bck from '../../Assets/Images/bck.jpg'
 import { FiChevronDown } from 'react-icons/fi'
 import { GiAirplaneDeparture } from 'react-icons/gi'
 import { GiAirplaneArrival } from 'react-icons/gi'
@@ -9,9 +10,87 @@ import { Link } from 'react-router-dom'
 import './Home.scss'
 import { BsArrowLeftRight } from 'react-icons/bs'
 import { BiSolidErrorCircle } from 'react-icons/bi'
-import {Destinations} from '../Data'
 
-function Home() {
+const deals = [
+  {
+    id: 1,
+    city: 'Houston',
+    country: 'United States',
+    price: 'From USD 1,343*',
+    tripType: 'Round trip'
+  },
+  {
+    id: 2,
+    city: 'Washington',
+    country: 'United States',
+    price: 'From USD 1,236*',
+    tripType: 'Round trip'
+  },
+  {
+    id: 3,
+    city: 'Montreal',
+    country: 'Canada',
+    price: 'From USD 1,044*',
+    tripType: 'Round trip'
+  },
+  {
+    id: 4,
+    city: 'Birmingham',
+    country: 'United Kingdom',
+    price: 'From USD 889*',
+    tripType: 'Round trip'
+  },
+  {
+    id: 5,
+    city: 'Toronto',
+    country: 'Canada',
+    price: 'From USD 938*',
+    tripType: 'Round trip'
+  },
+  {
+    id: 6,
+    city: 'Paris',
+    country: 'France',
+    price: 'From USD 1,023*',
+    tripType: 'Round trip'
+  }
+]
+
+const cards = [
+  {
+    id: 1,
+    image:
+      'https://img.static-kl.com/transform/0d64d723-9256-4593-b8e9-b973b5141a6b/?io=transform:fill,width:960,height:480',
+    title: 'Ready to travel?',
+    description:
+      "Start planning your next trip and dream away at the world's most beautiful destinations."
+  },
+  {
+    id: 2,
+    image:
+      'https://img.static-kl.com/transform/4aa04570-3bbc-419d-8707-748a25e9021a/?io=transform:fill,width:960,height:480',
+    title: 'Join Flying Blue',
+    description:
+      'Save time booking flights, earn Miles and recieve special offers and deals.'
+  },
+  {
+    id: 3,
+    image:
+      'https://img.static-kl.com/transform/840b34fa-49a0-4797-9980-2deb115acc21/?io=transform:fill,width:960,height:480',
+    title: 'Discover the best deals',
+    description: 'Browse our selection of deals at the most favourable fares.'
+  },
+  {
+    id: 4,
+    image:
+      'https://img.static-kl.com/transform/3de16107-5796-4b56-ba33-7ea41c72eb97/?io=transform:fill,width:960,height:480',
+    title: 'World Business Class',
+    description:
+      'Travel in style with more privacy, comfort, and full attention from our cabin crew.'
+  }
+]
+
+function Home () {
   const [selectedCity, setSelectedCity] = useState('Lagos') // State to hold the selected city
 
   // Event handler to update the selected city
@@ -20,19 +99,23 @@ function Home() {
   }
   const customBackgroundColor = 'rgb(194, 219, 234)'
 
-  const {search, setSearch} = useState('')
-
   return (
     <>
       <div className='IFE'>
         <Navbar />
-        <div id="tripposition">
-          <div id="tripbook">
-            <p id='tripflight'> <IoAirplaneSharp id='tripbookicon' /> Book a flight</p>
-            <p id='tripmiles'> <BiCoinStack id='tripbookicon' /> Book with miles</p>
+        <div id='tripposition'>
+          <div id='tripbook'>
+            <p id='tripflight'>
+              {' '}
+              <IoAirplaneSharp id='tripbookicon' /> Book a flight
+            </p>
+            <p id='tripmiles'>
+              {' '}
+              <BiCoinStack id='tripbookicon' /> Book with miles
+            </p>
           </div>
           <div id='tripcont'>
-            <div id="tripconttop">
+            <div id='tripconttop'>
               <select name='trips' id='hometrip'>
                 <option value='round' selected>
                   Round trip
@@ -43,7 +126,7 @@ function Home() {
               <GiAirplaneDeparture id='tripicon' size={15} />
               <input type='text' id='tripinputs' placeholder='Departing from' />
               <GiAirplaneArrival id='tripicon' size={15} />
-              <input type='text' id='tripinputs' placeholder='Arriving at' onChange={(e) => setSearch(e.target.value)} />
+              <input type='text' id='tripinputs' placeholder='Arriving at' />
               <div id='tripcontinue'>
                 <p>Continue</p>
                 <FiChevronDown id='continueicon' />
@@ -70,12 +153,19 @@ function Home() {
           </div>
         </div>
         <div>
-          <img src={'https://img.static-kl.com/transform/11bc98fe-6f4d-4875-b837-410565e2f2f3/?io=transform:fill,width:1440,height:480'} alt='background' id='bodybck' />
+          <img
+            src={
+              'https://img.static-kl.com/transform/11bc98fe-6f4d-4875-b837-410565e2f2f3/?io=transform:fill,width:1440,height:480'
+            }
+            alt='background'
+            id='bodybck'
+          />
+          {/* <img src={bck} alt='background' id='bodybck' /> */}
         </div>
         <div id='tripfuture'>
           <h1>Contributing to a sustainable future</h1>
           <p id='tripfuturep1'>Here's what we are doing and how we can help</p>
-          <div id="learnmore">
+          <div id='learnmore'>
             <Link to='/learnmore'>
               <p>Learn More </p>
             </Link>
@@ -84,265 +174,88 @@ function Home() {
         </div>
       </div>
 
-
-
-
-
-      <div className='SHAKIROH sm:my-10 md:my-32 lg:my-40 xl:my-40 2xl:my-40 w-3/4 mx-auto '>
-        <h2 className='mt-16 text-4xl'>Destinations and deals</h2>
-        <div className='flex my-7'>
-          <p className='py-3'>
+      <div className='tw-SHAKIROH tw-my-10 tw-md:my-32 tw-lg:my-40 tw-xl:my-40 tw-2xl:my-40 pt-1 tw-w-3/4 tw-mx-auto'>
+        <h2 className='tw-mt-16 tw-text-4xl'>Destinations and deals</h2>
+        <div className='tw-flex tw-my-7'>
+          <p className='tw-py-3'>
             Discover our best Economy class deals on flights departing from{' '}
           </p>
-          <div className='border-none ml-3 sm:ml-2 py-2'>
+          <div className='tw-border-none tw-ml-3 tw-sm:ml-2 tw-py-2'>
             <select
               id='citySelect'
               value={selectedCity}
               onChange={handleCityChange}
-              className='w-full border-b border-black p-1 bg-transparent focus:outline-none focus:border-none focus:border-b focus:border-black active:outline-none active:border-none active:border-b active:border-black'
+              className='tw-w-full tw-border-b tw-border-black tw-p-1 tw-bg-transparent tw-focus:outline-none tw-focus:border-none tw-focus:border-b tw-focus:border-black tw-active:outline-none tw-active:border-none tw-active:border-b tw-active:border-black'
             >
-              <option value='Lagos' className='bg-transparent'>
-                Lagos
+              <option value='Lagos' className='tw-bg-transparent'>
+                America
               </option>
-              <option value='Abuja' className='bg-transparent'>
-                Abuja
+              <option value='Abuja' className='tw-bg-transparent'>
+                Maryland
               </option>
             </select>
           </div>
         </div>
 
-
-        {/* Bigger screen */}
-
-        <div className='hidden sm:hidden md:hidden lg:block xl:block 2xl:block flex flex-col space-y-4'>
-
-          {
-            Destinations.filter((deals) => {
-              return search.toLowerCase() === ''
-              ? deals
-              : deals.country.toLowerCase().includes(search);
-            }).map((deals, index) =>(
-
-              <div className='flex justify-between items-center py-5' key={index}>
-              <div className='w-1/3 text-gray-900'>{deals.state} <span className='text-gray-700'>{deals.country}</span></div>
-              <div className='text-gray-900'>{deals.amount}</div>
-              <div className='flex'><BsArrowLeftRight /><span className='text-gray-700 ml-2'>{deals.trip}</span></div>
-              <div><BiSolidErrorCircle /></div>
-            </div>
-
-            ))
-          }
-          {/* <div className='flex justify-between items-center py-5'>
-            <div className='w-1/3 text-gray-900'>Houston <span className='text-gray-700'>(United States)</span></div>
-            <div className='text-gray-900'>From USD 1,343*</div>
-            <div className='flex'><BsArrowLeftRight /><span className='text-gray-700 ml-2'>Round trip</span></div>
-            <div><BiSolidErrorCircle /></div>
-          </div>
-
-          <div className='flex justify-between items-center py-5'>
-            <div className='w-1/3 text-gray-900'>Washington <span className='text-gray-700'>(United States)</span></div>
-            <div className='text-gray-900'>From USD 1,236*</div>
-            <div className='flex'><BsArrowLeftRight /><span className='text-gray-700 ml-2'>Round trip</span></div>
-            <div><BiSolidErrorCircle /></div>
-          </div>
-
-          <div className='flex justify-between items-center py-5'>
-            <div className='w-1/3 text-gray-900'>Montreal <span className='text-gray-700'>(Canada)</span></div>
-            <div className='text-gray-900'>From USD 1,044*</div>
-            <div className='flex'><BsArrowLeftRight /><span className='text-gray-700 ml-2'>Round trip</span></div>
-            <div><BiSolidErrorCircle /></div>
-          </div>
-
-          <div className='flex justify-between items-center py-5'>
-            <div className='w-1/3 text-gray-900'>Birmingham <span className='text-gray-700'>(United Kingdom)</span></div>
-            <div className='text-gray-900'>From USD 889*</div>
-            <div className='flex'><BsArrowLeftRight /><span className='text-gray-700 ml-2'>Round trip</span></div>
-            <div><BiSolidErrorCircle /></div>
-          </div>
-
-          <div className='flex justify-between items-center py-5'>
-            <div className='w-1/3 text-gray-900'>Toronto <span className='text-gray-700'>(Canada)</span></div>
-            <div className='text-gray-900'>From USD 938*</div>
-            <div className='flex'><BsArrowLeftRight /><span className='text-gray-700 ml-2'>Round trip</span></div>
-            <div><BiSolidErrorCircle /></div>
-          </div>
-
-          <div className='flex justify-between items-center py-5'>
-            <div className='w-1/3 text-gray-900'>Paris <span className='text-gray-700'>(France)</span></div>
-            <div className='text-gray-900'>From USD 1,023*</div>
-            <div className='flex'><BsArrowLeftRight /><span className='text-gray-700 ml-2'>Round trip</span></div>
-            <div><BiSolidErrorCircle /></div>
-          </div> */}
-        </div>
-
-        {/* Smaller screen */}
-
-        <div className='flex flex-col lg:hidden xl:hidden 2xl:hidden'>
-
-        {
-            Destinations.filter((deals) => {
-              return search.toLowerCase() === ''
-              ? deals
-              : deals.country.toLowerCase().includes(search);
-            }).map((deals, index) =>(
-
-              <div className='flex justify-between w-full py-3' key={index}>
-              <div>
-                <div className='text-gray-900 pb-1'>{deals.state} <span className='text-gray-700'>{deals.country}</span></div>
-                <div className='flex'>
-                  <div className='text-gray-900'>{deals.amount}</div>
-                  <div className='flex ml-4'><BsArrowLeftRight className='mt-1'/><span className='text-gray-700 ml-2'>{deals.trip}</span></div>
+        <div className='tw-grid tw-grid-cols-1 tw-gap-4 tw-sm:grid-cols-2 tw-lg:grid-cols-3'>
+          {deals.map(deal => (
+            <div
+              key={deal.id}
+              className='tw-flex tw-flex-col tw-justify-between tw-p-5 tw-bg-white tw-shadow-md tw-rounded-lg'
+            >
+              <div className='tw-flex tw-justify-between tw-items-center'>
+                <div className='tw-text-gray-900'>
+                  {deal.city}{' '}
+                  <span className='tw-text-gray-700'>({deal.country})</span>
+                </div>
+                <div className='tw-text-gray-900'>{deal.price}</div>
+              </div>
+              <div className='tw-flex tw-justify-between tw-items-center tw-mt-2'>
+                <div className='tw-flex'>
+                  <BsArrowLeftRight />
+                  <span className='tw-text-gray-700 tw-ml-2'>
+                    {deal.tripType}
+                  </span>
+                </div>
+                <div>
+                  <BiSolidErrorCircle />
                 </div>
               </div>
-              <div className='mt-4'><BiSolidErrorCircle /></div>
             </div>
-
-            ))
-          }
-          {/* <div className='flex justify-between w-full py-3'>
-            <div>
-              <div className='text-gray-900 pb-1'>Houston <span className='text-gray-700'>(United States)</span></div>
-              <div className='flex'>
-                <div className='text-gray-900'>From USD 1,343*</div>
-                <div className='flex ml-4'><BsArrowLeftRight className='mt-1'/><span className='text-gray-700 ml-2'>Round trip</span></div>
-              </div>
-            </div>
-            <div className='mt-4'><BiSolidErrorCircle /></div>
-          </div>
-          <div className='flex justify-between w-full py-3'>
-            <div>
-              <div className='text-gray-900 pb-1'>Washington <span className='text-gray-700'>(United States)</span></div>
-              <div className='flex'>
-                <div className='text-gray-900'>From USD 1,343*</div>
-                <div className='flex ml-4'><BsArrowLeftRight className='mt-1'/><span className='text-gray-700 ml-2'>Round trip</span></div>
-              </div>
-            </div>
-            <div className='mt-4'><BiSolidErrorCircle /></div>
-          </div>
-          <div className='flex justify-between w-full py-3'>
-            <div>
-              <div className='text-gray-900 pb-1'>Montreal <span className='text-gray-700'>(Canada)</span></div>
-              <div className='flex'>
-                <div className='text-gray-900'>From USD 1,343*</div>
-                <div className='flex ml-4'><BsArrowLeftRight className='mt-1'/><span className='text-gray-700 ml-2'>Round trip</span></div>
-              </div>
-            </div>
-            <div className='mt-4'><BiSolidErrorCircle /></div>
-          </div>
-          <div className='flex justify-between w-full py-3'>
-            <div>
-              <div className='text-gray-900 pb-1'>Birmingham <span className='text-gray-700'>(United Kingdom)</span></div>
-              <div className='flex'>
-                <div className='text-gray-900'>From USD 1,343*</div>
-                <div className='flex ml-4'><BsArrowLeftRight className='mt-1'/><span className='text-gray-700 ml-2'>Round trip</span></div>
-              </div> 
-            </div>
-            <div className='mt-4'><BiSolidErrorCircle /></div>
-          </div>
-          <div className='flex justify-between w-full py-3'>
-            <div>
-              <div className='text-gray-900 pb-1'>Toronto <span className='text-gray-700'>(Canada)</span></div>
-              <div className='flex'>
-                <div className='text-gray-900'>From USD 1,343*</div>
-                <div className='flex ml-4'><BsArrowLeftRight className='mt-1'/><span className='text-gray-700 ml-2'>Round trip</span></div>
-              </div>
-            </div>
-            <div className='mt-4'><BiSolidErrorCircle /></div>
-          </div>
-          <div className='flex justify-between w-full py-3'>
-            <div>
-              <div className='text-gray-900 pb-1'>Paris <span className='text-gray-700'>(France)</span></div>
-              <div className='flex'>
-                <div className='text-gray-900'>From USD 1,343*</div>
-                <div className='flex ml-4'><BsArrowLeftRight className='mt-1'/><span className='text-gray-700 ml-2'>Round trip</span></div>
-              </div>
-            </div>
-            <div className='mt-4'><BiSolidErrorCircle /></div>
-          </div> */}
+          ))}
         </div>
 
-        <p className='my-5 text-gray-500'>
+        <p className='tw-my-5 tw-text-gray-500'>
           {' '}
           *All amounts are in USD. Taxes and surcharges are included. No booking
           fee is applicable. Prices shown may vary depending on fare
           availability.
         </p>
-        <button className='bg-blue-200 px-6 py-3 text-blue-700'>
+        <button className='tw-bg-blue-200 tw-px-6 tw-py-3 tw-text-blue-700'>
           Explore all deals
         </button>
-        <h2 className='mt-16 text-4xl'>Stay up to date</h2>
-        <div className=''>
-          <div className='flex justify-center my-9 '>
-            <div className='card card-compact w-1/2 bg-base-100 shadow-xl mr-5 '>
-              <figure>
-                <img
-                  src='https://img.static-kl.com/transform/0d64d723-9256-4593-b8e9-b973b5141a6b/?io=transform:fill,width:960,height:480'
-                  alt='Shoes'
-                />
-              </figure>
-              <div className='card-body text-gray-600 p-5'>
-                <h2 className='card-title text-2xl'>Ready to travel?</h2>
-                <p className='py-3'>
-                  Start planning your next trip and dream away at the world's
-                  most beautiful destinations.
-                </p>
+        <h2 className='tw-mt-16 tw-text-4xl'>Stay up to date</h2>
+        <div className='tw-grid tw-grid-cols-1 tw-gap-4 tw-sm:grid-cols-2 tw-lg:grid-cols-3'>
+          {cards.map(card => (
+            <div
+              key={card.id}
+              className='tw-col tw-w-full tw-sm:w-1/2 tw-lg:w-1/3'
+            >
+              <div className='tw-card tw-card-compact tw-bg-base-100 tw-shadow-xl tw-rounded-lg'>
+                <figure>
+                  <img src={card.image} alt={card.title} />
+                </figure>
+                <div className='tw-card-body tw-text-gray-600 tw-p-5'>
+                  <h2 className='tw-card-title tw-text-2xl'>{card.title}</h2>
+                  <p className='tw-py-3'>{card.description}</p>
+                </div>
               </div>
             </div>
-            <div className='card card-compact w-1/2 bg-base-100 shadow-xl ml-5'>
-              <figure>
-                <img
-                  src='https://img.static-kl.com/transform/4aa04570-3bbc-419d-8707-748a25e9021a/?io=transform:fill,width:960,height:480'
-                  alt='Shoes'
-                />
-              </figure>
-              <div className='card-body text-gray-600 p-5'>
-                <h2 className='card-title text-2xl'>Join Flying Blue</h2>
-                <p className='py-3'>
-                  Save time booking flights, earn Miles and recieve special
-                  offers and deals.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className='flex justify-center mb-9'>
-            <div className='card card-compact w-1/2 bg-base-100 shadow-xl mr-5'>
-              <figure>
-                <img
-                  src='https://img.static-kl.com/transform/840b34fa-49a0-4797-9980-2deb115acc21/?io=transform:fill,width:960,height:480'
-                  alt='Shoes'
-                />
-              </figure>
-              <div className='card-body text-gray-600 p-5'>
-                <h2 className='card-title text-2xl'>Discover the best deals</h2>
-                <p className='py-3'>
-                  Browse our selection of deals at the most favourable fares.
-                </p>
-              </div>
-            </div>
-            <div className='card card-compact w-1/2 bg-base-100 shadow-xl ml-5'>
-              <figure>
-                <img
-                  src='https://img.static-kl.com/transform/3de16107-5796-4b56-ba33-7ea41c72eb97/?io=transform:fill,width:960,height:480'
-                  alt='Shoes'
-                />
-              </figure>
-              <div className='card-body text-gray-600 p-5'>
-                <h2 className='card-title text-2xl'>World Business Class</h2>
-                <p className='py-3'>
-                  Travel in style with more privacy, comfort, and full attention
-                  from our cabin crew.
-                </p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
-
-
-      <div className='BOSS'>
-        
-      </div>
+      <div className='BOSS'></div>
     </>
   )
 }

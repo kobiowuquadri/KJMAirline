@@ -5,8 +5,13 @@ import Navbar from '../../Components/Navbar/Navbar'
 import './bookfight.scss'
 
 function BookFlight() {
+
+
+
+
   return (
    <>
+   {/* https://kjm.zuuroo.com/api/auth/user */}
       <Navbar/>
     <div className='bg_flight'> 
     <h1 className='text-white fw-bold p-4 fs-1'>Book a Flight</h1>     

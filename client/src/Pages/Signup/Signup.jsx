@@ -1,46 +1,64 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import logo from '../../Assets/Images/kjm-logo.png';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import logo from '../../Assets/Images/kjm-logo.png'
+import { useNavigate } from 'react-router-dom'
 
 function Signup() {
   const [userData, setUserData] = useState({
-    fullName: '',
+    name: '', // Use 'name' here
     username: '',
     email: '',
     password: '',
-  });
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
+  })
+  
+  
+  const [error, setError] = useState('')
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate()
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+
+  useEffect(() => {
+    // Check local storage for user data when the Navbar component is mounted
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  }, []);
+
+  const handleSubmit = async event => {
+    event.preventDefault()
 
     try {
-      const response = await axios.post('https://kjm.zuuroo.com/api/auth/register', userData);
-
-      localStorage.setItem('user', JSON.stringify({ username: userData.username }));
+      const response = await axios.post(
+        'https://kjm.zuuroo.com/api/auth/register',
+        userData
+      )
+      localStorage.setItem(
+        'user',
+        JSON.stringify({ username: userData.username, name: userData.name }) // Add 'name' to localStorage
+      )
       console.log(userData.username)
-
-      console.log(response.data);
-      // Handle successful response
-      navigate('/login');
+      console.log(response.data)
+      // Redirect the user to the login page upon success
+      navigate('/login')
     } catch (error) {
       if (error.response && error.response.status === 409) {
-        setError('User with this email or username already exists. Please choose a different one.');
+        setError(
+          'User with this email or username already exists. Please choose a different one.'
+        )
       } else {
-        setError('An error occurred. Please try again later.');
+        setError('An error occurred. Please try again later.')
       }
     }
-  };
+  }
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setUserData((prevUserData) => ({
+  const handleChange = event => {
+    const { name, value } = event.target
+    setUserData(prevUserData => ({
       ...prevUserData,
-      [name]: value,
-    }));
-  };
+      [name]: value
+    }))
+  }
 
   return (
     <div>
@@ -51,13 +69,13 @@ function Signup() {
         <div id='signupform'>
           <h2>Create an Account</h2>
           <form onSubmit={handleSubmit}>
-            <label htmlFor='fullName'></label>
+            <label htmlFor='name'></label>
             <input
               type='text'
               id='forminput'
               placeholder='Full Name'
-              name='fullName'
-              value={userData.fullName}
+              name='name' // Use 'name' here
+              value={userData.name} // Use 'name' here
               onChange={handleChange}
             />{' '}
             <br />
@@ -96,7 +114,7 @@ function Signup() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Signup;
+export default Signup

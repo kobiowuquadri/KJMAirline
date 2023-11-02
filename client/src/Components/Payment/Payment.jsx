@@ -27,7 +27,11 @@ const Payment = () => {
   };
 
   const handleYesIHavePaid = () => {
-    // TODO: Implement this function to handle the case when the user clicks the "Yes, I have paid" button.
+    // Alert the user that their payment has been approved.
+    alert("Payment approved!");
+
+    // Close the modal.
+    closeModal();
   };
 
   return (

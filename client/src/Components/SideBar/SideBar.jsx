@@ -21,9 +21,10 @@ import {
   MDBDropdownLink,
   MDBListGroupItem
 } from 'mdb-react-ui-kit';
+import logoIcon from '../../Assets/Images/kjm-logo.png'
 
 
-const SideBar = () =>  {
+const Slidebar = () =>  {
   const [showShow, setShowShow] = useState(false);
 
   const toggleShow = () => setShowShow(!showShow);
@@ -125,6 +126,7 @@ const SideBar = () =>  {
             </MDBNavbarToggler>
             <MDBNavbarBrand href='#'>
               <img
+                src={logoIcon}
                 height='30'
                 alt=''
                 loading='lazy'
@@ -202,4 +204,4 @@ const SideBar = () =>  {
   );
 }
 
-export default SideBar
+export default Slidebar

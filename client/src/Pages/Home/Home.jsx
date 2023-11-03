@@ -106,8 +106,10 @@ function Home () {
         <div id='tripposition'>
           <div id='tripbook'>
             <p id='tripflight'>
-              {' '}
-              <IoAirplaneSharp id='tripbookicon' /> Book a flight
+             <Link to={'/signup'} className='animate__animated animate__heartBeat animate__infinite'>
+             {' '}
+              <IoAirplaneSharp id='tripbookicon'  /> Book a flight
+             </Link>
             </p>
             <p id='tripmiles'>
               {' '}

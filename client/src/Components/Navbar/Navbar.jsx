@@ -1,5 +1,5 @@
 import React from 'react'
-import ng from '../../Assets/Images/NG.svg'
+import usa from '../../Assets/Images/usa_logo.png'
 import logo from '../../Assets/Images/kjm-logo.png'
 import { CgProfile } from 'react-icons/cg'
 import { MdDirectionsWalk } from 'react-icons/md'
@@ -31,10 +31,9 @@ function Navbar() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Clear user data upon logout
     localStorage.removeItem('user');
     setUser(null);
-    navigate('/login'); // Redirect to the login page
+    navigate('/login'); 
   };
 
 
@@ -47,6 +46,8 @@ function Navbar() {
         <img src={logo} alt="Logo" id="logo" />
       </div>
       <div id="navtopside">
+       <img src={usa} alt="Nigeria flag" id="navtopsideimg" />
+        <p className='pe-4'>America - US</p>
         {user ? (
           <div id="navtopsidecontent">
             <p className='pe-4'>Welcome, {user.username}</p>
@@ -54,11 +55,11 @@ function Navbar() {
             <button onClick={handleLogout} id="navtoplink">
               Logout
             </button>
+
           </div>
         ) : (
           <div id="navtopsidecontent">
-            <img src={ng} alt="Nigeria flag" id="navtopsideimg" />
-            <p>Nigeria - EN</p>
+            
             <CgProfile id="navtopsideimg" />
             <Link to="/login" id="navtoplink">
               <p>Log in</p>

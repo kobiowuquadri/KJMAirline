@@ -6,6 +6,25 @@ import { MdDirectionsWalk } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import './navbar.scss'
+import axios from 'axios'
+
+// const handleUsername = async () => {
+//   try {
+//     const response = await axios.get('https://kjm.zuuroo.com/api/auth/user', {
+//       params: {
+//         name: name, // Replace 'name' with the actual value you want to send
+//         username: username, // Replace 'username' with the actual value you want to send
+//       },
+//     });
+
+//     // Process the response data
+//     console.log(response.data);
+//   } catch (error) {
+//     // Handle any errors here
+//     console.error(error);
+//   }
+// };
+
 
 function Navbar() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
@@ -18,6 +37,9 @@ function Navbar() {
     navigate('/login'); // Redirect to the login page
   };
 
+
+
+
   return (
     <div id="navhero">
     <div id="navtop">
@@ -27,7 +49,7 @@ function Navbar() {
       <div id="navtopside">
         {user ? (
           <div id="navtopsidecontent">
-            <h1>{user.username}</h1>
+            <p className='pe-4'>Welcome, {user.username}</p>
             <CgProfile id="navtopsideimg" />
             <button onClick={handleLogout} id="navtoplink">
               Logout

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Navbar from '../../Components/Navbar/Navbar'
+import Footer from '../../Components/Footer/Footer'
 import './Trip.scss'
 import { CgProfile } from 'react-icons/cg'
 import { MdDirectionsWalk } from 'react-icons/md'
@@ -65,6 +66,7 @@ function Trip () {
         <a href=''>2023 KJM</a>
         <a href=''>Cookie settings</a>
       </div>
+      <Footer/>
     </div>
   )
 }

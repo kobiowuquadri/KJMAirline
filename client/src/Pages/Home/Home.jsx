@@ -1,6 +1,5 @@
 import { useState, React } from 'react'
 import Navbar from '../../Components/Navbar/Navbar'
-import bck from '../../Assets/Images/bck.jpg'
 import { FiChevronDown } from 'react-icons/fi'
 import { GiAirplaneDeparture } from 'react-icons/gi'
 import { GiAirplaneArrival } from 'react-icons/gi'
@@ -40,6 +39,9 @@ const deals = [
     price: 'From USD 889*',
     tripType: 'Round trip'
   },
+]
+
+const deals2 = [
   {
     id: 5,
     city: 'Toronto',
@@ -55,6 +57,7 @@ const deals = [
     tripType: 'Round trip'
   }
 ]
+
 
 const cards = [
   {
@@ -99,6 +102,11 @@ function Home () {
   }
   const customBackgroundColor = 'rgb(194, 219, 234)'
 
+  const [ search, setSearch ] = useState('')
+
+  const [ show, setShow ] = useState(false)
+
+
   return (
     <>
       <div className='IFE'>
@@ -128,7 +136,7 @@ function Home () {
               <GiAirplaneDeparture id='tripicon' size={15} />
               <input type='text' id='tripinputs' placeholder='Departing from' />
               <GiAirplaneArrival id='tripicon' size={15} />
-              <input type='text' id='tripinputs' placeholder='Arriving at' />
+              <input type='text' id='tripinputs' placeholder='Arriving at' onChange= {(e) => setSearch(e.target.value)} />
               <div id='tripcontinue'>
                 <p>Continue</p>
                 <FiChevronDown id='continueicon' />
@@ -162,7 +170,6 @@ function Home () {
             alt='background'
             id='bodybck'
           />
-          {/* <img src={bck} alt='background' id='bodybck' /> */}
         </div>
         <div id='tripfuture'>
           <h1>Contributing to a sustainable future</h1>
@@ -200,7 +207,9 @@ function Home () {
         </div>
 
         <div className='tw-grid tw-grid-cols-1 tw-gap-4 tw-sm:grid-cols-2 tw-lg:grid-cols-3'>
-          {deals.map(deal => (
+          {deals.filter((deal => {
+            return search.toLowerCase() === '' ? deal : deal.country.toLowerCase().includes(search) ||  deal.city.toLowerCase().includes(search);
+          })).map(deal => (
             <div
               key={deal.id}
               className='tw-flex tw-flex-col tw-justify-between tw-p-5 tw-bg-white tw-shadow-md tw-rounded-lg'
@@ -227,13 +236,46 @@ function Home () {
           ))}
         </div>
 
+        
+       { 
+           show &&  <div className='tw-grid tw-grid-cols-1 tw-gap-4 tw-sm:grid-cols-2 tw-lg:grid-cols-3'>
+                  {deals2.filter((deal2 => {
+                    return search.toLowerCase() === '' ? deal2 : deal2.country.toLowerCase().includes(search);
+                  })).map(deal2 => (
+                    <div
+                      key={deal2.id}
+                      className='tw-flex tw-flex-col tw-justify-between tw-p-5 tw-bg-white tw-shadow-md tw-rounded-lg'
+                    >
+                      <div className='tw-flex tw-justify-between tw-items-center'>
+                        <div className='tw-text-gray-900'>
+                          {deal2.city}{' '}
+                          <span className='tw-text-gray-700'>({deal2.country})</span>
+                        </div>
+                        <div className='tw-text-gray-900'>{deal2.price}</div>
+                      </div>
+                      <div className='tw-flex tw-justify-between tw-items-center tw-mt-2'>
+                        <div className='tw-flex'>
+                          <BsArrowLeftRight />
+                          <span className='tw-text-gray-700 tw-ml-2'>
+                            {deal2.tripType}
+                          </span>
+                        </div>
+                        <div>
+                          <BiSolidErrorCircle />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+        }
+
         <p className='tw-my-5 tw-text-gray-500'>
           {' '}
           *All amounts are in USD. Taxes and surcharges are included. No booking
           fee is applicable. Prices shown may vary depending on fare
           availability.
         </p>
-        <button className='tw-bg-blue-200 tw-px-6 tw-py-3 tw-text-blue-700'>
+        <button className='tw-bg-blue-200 tw-px-6 tw-py-3 tw-text-blue-700' onClick = { () => setShow(!show)}>
           Explore all deals
         </button>
         <h2 className='tw-mt-16 tw-text-4xl'>Stay up to date</h2>

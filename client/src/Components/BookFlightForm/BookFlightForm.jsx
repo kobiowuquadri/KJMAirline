@@ -47,12 +47,6 @@ function BookFlightForm () {
           </div>
           <div class='form-group d-sm-flex margin'>
             <div class='d-flex align-items-center flex-fill me-sm-1 my-sm-0 my-4 border-bottom position-relative'>
-              {/* <input
-                type='text'
-                required
-                placeholder='From'
-                class='form-control'
-              /> */}
 
               <select className='form-control'>
                    <option selected>From</option>

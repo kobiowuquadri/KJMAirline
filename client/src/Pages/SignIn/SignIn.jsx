@@ -9,31 +9,48 @@ function SignIn () {
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
 
-  const handleSubmit = async event => {
-    event.preventDefault();
+  const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  };
   
+  axios
+    .get('https://kjm.zuuroo.com/api/auth/user', {
+      headers: headers
+    })
+    .then(response => {
+      // Access and process the data from the response
+      const userData = response?.data
+      console.log(userData)
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+    
+  const handleSubmit = async event => {
+    event.preventDefault()
+
     try {
       const response = await axios.post(
         'https://kjm.zuuroo.com/api/auth/login',
         {
           email,
-          password,
+          password
         }
-      );
-      
-  
+      )
+
       // Store user data in local storage
       // localStorage.setItem('user', JSON.stringify(response.data));
-      console.log(response.data);
-  
+      console.log(response.data)
+
       // Redirect to the '/bookflight' page
-      navigate('/bookflight');
+      navigate('/bookflight')
     } catch (error) {
-      console.error(error.response?.data); // Use optional chaining to access data
+      console.error(error.response?.data) // Use optional chaining to access data
       // Handle error
     }
   }
-  
 
   return (
     <div>

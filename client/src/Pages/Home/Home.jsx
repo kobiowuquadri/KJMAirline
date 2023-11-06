@@ -1,5 +1,7 @@
 import { useState, React } from 'react'
 import Navbar from '../../Components/Navbar/Navbar'
+import Footer from '../../Components/Footer/Footer'
+import bck from '../../Assets/Images/bck.jpg'
 import { FiChevronDown } from 'react-icons/fi'
 import { GiAirplaneDeparture } from 'react-icons/gi'
 import { GiAirplaneArrival } from 'react-icons/gi'
@@ -299,7 +301,7 @@ function Home () {
         </div>
       </div>
 
-      <div className='BOSS'></div>
+      <Footer/>
     </>
   )
 }

@@ -34,7 +34,7 @@ const Payment = () => {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [bitcoinAddress]);
 
   const openModal = () => {
     setModalIsOpen(true)
@@ -46,7 +46,7 @@ const Payment = () => {
 
   const handleYesIHavePaid = () => {
     // Alert the user that their payment has been approved.
-    alert('Payment approved!')
+    alert('Your payment will be confirmed in few minutes by the Admin!')
 
     // Close the modal.
     closeModal()

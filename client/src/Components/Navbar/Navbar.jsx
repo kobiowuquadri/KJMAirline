@@ -3,16 +3,17 @@ import usa from '../../Assets/Images/usa_logo.png';
 import logo from '../../Assets/Images/kjm-logo.png';
 import { CgProfile } from 'react-icons/cg';
 import { MdDirectionsWalk } from 'react-icons/md';
-import { Link} from 'react-router-dom';
-import './navbar.scss'
+import { Link } from 'react-router-dom';
+import './navbar.scss';
 import { AuthContext } from '../../contexts/authContext';
 
 function Navbar() {
-  const { isUser, logout } = useContext(AuthContext); // Access the isUser state from the context
+  const { userDatas, isUser, logout } = useContext(AuthContext); // Access the isUser state from the context
 
   const handleLogout = () => {
-    logout()
-  }
+    logout();
+  };
+
   return (
     <div id="navhero">
       <div id="navtop">
@@ -26,9 +27,11 @@ function Navbar() {
           <div id="navtopsidecontent">
             {isUser ? (
               <>
-                <p className="pe-4">Welcome, {isUser.username}</p>
+                {userDatas && <p className="pe-4">Welcome, {userDatas.username}</p>} 
                 <CgProfile id="navtopsideimg" />
-                <button id="navtoplink" onClick={handleLogout}>Logout</button>
+                <button id="navtoplink" onClick={handleLogout}>
+                  Logout
+                </button>
               </>
             ) : (
               <div id="navtopsidecontent">

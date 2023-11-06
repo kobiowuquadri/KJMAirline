@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import Navbar from '../../Components/Navbar/Navbar'
 import Footer from '../../Components/Footer/Footer'
 import './Trip.scss'
@@ -7,9 +7,11 @@ import { MdDirectionsWalk } from 'react-icons/md'
 import { BiChevronRight } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 import BookFlightForm from '../../Components/BookFlightForm/BookFlightForm'
+import { AuthContext } from '../../contexts/authContext'
+
 
 function Trip () {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
+  const {isUser} = useContext(AuthContext)
 
   return (
     <div>
@@ -17,7 +19,7 @@ function Trip () {
       <div id='mytripflex'>
         <div id='mytriphero'>
           <h1>Your Trip</h1>
-          {user ? (
+          {isUser ? (
            <BookFlightForm/>
           ) : (
             <div>

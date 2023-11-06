@@ -1,32 +1,19 @@
-import {React, useState, useEffect} from 'react'
+import React, { useState, useMemo } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import './bookfight.scss'
 import Payment from '../Payment/Payment'
+import Select from 'react-select'
+import countryList from 'react-select-country-list'
 
 function BookFlightForm () {
 
-  // const [country, setCountry]= useState([]);
-  // const [countryid, setCountryid]= useState('');
+  const [value, setValue] = useState('')
+  const options = useMemo(() => countryList().getData(), [])
 
-  // useEffect( ()=>{
-  //  const getcountry= async ()=>{
-  //    const req= await fetch("https://restcountries.eu/rest/v2/all");
-  //    const getres= await req.json();
-  //    console.log(getres);
-  //    setCountry(await getres);
-
-  //  }
-  //  getcountry();
-
-
-  // },[]);
-
-  // const handlecountry=(event)=>{
-  //   const getcoutryid= event.target.value;
-  //   setCountryid(getcoutryid);
-  //   event.preventDefault();
-  // }
+  const changeHandler = value => {
+    setValue(value)
+  }
 
   return (
     <div className='bg_flight'>
@@ -57,17 +44,8 @@ function BookFlightForm () {
               <span class='fas fa-dot-circle text-muted'></span>
             </div>
             <div class='d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative'>
-              {/* <input
-                type='text'
-                required
-                placeholder='To'
-                class='form-control'
-              /> */}
 
-                {/* <select name="country" className="form-control">
-                   <option selected>To</option>
-        
-                 </select> */}
+            <Select name="country" className="form-control" options={options} value={value} onChange={changeHandler} />
               <div class='label' id='to'></div>
               <span class='fas fa-map-marker text-muted'></span>
             </div>
@@ -93,12 +71,12 @@ function BookFlightForm () {
             </div>
           </div>
           <div class='form-group border-bottom d-flex align-items-center position-relative'>
-            {/* <input
+            <input
               type='text'
               required
               placeholder='Traveller(s)'
               class='form-control'
-            /> */}
+            />
 
             <select className='form-control'>
                    <option selected>1</option>

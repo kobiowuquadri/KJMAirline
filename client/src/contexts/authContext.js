@@ -5,15 +5,17 @@ const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [isUser, setIsUser] = useState(null);
+  const [userDatas, setUserData] = useState(null); // Define the userData state
   const navigate = useNavigate();
 
   const logout = () => {
     setIsUser(null);
+    setUserData(null); // Reset the userData state when the user logs out
     navigate('/login');
   };
 
   return (
-    <AuthContext.Provider value={{ isUser, setIsUser, logout }}>
+    <AuthContext.Provider value={{ isUser, setIsUser, userDatas, setUserData, logout }}> 
       {children}
     </AuthContext.Provider>
   );

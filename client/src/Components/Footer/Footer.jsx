@@ -3,54 +3,56 @@ import { BiLogoLinkedin } from 'react-icons/bi'
 import { RxTwitterLogo } from 'react-icons/rx'
 import { AiOutlineWhatsApp } from 'react-icons/ai'
 import { BiLogoFacebook } from 'react-icons/bi'
+import './footer.scss'
+import foot_log from '../../Assets/Images/kjm-logo.png'
+
+
+
 function Footer() {
   return (
-    <div className='tw-flex tw-bg-gray-100 tw-justify-between tw-p-10 tw-mt-24 tw-w-full'>
-      <div className='tw-w-1/2 tw-text-xs'>
-        <div className='tw-flex'>
-        <h3 className='tw-text-sm sm:tw-text- lg:tw-text-lg'>FLIGHT <br /> SAFETY</h3>
+    <footer className='shadow'>
+      <div className="footer_links">
+        <div className="link_1">
+          <ul>
+            <li data-aos="flip-left">
+              <img src={foot_log} width={'200rem'} alt="" />
+            </li>
+            <li>
+              <ol data-aos="flip-left">
+                <a href="javascript:void()">
+                  <li><img src="../../Assets/Images/flight.jpeg"  alt="" /></li>
+                </a>
+                <li><a href="#"><img src={<AiOutlineWhatsApp/>} alt="" /></a></li>
+                <li><a href="#"><img src={<BiLogoFacebook/>} alt="" /></a></li>
+                <li><a href="#"><img src={<BiLogoLinkedin/>} alt="" /></a></li>
+                <li><a href="#"><img src={<RxTwitterLogo/>} alt="" /></a></li>
+              </ol>
+            </li>
+          </ul>
         </div>
-        <p className='tw-tracking-widest tw-text-sm sm:tw-text-base lg:tw-text-lg'>FOUNDATION</p>
-        <p>701 N. Fairfax Street, Suite 250, Alexandria, Virgina 22314</p>
-        <p>Phone: +1 703 739 6700 | Fax: +1 703 739 6708</p>
-        <div className='tw-flex tw-justify-between tw-w-2/5 tw-py-5 tw-text-indigo-600 lg:tw-w-1/4'>
-          <BiLogoLinkedin/>
-          <RxTwitterLogo/>
-          <AiOutlineWhatsApp/>
-          <BiLogoFacebook/>
+
+        <div className="link_2" data-aos="flip-left">
+          <ul>
+            <li><a href="javascript:void()">About Us</a></li>
+            <li><a href="javascript:void()">Contact</a></li>
+            <li><a href="javascript:void()">Blog</a></li>
+          </ul>
         </div>
-        <div className='tw-pt-60'>
-          <p>Join our group on</p>
-          <h3 className='tw-flex tw-text-xl'>Linked  <BiLogoLinkedin className='tw-text-2xl tw-pt-1 tw-text-indigo-600'/></h3>
-        </div>
-      </div>
-      <div className='tw-w-1/2 tw-text-xs tw-pl-10'>
-        <h3 className='tw-text-sm sm:tw-text-base lg:tw-text-lg'>FLIGHT SAFETY FOUNDATION ON TWITTER</h3>
-        <p className='tw-leading-6'>Stakeholder update on findings and progress made in our Global Safety information Project now available at fsfgsip.org/gsip-year-one "....#FS-FGSIP"</p>
-        <p>3 Hours Ago</p>
-        <button className="btn btn-primary">follow flightSafety</button>
-        <h3 className='tw-pt-20 tw-text-sm sm:tw-text-base lg:tw-text-lg'>PROJECTS & PARTNERS</h3>
-        <hr /><br />
-        <div className='tw-flex tw-text-xs'>
-          <div className='tw-w-1/2'>
-            <p>Global Safety information Project</p>
-            <p>Basic Aviation Risk Standard</p>
-            <p>SKYBrary</p>
-            <p>Aviation Safety Network</p>
-          </div>
-          <div className='tw-w-1/2 tw-text-xs tw-pl-10'>
-            <p>Donate</p>
-            <p>Advertise in AeroSafety World</p>
-            <p>Sponsor & Exhibit at our Events</p>
-            <div className='tw-flex'>
-              <p>Contact Us</p>
-              <p>Site Map</p>
-              <p>Privacy</p>
-            </div>
-          </div>
+
+        <div className="link_3" data-aos="flip-left">
+          <ul>
+            <li><a href="javascript:void()">Careers</a></li>
+            <li><a href="javascript:void()">Support</a></li>
+            <li><a href="javascript:void()">Privacy Policy</a></li>
+          </ul>
         </div>
       </div>
-    </div>
+
+      <div className="link_4" data-aos="flip-right">
+        <button id="btn_footer">Book Flight</button>
+        <p className='text-white'>©KJMAirline. All Rights Reserved</p>
+      </div>
+    </footer>
   )
 }
 

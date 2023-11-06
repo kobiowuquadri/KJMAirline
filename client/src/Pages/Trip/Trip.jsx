@@ -59,13 +59,6 @@ function Trip () {
           />
         </div>
       </div>
-      <div id='tripfooterlinks'>
-        <a href=''>Legal information</a>
-        <a href=''>Privacy policy</a>
-        <a href=''>Accessibility statement</a>
-        <a href=''>2023 KJM</a>
-        <a href=''>Cookie settings</a>
-      </div>
       <Footer/>
     </div>
   )

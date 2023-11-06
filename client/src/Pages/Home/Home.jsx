@@ -102,7 +102,6 @@ function Home () {
   const handleCityChange = event => {
     setSelectedCity(event.target.value)
   }
-  const customBackgroundColor = 'rgb(194, 219, 234)'
 
   const [ search, setSearch ] = useState('')
 

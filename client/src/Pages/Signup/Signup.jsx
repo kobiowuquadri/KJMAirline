@@ -33,12 +33,6 @@ function Signup() {
         'https://kjm.zuuroo.com/api/auth/register',
         userData
       )
-      localStorage.setItem(
-        'user',
-        JSON.stringify({ username: userData.username, name: userData.name }) // Add 'name' to localStorage
-      )
-      console.log(userData.username)
-      console.log(response.data)
       // Redirect the user to the login page upon success
       navigate('/login')
     } catch (error) {

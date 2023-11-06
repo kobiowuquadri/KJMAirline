@@ -12,7 +12,6 @@ function SignIn () {
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer your_access_token'
   };
   
   axios
@@ -21,14 +20,8 @@ function SignIn () {
     })
     .then(response => {
       // Access and process the data from the response
-      const userData = response.data;
-      console.log("User ID: " + userData.id);
-      console.log("Username: " + userData.username);
-      console.log("Flight ID: " + userData.flightId);
-      console.log("Email: " + userData.email);
-      console.log("Email Verified At: " + userData.email_verified_at);
-      console.log("Created At: " + userData.created_at);
-      console.log("Updated At: " + userData.updated_at);
+      const userData = response?.data
+      console.log(userData)
     })
     .catch(error => {
       console.error(error);

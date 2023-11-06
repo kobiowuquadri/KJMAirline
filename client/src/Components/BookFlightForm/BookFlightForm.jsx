@@ -6,27 +6,27 @@ import Payment from '../Payment/Payment'
 
 function BookFlightForm () {
 
-  const [country, setCountry]= useState([]);
-  const [countryid, setCountryid]= useState('');
+  // const [country, setCountry]= useState([]);
+  // const [countryid, setCountryid]= useState('');
 
-  useEffect( ()=>{
-   const getcountry= async ()=>{
-     const req= await fetch("https://restcountries.eu/rest/v2/all");
-     const getres= await req.json();
-     console.log(getres);
-     setCountry(await getres);
+  // useEffect( ()=>{
+  //  const getcountry= async ()=>{
+  //    const req= await fetch("https://restcountries.eu/rest/v2/all");
+  //    const getres= await req.json();
+  //    console.log(getres);
+  //    setCountry(await getres);
 
-   }
-   getcountry();
+  //  }
+  //  getcountry();
 
 
-  },[]);
+  // },[]);
 
-  const handlecountry=(event)=>{
-    const getcoutryid= event.target.value;
-    setCountryid(getcoutryid);
-    event.preventDefault();
-  }
+  // const handlecountry=(event)=>{
+  //   const getcoutryid= event.target.value;
+  //   setCountryid(getcoutryid);
+  //   event.preventDefault();
+  // }
 
   return (
     <div className='bg_flight'>
@@ -70,15 +70,10 @@ function BookFlightForm () {
                 class='form-control'
               /> */}
 
-                <select name="country" className="form-control" onChange={(e)=>handlecountry(e)}>
+                {/* <select name="country" className="form-control">
                    <option selected>To</option>
-                   {
-                     country.map( (getcon)=>(
-                   <option key={getcon.country_id} value={getcon.country_id }> { getcon.country_name}</option>
-                     ))
-                }
-                 
-                 </select>
+        
+                 </select> */}
               <div class='label' id='to'></div>
               <span class='fas fa-map-marker text-muted'></span>
             </div>

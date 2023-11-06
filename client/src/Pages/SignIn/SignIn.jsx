@@ -1,56 +1,67 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import logo from '../../Assets/Images/kjm-logo.png'
 import { useNavigate } from 'react-router-dom'
 import '../Signup/Signup.scss'
+import { AuthContext } from '../../contexts/authContext'
 
 function SignIn () {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
+  const [accessToken, setAccessToken] = useState(''); // New state variable to store the access token
 
-  const headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-  };
-  
-  axios
-    .get('https://kjm.zuuroo.com/api/auth/user', {
-      headers: headers
-    })
-    .then(response => {
-      // Access and process the data from the response
-      const userData = response?.data
-      console.log(userData)
-    })
-    .catch(error => {
-      console.error(error);
+  // Use the context to access the setIsUser function
+  const { setIsUser } = useContext(AuthContext);
+
+ const handleSubmit = async (event) => {
+  event.preventDefault();
+
+  try {
+    const response = await axios.post('https://kjm.zuuroo.com/api/auth/login', {
+      email,
+      password,
     });
 
-    
-  const handleSubmit = async event => {
-    event.preventDefault()
+    const { access_token } = response.data;
+    await setAccessToken(access_token); // Await the state update
 
-    try {
-      const response = await axios.post(
-        'https://kjm.zuuroo.com/api/auth/login',
-        {
-          email,
-          password
-        }
-      )
+    console.log(accessToken); // Now accessToken should have the updated value
 
-      // Store user data in local storage
-      // localStorage.setItem('user', JSON.stringify(response.data));
-      console.log(response.data)
+    // Set the user data using the setIsUser function from context
+    setIsUser(response.data);
 
-      // Redirect to the '/bookflight' page
-      navigate('/bookflight')
-    } catch (error) {
-      console.error(error.response?.data) // Use optional chaining to access data
-      // Handle error
-    }
+    console.log(response.data);
+    navigate('/bookflight');
+  } catch (error) {
+    console.error(error.response?.data); // Use optional chaining to access data
+    console.log(error.message);
   }
+};
+  
+
+  
+  const checkUser = async () => {
+    try {
+      const response = await axios.get('https://kjm.zuuroo.com/api/auth/user', {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + accessToken,
+        },
+      });
+      console.log(accessToken)
+      
+      const userData = response?.data;
+      console.log(userData);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+  
+  useEffect(() => {
+    checkUser();
+  }, [accessToken]);
 
   return (
     <div>

@@ -46,7 +46,7 @@
 }
 #tripbook{
     display: flex;
-    justify-content: space-evenly;
+
     margin-left:34px;
 }
 #tripflight{
@@ -133,6 +133,22 @@
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media(max-width:768px){
     #tripposition{
         position: relative;
@@ -184,10 +200,5 @@
         left: 20px;
         bottom: 50px;
         opacity: 1;
-        width: 350px;
-        display: flex;
-        justify-content: left;
-        align-items:left;
-        flex-direction: column;
     }
 }

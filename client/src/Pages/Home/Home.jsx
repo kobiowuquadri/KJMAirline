@@ -191,27 +191,7 @@ function Home () {
       </div>
 
       <div className='tw-SHAKIROH tw-my-10 tw-md:my-32 tw-lg:my-40 tw-xl:my-40 tw-2xl:my-40 pt-1 tw-w-3/4 tw-mx-auto'>
-        <h2 className='tw-mt-16 tw-text-4xl'>Destinations and deals</h2>
-        <div className='tw-flex tw-my-7'>
-          <p className='tw-py-3'>
-            Discover our best Economy class deals on flights departing from{' '}
-          </p>
-          <div className='tw-border-none tw-ml-3 tw-sm:ml-2 tw-py-2'>
-            <select
-              id='citySelect'
-              value={selectedCity}
-              onChange={handleCityChange}
-              className='tw-w-full tw-border-b tw-border-black tw-p-1 tw-bg-transparent tw-focus:outline-none tw-focus:border-none tw-focus:border-b tw-focus:border-black tw-active:outline-none tw-active:border-none tw-active:border-b tw-active:border-black'
-            >
-              <option value='Lagos' className='tw-bg-transparent'>
-                America
-              </option>
-              <option value='Abuja' className='tw-bg-transparent'>
-                Maryland
-              </option>
-            </select>
-          </div>
-        </div>
+        <h2 className='tw-mt-16 tw-text-4xl pt-5 tw-xs:text-red text-center'>Destinations and deals</h2>
 
         <div className='tw-grid tw-grid-cols-1 tw-gap-4 tw-sm:grid-cols-2 tw-lg:grid-cols-3'>
           {deals

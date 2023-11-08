@@ -19,8 +19,6 @@ function Footer() {
             </li>
             <li>
               <ol>
-                  <li><img src="../../Assets/Images/flight.jpeg"  alt="" /></li>
-       
                 <li><a href="#"><AiOutlineWhatsApp style={{fontSize:'30px'}}/></a></li>
                 <li><a href="#"><BiLogoFacebook style={{fontSize:'30px'}}/></a></li>
                 <li><a href="#"><BiLogoLinkedin style={{fontSize:'30px'}}/></a></li>

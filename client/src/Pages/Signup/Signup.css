@@ -45,4 +45,13 @@
   background-color: #0076cd;
   border-radius: 3px;
   padding: 10px 20px 10px 20px;
+}
+
+@media (max-width: 768px) {
+  #signupform {
+    width: 80%;
+  }
+  #signupform #forminput {
+    width: 100%;
+  }
 }/*# sourceMappingURL=Signup.css.map */

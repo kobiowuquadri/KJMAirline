@@ -46,22 +46,24 @@
 }
 #tripbook{
     display: flex;
-    // position: relative;
-    // bottom: 250px;
+    justify-content: space-evenly;
     margin-left:34px;
 }
 #tripflight{
     margin-right: 80px;
     background-color: rgb(255, 255, 255);
     color: #042d37;
-    padding: 10px;
+    padding:30px;
     display: flex;
     font-weight: bold;
 }
 #tripmiles{
     background-color: #042d37;
     color: white;
-    padding: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     display: flex;
     font-weight: bold;
 }
@@ -108,7 +110,7 @@
 #tripsearch button{
     color: white;
     font-weight: bold;
-    background-color: #0076cd;
+    background-color: #042d37;
     border-radius: 3px;
     padding:10px 20px 10px 20px;
 }
@@ -131,23 +133,7 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media(max-width:900px){
+@media(max-width:768px){
     #tripposition{
         position: relative;
         top: 0px;
@@ -168,16 +154,17 @@
         margin-right: 40px;
     }
     #hometrip{
-        width: 430px;
+        width: 100%;
         margin-bottom: 20px;
         height: 60px;
     }
     #tripinputs{
         margin-bottom: 20px;
         height: 60px;
+        width: 100%;
     }
     #tripinputs2{
-        width: 430px;
+        width: 100%;
         margin-bottom: 40px;
         height: 60px;
     }
@@ -197,5 +184,10 @@
         left: 20px;
         bottom: 50px;
         opacity: 1;
+        width: 350px;
+        display: flex;
+        justify-content: left;
+        align-items:left;
+        flex-direction: column;
     }
 }

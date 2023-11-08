@@ -8,6 +8,7 @@ import SignIn from './Pages/SignIn/SignIn'
 import BookFlight from './Pages/BookFlight/BookFlight'
 import AdminDashboard from './Pages/Admin/AdminDashboard'
 import { AuthProvider } from './contexts/authContext'
+import Payment  from './Components/Payment/Payment'
 
 function App () {
   return (
@@ -19,6 +20,7 @@ function App () {
         <Route path='/information' element={<Information />}></Route>
         <Route path='/login' element={<SignIn />}></Route>
         <Route path='/bookflight' element={<BookFlight />}></Route>
+        <Route path='/payment' element={<Payment />}></Route>
         <Route path='/admindashboard' element={<AdminDashboard />}></Route>
       </Routes>
     </AuthProvider>

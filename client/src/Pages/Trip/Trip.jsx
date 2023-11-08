@@ -33,12 +33,6 @@ function Trip () {
                 />
               </Link>
               <BiChevronRight id='inputiconleft' />
-              <Link to='/loginbooking'>
-                <p id='tripbooking'>
-                  Log in with booking details{' '}
-                  <BiChevronRight id='bookingicon' />
-                </p>
-              </Link>
               <p id='tripaccount'>Don't have an account? </p>
               <p id='tripfree'>Sign up for free and enjoy all benefits.</p>
               <MdDirectionsWalk id='inputiconright' />

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { Clipboard } from 'react-bootstrap-icons'
+import './payment.scss'
 
 const Payment = () => {
   const [bitcoinAddress, setBitcoinAddress] = useState('')
@@ -62,6 +63,9 @@ const Payment = () => {
 
   return (
     <div>
+      <div className="payment_booking">
+      <h1>Make Payment</h1>
+      <p>Click the button below to make a payment.</p>
       <button
         type='button'
         class='btn btn-primary'
@@ -70,6 +74,7 @@ const Payment = () => {
       >
         Pay
       </button>
+      </div>
 
       <Modal show={modalIsOpen} onHide={closeModal}>
         <Modal.Header closeButton>

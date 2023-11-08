@@ -8,12 +8,45 @@ import countryList from 'react-select-country-list'
 
 function BookFlightForm () {
 
-  const [value, setValue] = useState('')
-  const options = useMemo(() => countryList().getData(), [])
+  const [fromValue, setFromValue] = useState('');
+  const [toValue, setToValue] = useState('');
+  const [travelers, setTravelers] = useState(1);
+  const [flightPrice, setFlightPrice] = useState(0);
 
-  const changeHandler = value => {
-    setValue(value)
-  }
+  const options = useMemo(() => countryList().getData(), []);
+
+  const handleFromChange = (value) => {
+    setFromValue(value);
+    calculateFlightPrice(value, toValue, travelers);
+  };
+
+  const handleToChange = (value) => {
+    setToValue(value);
+    calculateFlightPrice(fromValue, value, travelers);
+  };
+
+  const handleTravelersChange = (event) => {
+    const numTravelers = parseInt(event.target.value, 10);
+    setTravelers(numTravelers);
+    calculateFlightPrice(fromValue, toValue, numTravelers);
+  };
+
+  const calculateFlightPrice = (from, to, numTravelers) => {
+    let price = 500;
+
+    if (from === 'USA' && to === 'Canada') {
+      price = 300;
+    } else if (from === 'USA' && to === 'Mexico') {
+      price = 400;
+    } else if (from === 'Canada' && to === 'USA') {
+      price = 350;
+    } else if (from === 'Mexico' && to === 'USA') {
+      price = 450;
+    }
+    const totalPrice = `${price * numTravelers} dollars`;
+
+    setFlightPrice(totalPrice);
+  };
 
   return (
     <div className='bg_flight'>
@@ -34,18 +67,19 @@ function BookFlightForm () {
           </div>
           <div class='form-group d-sm-flex margin'>
             <div class='d-flex align-items-center flex-fill me-sm-1 my-sm-0 my-4 border-bottom position-relative'>
-
-              <select className='form-control'>
-                   <option selected>From</option>
-                   <option>America</option>
-                 
-                 </select>
+              <b>From</b>
+            <Select name="country" className="form-control"  options={options}
+                value={fromValue}
+                onChange={handleFromChange} />
               <div class='label' id='from'></div>
               <span class='fas fa-dot-circle text-muted'></span>
             </div>
             <div class='d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative'>
-
-            <Select name="country" className="form-control" options={options} value={value} onChange={changeHandler} />
+            <b>TO</b>
+            <Select name="country" className="form-control"  options={options}
+                value={toValue}
+                onChange={handleToChange} />
+           
               <div class='label' id='to'></div>
               <span class='fas fa-map-marker text-muted'></span>
             </div>
@@ -71,14 +105,9 @@ function BookFlightForm () {
             </div>
           </div>
           <div class='form-group border-bottom d-flex align-items-center position-relative'>
-            <input
-              type='text'
-              required
-              placeholder='Traveller(s)'
-              class='form-control'
-            />
+          
 
-            <select className='form-control'>
+            <select className='form-control'  onChange={handleTravelersChange}>
                    <option selected>1</option>
                    <option>2</option>
                    <option>3</option>
@@ -94,7 +123,15 @@ function BookFlightForm () {
             <span class='fas fa-users text-muted'></span>
           </div>
           <div class='rounded-0 d-flex justify-content-center text-center p-3'>
-            <Payment />
+          <input
+                type='string'
+                required
+                class='form-control'
+                name='price'
+                placeholder='price in dollar'
+                value={flightPrice}
+                readOnly
+              />
           </div>
 
           <div class='form-group my-3'>

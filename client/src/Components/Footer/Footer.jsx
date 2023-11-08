@@ -14,24 +14,23 @@ function Footer() {
       <div className="footer_links">
         <div className="link_1">
           <ul>
-            <li data-aos="flip-left">
+            <li>
               <img src={foot_log} width={'200rem'} alt="" />
             </li>
             <li>
-              <ol data-aos="flip-left">
-                <a href="javascript:void()">
+              <ol>
                   <li><img src="../../Assets/Images/flight.jpeg"  alt="" /></li>
-                </a>
-                <li><a href="#"><img src={<AiOutlineWhatsApp/>} alt="" /></a></li>
-                <li><a href="#"><img src={<BiLogoFacebook/>} alt="" /></a></li>
-                <li><a href="#"><img src={<BiLogoLinkedin/>} alt="" /></a></li>
-                <li><a href="#"><img src={<RxTwitterLogo/>} alt="" /></a></li>
+       
+                <li><a href="#"><AiOutlineWhatsApp style={{fontSize:'30px'}}/></a></li>
+                <li><a href="#"><BiLogoFacebook style={{fontSize:'30px'}}/></a></li>
+                <li><a href="#"><BiLogoLinkedin style={{fontSize:'30px'}}/></a></li>
+                <li><a href="#"><RxTwitterLogo style={{fontSize:'30px'}}/></a></li>
               </ol>
             </li>
           </ul>
         </div>
 
-        <div className="link_2" data-aos="flip-left">
+        <div className="link_2">
           <ul>
             <li><a href="javascript:void()">About Us</a></li>
             <li><a href="javascript:void()">Contact</a></li>
@@ -39,7 +38,7 @@ function Footer() {
           </ul>
         </div>
 
-        <div className="link_3" data-aos="flip-left">
+        <div className="link_3">
           <ul>
             <li><a href="javascript:void()">Careers</a></li>
             <li><a href="javascript:void()">Support</a></li>
@@ -48,7 +47,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="link_4" data-aos="flip-right">
+      <div className="link_4">
         <button id="btn_footer">Book Flight</button>
         <p className='text-white'>©KJMAirline. All Rights Reserved</p>
       </div>

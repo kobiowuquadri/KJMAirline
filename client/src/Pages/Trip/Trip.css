@@ -1,0 +1,107 @@
+#mytriphero {
+  margin: 30px 100px 0px 300px;
+}
+
+#mytriphero h1 {
+  font-size: 40px;
+  padding-bottom: 10px;
+  color: #042d37;
+}
+
+#tripmanage {
+  font-size: 17px;
+  padding-bottom: 10px;
+  color: #042d37;
+}
+
+#mytripinput {
+  padding: 10px 10px 10px 50px;
+  box-shadow: 0px 5px 15px rgba(152, 151, 151, 0.25);
+  margin-bottom: 10px;
+  width: 400px;
+  height: 60px;
+  cursor: pointer;
+}
+
+#mytripinput::-moz-placeholder {
+  color: #042d37;
+  font-weight: bold;
+}
+
+#mytripinput::placeholder {
+  color: #042d37;
+  font-weight: bold;
+}
+
+#inputiconright {
+  position: relative;
+  left: 20px;
+  top: 40px;
+  color: #0076cd;
+}
+
+#inputiconleft {
+  position: relative;
+  left: 350px;
+  bottom: 45px;
+  color: #042d37;
+}
+
+#tripbooking {
+  font-size: 17px;
+  color: #042d37;
+  padding-bottom: 30px;
+  display: flex;
+  font-weight: bold;
+}
+
+#bookingicon {
+  margin-top: 5px;
+}
+
+#tripaccount {
+  font-size: 25px;
+  color: #042d37;
+  padding-bottom: 10px;
+}
+
+#tripfree {
+  font-size: 17px;
+  color: #042d37;
+  padding-bottom: 10px;
+}
+
+#mytripflex {
+  display: flex;
+}
+
+#planeimg {
+  height: 600px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#tripfooterlinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+#tripfooterlinks a {
+  color: gray;
+  margin-right: 40px;
+}
+
+@media (max-width: 900px) {
+  #planeimg {
+    display: none;
+  }
+  #mytriphero {
+    margin: 30px 0px 0px 40px;
+  }
+  #tripfooterlinks a {
+    color: gray;
+    margin-right: 5px;
+  }
+}/*# sourceMappingURL=Trip.css.map */

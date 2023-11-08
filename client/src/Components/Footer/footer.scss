@@ -2,7 +2,6 @@
 
 footer {
     background-color: #042d37;
-    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,7 +34,7 @@ footer {
   }
   
   .footer_links li {
-    padding: 10px;
+    padding: 10px 0px 10px 0px;
   }
   
   .footer_links a {
@@ -48,6 +47,7 @@ footer {
   
   .link_1 ol{
     display: flex;
+    gap: 20px;
   } 
   
   .link_4 {
@@ -63,7 +63,8 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 30px;
+    width: 100%;
+    padding: 20px;
     text-align:center;
   }
 
@@ -76,6 +77,12 @@ footer {
   }
 
   #btn_footer{
+    width: 100%;
+  }
+  .link_4 {
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
     width: 100%;
   }
 }

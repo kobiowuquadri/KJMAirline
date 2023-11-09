@@ -22,7 +22,7 @@ function AdminLogin() {
           );
       
           const { access_token } = response.data;
-          localStorage.setItem('accessToken', access_token);
+          localStorage.setItem('adminAccessToken', access_token);
           navigate('/admin/dashboard')
         }
         catch(err){

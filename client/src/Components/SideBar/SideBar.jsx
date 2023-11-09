@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
-import {
-  MDBContainer,
-  MDBNavbar,
-  MDBNavbarBrand,
-  MDBNavbarToggler,
-  MDBIcon,
-  MDBNavbarNav,
-  MDBNavbarItem,
-  MDBNavbarLink,
-  MDBDropdown,
-  MDBDropdownToggle,
-  MDBDropdownMenu,
-  MDBDropdownItem,
-  MDBCollapse,
-  MDBRipple,
-  MDBBadge,
-  MDBInput,
-  MDBListGroup,
-  MDBDropdownLink,
-  MDBListGroupItem
-} from 'mdb-react-ui-kit';
+import { Link } from 'react-router-dom'
+import {  MDBContainer,
+    MDBNavbar,
+    MDBNavbarBrand,
+    MDBNavbarToggler,
+    MDBIcon,
+    MDBNavbarNav,
+    MDBNavbarItem,
+    MDBNavbarLink,
+    MDBDropdown,
+    MDBDropdownToggle,
+    MDBDropdownMenu,
+    MDBDropdownItem,
+    MDBCollapse,
+    MDBRipple,
+    MDBInput,
+    MDBListGroup,
+    MDBDropdownLink,
+    MDBListGroupItem,
+    MDBBadge
+} from 'mdb-react-ui-kit'
 import './slidebar.scss'
 import logoIcon from '../../Assets/Images/kjm-logo.png'
 
@@ -32,26 +32,26 @@ const Slidebar = () =>  {
   return (
     <>
       <MDBCollapse show={showShow} tag="nav" className="d-lg-block bg-white sidebar">
-        <div className="position-sticky">
+        <div className="position-sticky shadow h-100">
           <MDBListGroup flush className="mx-3 mt-4">
             <MDBRipple rippleTag='span'>
               <MDBListGroupItem tag='a' href='#' action className='border-0 border-bottom rounded rounded'>
                 <MDBIcon fas icon="tachometer-alt me-3" />
-                Main Dashboard
+                 Dashboard
               </MDBListGroupItem>
             </MDBRipple>
 
             <MDBRipple rippleTag='span'>
               <MDBListGroupItem tag='a' href='#' action className='border-0 border-bottom rounded' style={{backgroundColor:"green"}} active aria-current='true'>
                 <MDBIcon fas icon="chart-area me-3" />
-                Website traffic
+                 All Users
               </MDBListGroupItem>
             </MDBRipple>
 
             <MDBRipple rippleTag='span'>
               <MDBListGroupItem tag='a' href='#' action className='border-0 border-bottom rounded'>
                 <MDBIcon fas icon="lock me-3" />
-                Password
+                Booked Flight
               </MDBListGroupItem>
             </MDBRipple>
 
@@ -114,7 +114,7 @@ const Slidebar = () =>  {
         </div>
       </MDBCollapse>
 
-      <MDBNavbar expand='lg' light bgColor='light'>
+      <MDBNavbar expand='lg' light bgColor='white' className='shadow'  style={{display:'flex', alignItems: 'center', height:'70px'}}>
         <MDBContainer fluid>
           <MDBNavbarNav className="d-flex flex-row align-items-center w-auto">
             <MDBNavbarToggler
@@ -125,15 +125,15 @@ const Slidebar = () =>  {
               <MDBIcon icon='bars' fas />
             </MDBNavbarToggler>
             <MDBNavbarBrand href='#'>
-             HI
+             <img src={logoIcon} width={'150'} alt="" />
             </MDBNavbarBrand>
-
+{/* 
             <MDBCollapse navbar>
               <MDBNavbarItem className="d-flex align-items-center">
                 <MDBInput label='Search (ctrl + "/" to focus)' id='form1' type='text' />
                 <MDBIcon fas icon="search mx-2" />
               </MDBNavbarItem>
-            </MDBCollapse>
+            </MDBCollapse> */}
 
 
           </MDBNavbarNav>
@@ -176,7 +176,7 @@ const Slidebar = () =>  {
               <MDBDropdown>
 
                 <MDBDropdownToggle tag="a" href="#!" className="hidden-arrow nav-link">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" className="rounded-circle" height="22" alt="" loading="lazy" />
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" className="rounded-circle" height="22" width={'32'} alt="" loading="lazy" />
                 </MDBDropdownToggle>
 
                 <MDBDropdownMenu>

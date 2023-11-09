@@ -12,7 +12,7 @@ import Payment  from './Components/Payment/Payment'
 import BookingPending from './Components/BookingPending/BookingPending'
 import AdminRegister from './Pages/Admin/AdminRegister/AdminRegister'
 import AdminLogin from './Pages/Admin/AdminLogin/AdminLogin'
-
+import AllUsers from './Pages/Admin/AllUsers/AllUsers'
 
 
 function App () {
@@ -30,7 +30,10 @@ function App () {
     <Route path='admin' element={<Outlet />}>
       <Route index element={<AdminRegister />}></Route>
       <Route path='login' element={<AdminLogin />}></Route>
-      <Route path='dashboard' element={<AdminDashboard />}></Route>
+      <Route path='dashboard' element={<Outlet/>}>
+        <Route index element={<AdminDashboard />}></Route>
+
+      </Route>
     </Route>
   </Routes>
 </AuthProvider>

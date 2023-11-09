@@ -3,12 +3,14 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { Clipboard } from 'react-bootstrap-icons'
 import './payment.scss'
+import { useNavigate } from 'react-router-dom'
 
 const Payment = () => {
   const [bitcoinAddress, setBitcoinAddress] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const copyButtonRef = useRef(null)
+  const navigate = useNavigate()
   useEffect(() => {
     const interval = setInterval(async () => {
       const newBitcoinAddress = [
@@ -47,8 +49,8 @@ const Payment = () => {
 
   const handleYesIHavePaid = () => {
     // Alert the user that their payment has been approved.
-    alert('Your payment will be confirmed in few minutes by the Admin!')
-
+    
+ navigate('/bookingpending')
     // Close the modal.
     closeModal()
   }

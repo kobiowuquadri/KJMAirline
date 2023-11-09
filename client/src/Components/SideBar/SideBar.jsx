@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './slidebar.scss'
 import {
   MDBContainer,
   MDBNavbar,
@@ -21,6 +20,7 @@ import {
   MDBDropdownLink,
   MDBListGroupItem
 } from 'mdb-react-ui-kit';
+import './slidebar.scss'
 import logoIcon from '../../Assets/Images/kjm-logo.png'
 
 
@@ -125,12 +125,7 @@ const Slidebar = () =>  {
               <MDBIcon icon='bars' fas />
             </MDBNavbarToggler>
             <MDBNavbarBrand href='#'>
-              <img
-                src={logoIcon}
-                height='30'
-                alt=''
-                loading='lazy'
-              />
+             HI
             </MDBNavbarBrand>
 
             <MDBCollapse navbar>

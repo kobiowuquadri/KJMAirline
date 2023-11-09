@@ -10,7 +10,6 @@ function SignIn () {
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
   const { setIsUser, setUserData } = useContext(AuthContext);
-  const [accessToken, setAccessToken] = useState('')
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -25,10 +24,9 @@ function SignIn () {
       );
   
       const { access_token } = response.data;
-      console.log(access_token);
-      setAccessToken(access_token);
-  
-      console.log(accessToken);
+      localStorage.setItem('accessToken', access_token);
+      
+      // console.log(accessToken);
       setIsUser(response.data);
   
       console.log(response.data);

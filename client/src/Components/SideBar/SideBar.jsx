@@ -34,10 +34,10 @@ const Slidebar = () =>  {
   return (
     <>
       <MDBCollapse show={showShow} tag="nav" className="d-lg-block bg-white w-25 sidebar">
-        <div className="position-sticky z-10 shadow h-100">
+        <div className="position-sticky z-10 shadow h-100 bg-white" id='width__media'>
           <MDBListGroup flush className="mx-3 z-10 mt-4">
             <MDBRipple rippleTag='span'>
-              <MDBListGroupItem tag='a' href='#' action style={{backgroundColor:"#042d37"}} active className='d-flex align-items-center gap-2 border-0 border-bottom rounded rounded'>
+              <MDBListGroupItem tag='a' href='#' action active className='d-flex align-items-center gap-2 border-0 border-bottom rounded rounded'>
                 <FaUsers />
                   Users
               </MDBListGroupItem>

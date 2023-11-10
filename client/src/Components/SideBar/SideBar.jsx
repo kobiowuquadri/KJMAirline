@@ -37,17 +37,21 @@ const Slidebar = () =>  {
         <div className="position-sticky z-10 shadow h-100 bg-white" id='width__media'>
           <MDBListGroup flush className="mx-3 z-10 mt-4">
             <MDBRipple rippleTag='span'>
-              <MDBListGroupItem tag='a' href='#' action active className='d-flex align-items-center gap-2 border-0 border-bottom rounded rounded'>
+             <Link to={'/admin/dashboard'}>
+             <MDBListGroupItem tag='a' href='#' action style={{background: 'rgb(55,105,159)'}} active className='d-flex align-items-center gap-2 border-0 border-bottom rounded rounded'>
                 <FaUsers />
                   Users
               </MDBListGroupItem>
+             </Link>
             </MDBRipple>
 
             <MDBRipple rippleTag='span'>
-              <MDBListGroupItem tag='a' href='#' action className=' d-flex align-items-center gap-2 border-0 border-bottom rounded'>
-                <img src={globe} width={'20px'} alt="" />
-                Flight
-              </MDBListGroupItem>
+              <Link to={'/admin/dashboard/bookedflights'}>
+                <MDBListGroupItem tag='a' href='#' action className=' d-flex align-items-center gap-2 border-0 border-bottom rounded'>
+                  <img src={globe} width={'20px'} alt="" />
+                  Flight
+                </MDBListGroupItem>
+              </Link>
             </MDBRipple>
 
             <MDBRipple rippleTag='span'>

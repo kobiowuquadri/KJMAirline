@@ -13,6 +13,7 @@ import BookingPending from './Components/BookingPending/BookingPending'
 import AdminRegister from './Pages/Admin/AdminRegister/AdminRegister'
 import AdminLogin from './Pages/Admin/AdminLogin/AdminLogin'
 import AllUsers from './Pages/Admin/AllUsers/AllUsers'
+import BookedFlights from './Pages/Admin/BookedFlights/BookedFlights'
 
 
 function App () {
@@ -32,7 +33,7 @@ function App () {
       <Route path='login' element={<AdminLogin />}></Route>
       <Route path='dashboard' element={<Outlet/>}>
         <Route index element={<AdminDashboard />}></Route>
-
+        <Route path='bookedflights' element={<BookedFlights/>}></Route>
       </Route>
     </Route>
   </Routes>

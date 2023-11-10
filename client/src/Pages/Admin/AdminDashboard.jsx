@@ -59,15 +59,14 @@ function AdminDashboard () {
 
   return (
     <div className='admin__dashbaord'>
-      <div className='main__admin'>
         <SideBar />
-      </div>
       <div className='main__admin2 shadow'>
         <div
-          className='bg-white text-dark m-2 border-3 d-flex align-items-center justify-content-around fw-bold shadow'
+          className='rounded-9 m-2 d-flex align-items-center justify-content-center bg-primary fs-2 text-white flex-column fw-bold shadow'
           style={{ height: '250px', width: '250px' }}
         >
-          USERs {totalUsers}
+          <p>{totalUsers}</p>
+           <p>Users</p>
         </div>
         <MDBTable id='table__width'>
           <MDBTableHead>

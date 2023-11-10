@@ -22,6 +22,8 @@ import {  MDBContainer,
 } from 'mdb-react-ui-kit'
 import './slidebar.scss'
 import logoIcon from '../../Assets/Images/kjm-logo.png'
+import globe from '../../Assets/Images/globe.png'
+import {FaUsers} from 'react-icons/fa6'
 
 
 const Slidebar = () =>  {
@@ -35,16 +37,16 @@ const Slidebar = () =>  {
         <div className="position-sticky z-10 shadow h-100">
           <MDBListGroup flush className="mx-3 z-10 mt-4">
             <MDBRipple rippleTag='span'>
-              <MDBListGroupItem tag='a' href='#' action style={{backgroundColor:"#042d37"}} active className='border-0 border-bottom rounded rounded'>
-                <MDBIcon fas icon="tachometer-alt me-3" />
+              <MDBListGroupItem tag='a' href='#' action style={{backgroundColor:"#042d37"}} active className='d-flex align-items-center gap-2 border-0 border-bottom rounded rounded'>
+                <FaUsers />
                   Users
               </MDBListGroupItem>
             </MDBRipple>
 
             <MDBRipple rippleTag='span'>
-              <MDBListGroupItem tag='a' href='#' action className='border-0 border-bottom rounded'>
-                <MDBIcon fas icon="lock me-3" />
-                Booked Flight
+              <MDBListGroupItem tag='a' href='#' action className=' d-flex align-items-center gap-2 border-0 border-bottom rounded'>
+                <img src={globe} width={'20px'} alt="" />
+                Flight
               </MDBListGroupItem>
             </MDBRipple>
 
@@ -57,8 +59,7 @@ const Slidebar = () =>  {
           </MDBListGroup>
         </div>
       </MDBCollapse>
-
-      <MDBNavbar expand='lg' light bgColor='white' className='shadow'  style={{display:'flex', alignItems: 'center', height:'70px'}}>
+      <MDBNavbar expand='lg' light bgColor='white' className='shadow fixed-top'  style={{display:'flex', alignItems: 'center', height:'70px'}}>
         <MDBContainer fluid>
           <MDBNavbarNav className="d-flex flex-row align-items-center w-auto">
             <MDBNavbarToggler
@@ -73,11 +74,11 @@ const Slidebar = () =>  {
             </MDBNavbarBrand>
 {/* 
             <MDBCollapse navbar>
-              <MDBNavbarItem className="d-flex align-items-center">
-                <MDBInput label='Search (ctrl + "/" to focus)' id='form1' type='text' />
-                <MDBIcon fas icon="search mx-2" />
-              </MDBNavbarItem>
-            </MDBCollapse> */}
+            <MDBNavbarItem className="d-flex align-items-center">
+            <MDBInput label='Search (ctrl + "/" to focus)' id='form1' type='text' />
+            <MDBIcon fas icon="search mx-2" />
+            </MDBNavbarItem>
+          </MDBCollapse> */}
 
 
           </MDBNavbarNav>

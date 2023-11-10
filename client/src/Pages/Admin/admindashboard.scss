@@ -1,0 +1,30 @@
+.admin__dashbaord {
+    width: 100%;
+    position: relative;
+
+
+    .main__admin2{
+        width: 75%;
+        position: absolute;
+        right: 0;
+        top: 50px;
+        padding: 20px;
+        z-index: -1;
+    }
+}
+
+@media(max-width: 768px){
+    
+    .main__admin2 {
+        display: flex;
+        // margin-top:560px;
+        flex-direction: column;
+        align-items: center;
+        // padding: 50px;
+        // background-color: red;
+        // left: 50%;
+        // right: 50%;
+        // transform: translate(-50%, -50%);
+        width: 200vw;
+    }
+}

@@ -25,25 +25,23 @@ function BookFlightForm() {
   const navigate = useNavigate();
   const options = useMemo(() => countryList().getData(), []);
 
-  const handleFromChange = (value) => {
-    setFromValue(value);
-    calculateFlightPrice(value, toValue, travelers);
-
+  const handleFromChange = (selectedOption) => {
+    setFromValue(selectedOption);
+  
     // Update the flightDetails with the selected from_city
     setFlightDetails((prevDetails) => ({
       ...prevDetails,
-      from_city: value ? value.value : '', // Use value.value to get the string value
+      from_city: selectedOption ? selectedOption.label : '',
     }));
   };
   
-  const handleToChange = (value) => {
-    setToValue(value);
-    calculateFlightPrice(fromValue, value, travelers);
-
+  const handleToChange = (selectedOption) => {
+    setToValue(selectedOption);
+  
     // Update the flightDetails with the selected to_city
     setFlightDetails((prevDetails) => ({
       ...prevDetails,
-      to_city: value ? value.value : '', // Use value.value to get the string value
+      to_city: selectedOption ? selectedOption.label : '',
     }));
   };
 
@@ -111,7 +109,12 @@ function BookFlightForm() {
   
       // Handle the API response as needed
       console.log('Booking successful:', response?.data);
-      navigate('/payment');
+      if(response?.data?.success === 'true'){
+        navigate('/payment');
+      }
+      else{
+          alert(response?.data.message)
+      }
     } catch (err) {
       console.error('Error:', err?.response?.data);
     }

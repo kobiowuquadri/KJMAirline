@@ -38,7 +38,7 @@ function Trip () {
 
   useEffect(() => {
     handleUserBookedFlights()
-  }, [])
+  }, [bookedFlights])
 
   return (
     <div>

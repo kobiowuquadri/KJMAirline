@@ -6,7 +6,7 @@ import { MdDirectionsWalk } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import './navbar.scss'
 import { AuthContext } from '../../contexts/authContext'
-import close_menu_black from '../../Assets/Images/icon-close_white.svg'
+import close_menu_black from '../../Assets/Images/icon-close.svg'
 import hamburger from '../../Assets/Images/icon-menu.svg'
 import { RxHamburgerMenu } from 'react-icons/rx'
 
@@ -26,12 +26,13 @@ function Navbar () {
           onClick={() => updateToggle(false)}
           width={'20px'}
           src={close_menu_black}
+          style={{color:'white'}}
         ></img>
         <img width={'80px'} src={usa} alt='Nigeria flag' />
         <p className='text-white'>America - US</p>
-        <Link to='/'>Home</Link>
-        <Link to='/mytrip'>My Trip</Link>
-        <Link to='/information'>Information</Link>
+        <Link to='/' style={{fontSize:'1rem'}}>Home</Link>
+        <Link to='/mytrip' style={{fontSize:'1rem'}}>My Trip</Link>
+        <Link to='/information' style={{fontSize:'1rem'}}>Information</Link>
 
         {isUser ? (
           <>
@@ -42,11 +43,11 @@ function Navbar () {
           </>
         ) : (
           <div>
-            <Link to='/login' id='navtoplink'>
+            <Link to='/login' style={{fontSize:'1rem'}} id='navtoplink'>
               <p>Log in</p>
             </Link>
             <MdDirectionsWalk id='navtopsideimg' />
-            <Link to='/signup' id='navtoplink'>
+            <Link to='/signup' style={{fontSize:'1rem'}} id='navtoplink'>
               <p>Sign Up</p>
             </Link>
           </div>

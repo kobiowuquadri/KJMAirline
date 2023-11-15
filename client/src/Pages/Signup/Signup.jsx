@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import logo from '../../Assets/Images/kjm-logo.png'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+import Navbar from '../../Components/Navbar/Navbar'
 
 function Signup() {
   const [userData, setUserData] = useState({
@@ -56,9 +57,7 @@ function Signup() {
 
   return (
     <div>
-      <div id='signupnav'>
-        <img src={logo} alt='Logo' id='logoacct' />
-      </div>
+      <Navbar/>
       <div id='signuphero'>
         <div id='signupform'>
           <h2>Create an Account</h2>
@@ -103,6 +102,7 @@ function Signup() {
             <button type='submit' id='signupsubmit'>
               Submit
             </button>
+            <p>Already have an account? <Link to='/login'>Login</Link></p>
             {error && <div className='error-message'>{error}</div>}
           </form>
         </div>

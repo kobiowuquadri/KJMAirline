@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import logo from '../../Assets/Images/kjm-logo.png'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import '../Signup/Signup.scss'
 import { AuthContext } from '../../contexts/authContext'
+import Navbar from '../../Components/Navbar/Navbar'
+
+
 
 function SignIn () {
   const [email, setEmail] = useState('')
@@ -60,16 +63,10 @@ function SignIn () {
     }
   };
 
-  // useEffect(() => {
-  //   console.log('useEffect triggered');
-  //   checkUser();
-  // }, [accessToken]);
 
   return (
     <div>
-      <div id='signupnav'>
-        <img src={logo} alt='Logo' id='logoacct' />
-      </div>
+      <Navbar/>
       <div id='signuphero'>
         <div id='signupform'>
           <h2>Login to your account</h2>
@@ -95,6 +92,7 @@ function SignIn () {
             <button type='submit' id='signupsubmit'>
               Submit
             </button>
+            <p>Don't have an account? <Link to='/signup'>Register</Link></p>
           </form>
         </div>
       </div>

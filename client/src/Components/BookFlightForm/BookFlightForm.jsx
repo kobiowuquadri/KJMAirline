@@ -33,6 +33,12 @@ function BookFlightForm() {
       ...prevDetails,
       from_city: selectedOption ? selectedOption.label : '',
     }));
+    calculateFlightPrice(
+      selectedOption ? selectedOption.label : '',
+      toValue ? toValue.label : '',
+      travelers,
+      flightDetails.trip_type
+    );
   };
   
   const handleToChange = (selectedOption) => {
@@ -43,24 +49,42 @@ function BookFlightForm() {
       ...prevDetails,
       to_city: selectedOption ? selectedOption.label : '',
     }));
+    calculateFlightPrice(
+      fromValue ? fromValue.label : '',
+      selectedOption ? selectedOption.label : '',
+      travelers,
+      flightDetails.trip_type
+    );
   };
 
- const handleTravelersChange = (event) => {
+  const handleTravelersChange = (event) => {
     const numTravelers = parseInt(event.target.value, 10);
     setTravelers(numTravelers);
-    calculateFlightPrice(fromValue, toValue, numTravelers);
-
-    // Update the flightDetails with the selected no_of_passenger
+    
     setFlightDetails((prevDetails) => ({
       ...prevDetails,
       no_of_passenger: numTravelers.toString(),
     }));
+
+    calculateFlightPrice(
+      fromValue ? fromValue.label : '',
+      toValue ? toValue.label : '',
+      numTravelers,
+      flightDetails.trip_type
+    );
   };
   
 
-  const calculateFlightPrice = (from, to, numTravelers) => {
+  const calculateFlightPrice = (from, to, numTravelers, tripType) => {
     let price = 500;
 
+    if (tripType === 'Round Trip') {
+      price *= 2;
+    } else if (tripType === 'Chopper') {
+      price = 1500;
+    } else if (tripType === 'Private Jet') {
+      price = 5000;
+    }
     if (from === 'USA' && to === 'Canada') {
       price = 300;
     } else if (from === 'USA' && to === 'Mexico') {
@@ -70,6 +94,8 @@ function BookFlightForm() {
     } else if (from === 'Mexico' && to === 'USA') {
       price = 450;
     }
+
+
     const totalPrice = price * numTravelers;
 
     setFlightPrice(totalPrice);
@@ -149,6 +175,28 @@ function BookFlightForm() {
               One Way
               <span className='checkmark'></span>
             </label>
+            <label className='option my-sm-0 my-2'>
+              <input
+                type='radio'
+                name='trip_type'
+                value='Chopper'
+                checked={flightDetails.trip_type === 'Chopper'}
+                onChange={(e) => setFlightDetails({ ...flightDetails, trip_type: e.target.value })}
+              />
+              Chopper
+              <span className='checkmark'></span>
+            </label>
+            <label className='option my-sm-0 my-2'>
+              <input
+                type='radio'
+                name='trip_type'
+                value='Private Jet'
+                checked={flightDetails.trip_type === 'Private Jet'}
+                onChange={(e) => setFlightDetails({ ...flightDetails, trip_type: e.target.value })}
+              />
+              Private Jet
+              <span className='checkmark'></span>
+            </label>
           </div>
           <div className='form-group d-sm-flex margin'>
             <div className='d-flex align-items-center flex-fill me-sm-1 my-sm-0 my-4 border-bottom position-relative'>
@@ -225,7 +273,7 @@ function BookFlightForm() {
             <div className='label' id='psngr'></div>
             <span className='fas fa-users text-muted'></span>
           </div>
-          <div className='rounded-0 d-flex justify-content-center text-center p-3'>
+          <div className='rounded-0 d-flex justify-content-center gap-2 align-items-center bg-white shadow p-3'>
             <input
               type='number'
               required
@@ -235,6 +283,7 @@ function BookFlightForm() {
               value={flightPrice}
               readOnly
             />
+            <p>dollars</p>
           </div>
           <div className='form-group my-3'>
             <input type='submit' value="Book Flight" className='btn btn-primary rounded-0 d-flex justify-content-center text-center p-3'/>

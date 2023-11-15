@@ -11,9 +11,13 @@ const Payment = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const copyButtonRef = useRef(null)
   const navigate = useNavigate()
+
+
   useEffect(() => {
-    const interval = setInterval(async () => {
-      const newBitcoinAddress = [
+    // Function to generate a random Bitcoin address
+    const generateRandomBitcoinAddress = () => {
+      const randomIndex = Math.floor(Math.random() * 13);
+      return [
         "15wmgrti36sCgtYxgJFanZcB5qnbwjxyxs",
         "1QHPevyJjUoNFnzFwFUoBB7Fda9Pb1MKy4",
         "1JqLQr9JhyPK1oJs1iQNfqT3o13n5ffkoA",
@@ -28,16 +32,25 @@ const Payment = () => {
         "1LA5rdp6CfLDuk5cgrgkbkrHTqWJnCtmvF",
         "1CDycPTtFG4d4P3eXKpboX3uy9yL7tXKwE",
         "1FFVjHeMdHPd9KuDdA1o1BGF82yvVVD1FF"
-      ][Math.floor(Math.random() * 13)];
-
-      setBitcoinAddress(newBitcoinAddress);
-      setIsLoading(false);
+      ][randomIndex];
+    };
+  
+    // Set initial Bitcoin address
+    setBitcoinAddress(generateRandomBitcoinAddress());
+    setIsLoading(false);
+  
+    // Update Bitcoin address every minute
+    const interval = setInterval(() => {
+      setBitcoinAddress(generateRandomBitcoinAddress());
     }, 60000); // Every minute
-
+  
     return () => {
       clearInterval(interval);
     };
-  }, [bitcoinAddress]);
+  }, []);
+  
+
+
 
   const openModal = () => {
     setModalIsOpen(true)

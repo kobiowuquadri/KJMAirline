@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import Slidebar from '../../../Components/SideBar/SideBar'
-import { AuthContext } from '../../../contexts/authContext'
 
 
 function BookedFlights() {
@@ -31,9 +30,9 @@ function BookedFlights() {
 
     }
 
-    const approvePayment = async () => {
+    const approvePayment = async (paymentRef) => {
       try {
-        const response = await axios.get('https://kjm.zuuroo.com/api/admin/activate_booking/{paymentRef}', {
+        const response = await axios.get(`https://kjm.zuuroo.com/api/admin/activate_booking/${paymentRef}`, {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -42,11 +41,25 @@ function BookedFlights() {
            
       })
       console.log(response?.data)
+      await sendReceiptToUser(paymentRef);
+      
       }
       catch(err){
          console.error(err?.response?.data)
+
       }
     }
+
+    const sendReceiptToUser = async (paymentRef) => {
+      try {
+        // Replace the following with your logic to send a receipt
+        // You can use another API endpoint or library to send emails or notifications to the user
+        console.log(`Receipt sent to user with payment ref: ${paymentRef}`);
+      } catch (error) {
+        console.error('Error sending receipt:', error);
+      }
+    };
+
 
     useEffect(() => {
        handleBookedFlight()
@@ -82,7 +95,7 @@ function BookedFlights() {
                   <p>Payment: {flights.payment_status}</p>
                   <p>Payment ref: {flights.payment_ref}</p>
                   <p>Amount Paid: {flights.amount_paid}</p>
-                  <button className='btn btn-success' onClick={() => approvePayment()}>Approve Payment</button>
+                  <button className='btn btn-success cursor-pointer' onClick={approvePayment(flights.payment_ref)}>Approve Payment</button>
                </div>
             </div>
       )

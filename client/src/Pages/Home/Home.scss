@@ -7,65 +7,54 @@
     justify-content: center;
 }
 
+#bodybck {
+    background: url('../../Assets/Images/bg.jpeg') no-repeat center;
+    background-size: cover;
+    background-color:rgba(0,0,0,0.4);
+    background-blend-mode: multiply;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+}
 
-#tripcont{
-    display: grid;
-    width: 100%;
-    margin: 0 auto;
-    background-color: white;
-    padding: 30px;
-    border-radius: 5px;
-    box-shadow: 0px 5px 15px rgba( 0, 0, 0, 0.25);
-    justify-content: space-between;
-    z-index: -1;
-}
-#tripconttop{
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 30px;
-}
-#tripinputs{
-    border: 1px solid #6f7376;
-    outline:#6d747a;
-    padding: 10px;
-    padding-left: 50px;
-    width: 430px;
-    border-radius: 3px;
-    margin-right: 20px;
-}
-#hometrip{
-    padding: 10px;
-    border: 1px solid #6f7376;
-    outline:#6d747a;
-    width: 200px;
-    border-radius: 3px;
-}
-#tripicon{
-    position:relative;
-    left: 40px;
-    top: 15px;
-}
-#tripcontinue{
-    display: flex;
-    color:#0076cd;
-    font-weight: bold;
-    margin-top: 10px;
-}
-#tripcontinue:hover{
-    background-color: #eaebed;
-}
 #tripbook{
     display: flex;
-
-    margin-left:34px;
+    gap: 50px;
+    position: relative;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
 }
+
+#tripbook {
+    position: absolute;
+    bottom: 20px;
+}
+
+#tripfuture{
+    background-color: #1c393f;
+    opacity: 0.9;
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+    position: absolute;
+    bottom: 20px;
+} 
+
 #tripflight{
-    margin-right: 80px;
     background-color: rgb(255, 255, 255);
     color: #042d37;
-    padding:30px;
+    padding:20px;
+    border-radius: 5px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 5px;
+    gap: 10px;
     font-weight: bold;
+
 }
 #tripmiles{
     background-color: #042d37;
@@ -75,19 +64,11 @@
     align-items: center;
     justify-content: center;
     display: flex;
+    border-radius: 5px;
+    gap: 10px;
     font-weight: bold;
 }
-#tripfuture{
-    position: relative;
-    bottom: 300px;
-    left: 750px;
-    background-color: #1c393f;
-    opacity: 0.9;
-    width: 400px;
-    padding: 20px;
-    border-radius: 8px;
-    color: white;
-}
+
 #learnmore a{
     text-decoration: none;
     color: white;
@@ -101,114 +82,14 @@
 #tripfuture h1{
     font-size: 20px;
 }
-#tripextended{
-    display:flex;
-    justify-content: space-between;
-    padding-bottom: 30px;
-}
-#tripinputs2{
-    border: 1px solid #6f7376;
-    outline:#6d747a;
-    padding: 10px;
-    width: 370px;
-    border-radius: 3px;
-}
-#tripsearch{
-    display: flex;
-    justify-content: space-between;
-}
-#tripsearch button{
-    color: white;
-    font-weight: bold;
-    background-color: #042d37;
-    border-radius: 3px;
-    padding:10px 20px 10px 20px;
-}
-#learnmore{
-    display: flex;
-    text-align: right;
-}
-#tripbookicon{
-    margin: 5px 10px 0px 0px;
-}
-#learnmoreicon{
-    margin-top: 5px;
-}
-#continueicon{
-    margin-top: 5px;
-}
-#tripposition{
-    position: absolute;
-    top: 500px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media(max-width:768px){
-    #tripposition{
-        position: relative;
-        top: 0px;
+
+    #tripbook {
+        // flex-direction: column;
+        top: 20px;
+        gap: 0;
+        justify-content: space-between;
     }
-    #tripconttop{
-        display: grid;
-    }
-    #tripextended{
-        display:grid;
-    }
-    #tripsearch{
-        display: grid;
-    }
-    #tripbook{
-        margin-left: 0px;
-    }
-    #tripflight{
-        margin-right: 40px;
-    }
-    #hometrip{
-        width: 100%;
-        margin-bottom: 20px;
-        height: 60px;
-    }
-    #tripinputs{
-        margin-bottom: 20px;
-        height: 60px;
-        width: 100%;
-    }
-    #tripinputs2{
-        width: 100%;
-        margin-bottom: 40px;
-        height: 60px;
-    }
-    #tripsearch p{
-        margin-bottom: 20px;
-    }
-    #tripsearch button{
-        margin-bottom: 20px;
-    }
-    #tripicon{
-        position:relative;
-        left: 20px;
-        top: 35px;
-    }
-    #tripfuture{
-        position: relative;
-        left: 20px;
-        bottom: 50px;
-        opacity: 1;
-    }
+
 }

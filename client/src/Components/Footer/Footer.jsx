@@ -13,18 +13,14 @@ function Footer() {
     <footer className='shadow'>
       <div className="footer_links">
         <div className="link_1">
+         <img src={foot_log} width={'200rem'} alt="" />
           <ul>
-            <li>
-              <img src={foot_log} width={'200rem'} alt="" />
-            </li>
-            <li>
               <ol>
-                <li><a href="#"><AiOutlineWhatsApp style={{fontSize:'30px'}}/></a></li>
-                <li><a href="#"><BiLogoFacebook style={{fontSize:'30px'}}/></a></li>
-                <li><a href="#"><BiLogoLinkedin style={{fontSize:'30px'}}/></a></li>
-                <li><a href="#"><RxTwitterLogo style={{fontSize:'30px'}}/></a></li>
+                <li><AiOutlineWhatsApp style={{fontSize:'30px', color:'white'}}/></li>
+                <li><BiLogoFacebook style={{fontSize:'30px', color:'white'}}/></li>
+                <li><BiLogoLinkedin style={{fontSize:'30px', color:'white'}}/></li>
+                <li><RxTwitterLogo style={{fontSize:'30px', color:'white'}}/></li>
               </ol>
-            </li>
           </ul>
         </div>
 

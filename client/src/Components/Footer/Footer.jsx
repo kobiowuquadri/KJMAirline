@@ -5,47 +5,43 @@ import { AiOutlineWhatsApp } from 'react-icons/ai'
 import { BiLogoFacebook } from 'react-icons/bi'
 import './footer.scss'
 import foot_log from '../../Assets/Images/kjm-logo.png'
+import { Link } from 'react-router-dom'
 
 
 
 function Footer() {
   return (
-    <footer className='shadow'>
-      <div className="footer_links">
+      <div className="footer_links shadow">
         <div className="link_1">
          <img src={foot_log} width={'200rem'} alt="" />
           <ul>
-              <ol>
                 <li><AiOutlineWhatsApp style={{fontSize:'30px', color:'white'}}/></li>
                 <li><BiLogoFacebook style={{fontSize:'30px', color:'white'}}/></li>
                 <li><BiLogoLinkedin style={{fontSize:'30px', color:'white'}}/></li>
                 <li><RxTwitterLogo style={{fontSize:'30px', color:'white'}}/></li>
-              </ol>
           </ul>
         </div>
 
         <div className="link_2">
           <ul>
-            <li><a href="javascript:void()">About Us</a></li>
-            <li><a href="javascript:void()">Contact</a></li>
-            <li><a href="javascript:void()">Blog</a></li>
+            <li><Link className='text-white' to={'/'}>Home</Link></li>
+            <li><Link className='text-white' to={'/trip'}>My Trip</Link></li>
+            <li><Link className='text-white' to={'/information'}>Information</Link></li>
           </ul>
         </div>
 
         <div className="link_3">
           <ul>
-            <li><a href="javascript:void()">Careers</a></li>
-            <li><a href="javascript:void()">Support</a></li>
-            <li><a href="javascript:void()">Privacy Policy</a></li>
+            <li><Link className='text-white' to={'/login'}>Log In</Link></li>
+            <li><Link className='text-white' to={'/signup'}>Sign Up</Link></li>
+            <li><a href="#">Privacy</a></li>
           </ul>
         </div>
-      </div>
-
-      <div className="link_4">
-        <button id="btn_footer">Book Flight</button>
+        <div className="link_4">
+        <button id="btn_footer"><Link className='text-dark' to={'/login'}>Book Flight</Link></button>
         <p className='text-white'>©KJMAirline. All Rights Reserved</p>
       </div>
-    </footer>
+      </div>
   )
 }
 

@@ -562,6 +562,7 @@ function BookFlightForm () {
           </div>
           <div className='form-group d-sm-flex margin'>
             <div className='d-flex align-items-center flex-fill me-sm1 my-sm-0 border-bottom position-relative'>
+              <b>Departure Date: </b>
               <input
                 type='date'
                 required
@@ -578,6 +579,7 @@ function BookFlightForm () {
               <div className='label' id='depart'></div>
             </div>
             <div className='d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative'>
+            <b>Return Date: </b>
               <input
                 type='date'
                 required

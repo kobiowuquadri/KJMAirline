@@ -234,19 +234,19 @@ function Home () {
 
             {/* Book chopper and Private jet */}
             <div className='d-flex flex-column justify-content-center align-items-center p-4'>
-            <p className='d-flex align-items-center gap-2 btn btn-primary p-3 fs-3'>
+            <p className='d-flex align-items-center gap-2 btn btn-primary p-3' style={{background: '#042d37'}}>
              <IoAirplaneSharp id='tripbookicon' />
                   <Link
-                    to={'/signup'}
+                    to={'/login'}
                     className='text-white'
                   >
                     Book a Chopper
                   </Link>
                 </p>
-                <p  className='d-flex align-items-center gap-2 btn btn-primary p-3 fs-3'>
+                <p  className='d-flex align-items-center gap-2 btn btn-primary p-3' style={{background: '#042d37'}}>
                 <IoAirplaneSharp id='tripbookicon' />
                   <Link
-                    to={'/signup'}
+                    to={'/login'}
                     className='text-white'
                   >
                     Book a Private Jet

@@ -149,7 +149,7 @@ function Home () {
           </div>
 
           <div className='tw-SHAKIROH tw-w-3/4 tw-mx-auto'>
-            <h2 className='tw-mt-16 tw-text-4xl pt-5 tw-xs:text-red text-center'>
+            <h2 className='tw-mt-16 tw-text-4xl pt-5 text-center'>
             TOP DESTINATIONS AND DEALS
             </h2>
 

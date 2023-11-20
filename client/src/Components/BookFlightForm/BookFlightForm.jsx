@@ -2,10 +2,11 @@ import React, { useState, useMemo } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import Select from 'react-select'
-import { CiCalendarDate } from "react-icons/ci";
+import { CiCalendarDate } from "react-icons/ci"
 import axios from 'axios'
 import './bookfight.scss'
 import { useNavigate } from 'react-router-dom'
+
 
 function BookFlightForm () {
   const [fromValue, setFromValue] = useState('')
@@ -562,8 +563,8 @@ function BookFlightForm () {
           </div>
           <div className='form-group d-sm-flex margin'>
             <div className='d-flex align-items-center flex-fill me-sm1 my-sm-0 border-bottom position-relative'>
-              <b>Departure Date: </b>
-              <CiCalendarDate style={{fontSize: '2rem'}}/>
+              <b id='not__show'>Departure Date: </b>
+              <CiCalendarDate id='not__show' style={{fontSize: '2rem'}}/>
               <input
                 type='date'
                 required
@@ -579,8 +580,8 @@ function BookFlightForm () {
               {/* <div className='label' id='depart'></div> */}
             </div>
             <div className='d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative'>
-            <b>Return Date: </b>
-            <CiCalendarDate style={{fontSize: '2rem'}}/>
+            <b id='not__show'>Return Date: </b>
+            <CiCalendarDate id='not__show' style={{fontSize: '2rem'}}/>
               <input
                 type='date'
                 required

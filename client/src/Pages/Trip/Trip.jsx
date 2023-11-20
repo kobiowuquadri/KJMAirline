@@ -53,21 +53,21 @@ function Trip () {
           <h2 className='w-100 text-center'>Your Trip</h2>
           {isUser ? (
             <>
-              <h3>Booked Flight</h3>
+              <h3 style={{background: '#042d37', color:'white'}} className='p-2'>Booked Flight</h3>
               {bookedFlights.length > 0 ? (
-                <>
+                <div className='d-flex gap-2'>
                   {bookedFlights.map((flight, index) => {
                     return (
-                      <div key={index}>
-                        <p>Arrival Date: {flight.arrival_date}</p>
-                        <p>Departure Date{flight.departure_date}</p>
-                        <p>From: {flight.from_city}</p>
-                        <p>To: {flight.to_city}</p>
-                        <p>Passengers: {flight.no_of_passenger}</p>
-                        <p>Trip Type: {flight.trip_type}</p>
-                        <p>Amount Paid: {flight.amount_paid}</p>
-                        <p>Payment ref: {flight.payment_ref}</p>
-                        <p>Payment Status: {flight.payment_status}</p>
+                      <div key={index} className='booked___flight bg-white shadow p-3'>
+                        <p><b>Arrival Date:</b> {flight.arrival_date}</p>
+                        <p><b>Departure Date</b>{flight.departure_date}</p>
+                        <p><b>From:</b> {flight.from_city}</p>
+                        <p><b>To:</b> {flight.to_city}</p>
+                        <p><b>Passengers:</b> {flight.no_of_passenger}</p>
+                        <p><b>Trip Type:</b> {flight.trip_type}</p>
+                        <p><b>Amount Paid:</b> {flight.amount_paid}</p>
+                        <p><b>Payment ref: </b>{flight.payment_ref}</p>
+                        <p><b>Payment Status:</b> {flight.payment_status}</p>
                         {flight.payment_status === 'pending' && (
                           <Link
                             to={'/payment'}
@@ -77,10 +77,13 @@ function Trip () {
                             <button className='btn btn-danger'>Pay Now</button>
                           </Link>
                         )}
+                      <hr style={{width:'100%'}} />
+                      <hr style={{width:'100%'}} />
+                      <hr style={{width:'100%'}} />
                       </div>
                     )
                   })}
-                </>
+                </div>
               ) : (
                 <p>No booked flights found.</p>
               )}

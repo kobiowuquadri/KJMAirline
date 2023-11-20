@@ -56,7 +56,7 @@ function SignIn () {
   
       checkUser(); // Call the checkUser function here
   
-      navigate('/bookflight');
+      navigate('/mytrip');
     } catch (error) {
       console.error(error.response?.data);
       console.log(error.message);

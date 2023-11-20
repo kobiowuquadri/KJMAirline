@@ -401,7 +401,7 @@ function BookFlightForm () {
       class_type: selectedOption ? selectedOption.value : 'Economy'
     }))
 
-    // Recalculate flight price based on the selected class
+
     calculateFlightPrice(
       fromValue ? fromValue.label : '',
       toValue ? toValue.label : '',
@@ -424,7 +424,7 @@ function BookFlightForm () {
         price = 3500
         break
       default:
-        price = 500 // Default to Economy Class
+        price = 500 
     }
 
     const totalPrice = price * numTravelers
@@ -440,14 +440,13 @@ function BookFlightForm () {
     e.preventDefault()
 
     try {
-      // Retrieve the access token from local storage
+
       const accessToken = localStorage.getItem('accessToken')
 
-      // Make a POST request to the API with the flightDetails, including the access token in the headers
       const response = await axios.post(
         'https://kjm.zuuroo.com/api/create_booking',
         {
-          // Include the necessary parameters from flightDetails
+
           from_city: flightDetails.from_city,
           trip_type: flightDetails.trip_type,
           to_city: flightDetails.to_city,
@@ -459,12 +458,11 @@ function BookFlightForm () {
         {
           headers: {
             Accept: 'application/json',
-            Authorization: `Bearer ${accessToken}` // Include the access token here
+            Authorization: `Bearer ${accessToken}` 
           }
         }
       )
 
-      // Handle the API response as needed
       console.log('Booking successful:', response?.data)
       navigate('/payment')
     } catch (err) {

@@ -140,10 +140,8 @@ function Home () {
                 <p id='tripfuturep1'>
                   Here's what we are doing and how we can help
                 </p>
-                <div id='learnmore'>
-                  <Link to='/information'>
-                    <p>Learn More </p>
-                  </Link>
+                <div id='learnmore' className='d-flex align-items-center'>
+                  <Link to='/information'>Learn More </Link>
                   <BiChevronRight id='learnmoreicon' />
                 </div>
               </div>
@@ -152,7 +150,7 @@ function Home () {
 
           <div className='tw-SHAKIROH tw-w-3/4 tw-mx-auto'>
             <h2 className='tw-mt-16 tw-text-4xl pt-5 tw-xs:text-red text-center'>
-              Destinations and deals
+            TOP DESTINATIONS AND DEALS
             </h2>
 
             <div className='tw-grid tw-grid-cols-1 tw-gap-4 tw-sm:grid-cols-2 tw-lg:grid-cols-3'>
@@ -233,6 +231,31 @@ function Home () {
             >
               Explore all deals
             </button>
+
+            {/* Book chopper and Private jet */}
+            <div className='d-flex flex-column justify-content-center align-items-center p-4'>
+            <p className='d-flex align-items-center gap-2 btn btn-primary p-3 fs-3'>
+             <IoAirplaneSharp id='tripbookicon' />
+                  <Link
+                    to={'/signup'}
+                    className='text-white'
+                  >
+                    Book a Chopper
+                  </Link>
+                </p>
+                <p  className='d-flex align-items-center gap-2 btn btn-primary p-3 fs-3'>
+                <IoAirplaneSharp id='tripbookicon' />
+                  <Link
+                    to={'/signup'}
+                    className='text-white'
+                  >
+                    Book a Private Jet
+                  </Link>
+                </p>
+            </div>
+
+
+
             <h2 className='tw-mt-16 tw-text-4xl'>Stay up to date</h2>
             <div className='tw-grid tw-grid-cols-1 tw-gap-4 tw-sm:grid-cols-2 tw-lg:grid-cols-3'>
               {cards.map(card => (

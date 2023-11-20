@@ -6,31 +6,36 @@ import { CgProfile } from 'react-icons/cg'
 import { MdDirectionsWalk } from 'react-icons/md'
 import { BiChevronRight } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
-import BookFlightForm from '../../Components/BookFlightForm/BookFlightForm'
 import { AuthContext } from '../../contexts/authContext'
 import axios from 'axios'
 
+
+
 function Trip () {
-  const { isUser, userDatas } = useContext(AuthContext)
-  console.log(userDatas)
+  const { isUser } = useContext(AuthContext)
   const [bookedFlights, setBookedFlights] = useState([])
+  console.log(isUser)
 
   const accessToken = localStorage.getItem('accessToken')
+  console.log(accessToken)
   const handleUserBookedFlights = async () => {
     try {
       const response = await axios.get(
-        `https://kjm.zuuroo.com/api/get_my_booking/${userDatas.id}`,
+        'https://kjm.zuuroo.com/api/get_my_booking',
         {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
             Authorization: `Bearer ${accessToken}`
-          }
+
+        }
         }
       )
+      console.log(response)
       console.log(response?.data)
       const { data } = response?.data
       setBookedFlights(data)
+      console.log(bookedFlights)
     } catch (err) {
       console.log(err?.response?.data)
     }
@@ -38,7 +43,7 @@ function Trip () {
 
   useEffect(() => {
     handleUserBookedFlights()
-  }, [bookedFlights])
+  }, )
 
   return (
     <div>
@@ -49,25 +54,37 @@ function Trip () {
           {isUser ? (
             <>
               <h3>Booked Flight</h3>
-              {bookedFlights.map((flight, index) => {
-                return (
-                  <div key={index}>
-                    <p>User ID: {flight.user_id}</p>
-                    <p>Arrival Date: {flight.arrival_date}</p>
-                    <p>Departure Date{flight.departure_date}</p>
-                    <p>From: {flight.from_city}</p>
-                    <p>To: {flight.to_city}</p>
-                    <p>Passengers: {flight.no_of_passenger}</p>
-                    <p>Trip Type: {flight.trip_type}</p>
-                    <p>Amount Paid: {flight.amount_paid}</p>
-                    <p>Payment ref: {flight.payment_ref}</p>
-                    <p>Payment Status: {flight.payment_status}</p>
-                    {flight.payment_status === 'pending' && (
-                    <Link to={'/payment'} className='d-flex align-items-center text-danger justify-content-center gap-2'>You're yet to make paymnt: <button className='btn btn-danger'>Pay Now</button></Link>
-                    )}
-                  </div>
-                )
-              })}
+              {bookedFlights.length > 0 ? (
+                <>
+                  {bookedFlights.map((flight, index) => {
+                    return (
+                      <div key={index}>
+                        <p>Arrival Date: {flight.arrival_date}</p>
+                        <p>Departure Date{flight.departure_date}</p>
+                        <p>From: {flight.from_city}</p>
+                        <p>To: {flight.to_city}</p>
+                        <p>Passengers: {flight.no_of_passenger}</p>
+                        <p>Trip Type: {flight.trip_type}</p>
+                        <p>Amount Paid: {flight.amount_paid}</p>
+                        <p>Payment ref: {flight.payment_ref}</p>
+                        <p>Payment Status: {flight.payment_status}</p>
+                        {flight.payment_status === 'pending' && (
+                          <Link
+                            to={'/payment'}
+                            className='d-flex align-items-center text-danger justify-content-center gap-2'
+                          >
+                            You're yet to make paymnt:{' '}
+                            <button className='btn btn-danger'>Pay Now</button>
+                          </Link>
+                        )}
+                      </div>
+                    )
+                  })}
+                </>
+              ) : (
+                <p>No booked flights found.</p>
+              )}
+
               <Link to={'/bookflight'} className='btn btn-primary p-2 fs-5 m-2'>
                 Click to Book a Flight
               </Link>

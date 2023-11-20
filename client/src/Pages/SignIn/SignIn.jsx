@@ -28,7 +28,7 @@ function SignIn () {
   
       const { access_token } = response.data;
       localStorage.setItem('accessToken', access_token);
-      
+      console.log(access_token)
       // console.log(accessToken);
       setIsUser(response.data);
   

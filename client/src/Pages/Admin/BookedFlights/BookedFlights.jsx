@@ -63,7 +63,6 @@ function BookedFlights() {
 
     useEffect(() => {
        handleBookedFlight()
-       approvePayment()
     }, [])
   return (
    <div className='admin__dashbaord'>
@@ -95,7 +94,7 @@ function BookedFlights() {
                   <p>Payment: {flights.payment_status}</p>
                   <p>Payment ref: {flights.payment_ref}</p>
                   <p>Amount Paid: {flights.amount_paid}</p>
-                  <button className='btn btn-success cursor-pointer' onClick={approvePayment(flights.payment_ref)}>Approve Payment</button>
+                  <button className='btn btn-success cursor-pointer' onClick={() => approvePayment(flights.payment_ref)}>Approve Payment</button>
                </div>
             </div>
       )

@@ -1,17 +1,17 @@
-import React, { useState, useMemo } from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.bundle';
-import Select from 'react-select';
-import countryList from 'react-select-country-list';
-import axios from 'axios';
-import './bookfight.scss';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useMemo } from 'react'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.bundle'
+import Select from 'react-select'
+import countryList from 'react-select-country-list'
+import axios from 'axios'
+import './bookfight.scss'
+import { useNavigate } from 'react-router-dom'
 
-function BookFlightForm() {
-  const [fromValue, setFromValue] = useState('');
-  const [toValue, setToValue] = useState('');
-  const [travelers, setTravelers] = useState(1);
-  const [flightPrice, setFlightPrice] = useState(0);
+function BookFlightForm () {
+  const [fromValue, setFromValue] = useState('')
+  const [toValue, setToValue] = useState('')
+  const [travelers, setTravelers] = useState(1)
+  const [flightPrice, setFlightPrice] = useState(0)
   const [flightDetails, setFlightDetails] = useState({
     trip_type: '',
     from_city: '',
@@ -19,99 +19,97 @@ function BookFlightForm() {
     departure_date: '',
     arrival_date: '',
     no_of_passenger: '',
-    amount_paid: '',
-  });
+    amount_paid: ''
+  })
 
-  const navigate = useNavigate();
-  const options = useMemo(() => countryList().getData(), []);
+  const navigate = useNavigate()
+  const options = useMemo(() => countryList().getData(), [])
 
-  const handleFromChange = (selectedOption) => {
-    setFromValue(selectedOption);
-  
+  const handleFromChange = selectedOption => {
+    setFromValue(selectedOption)
+
     // Update the flightDetails with the selected from_city
-    setFlightDetails((prevDetails) => ({
+    setFlightDetails(prevDetails => ({
       ...prevDetails,
-      from_city: selectedOption ? selectedOption.label : '',
-    }));
+      from_city: selectedOption ? selectedOption.label : ''
+    }))
     calculateFlightPrice(
       selectedOption ? selectedOption.label : '',
       toValue ? toValue.label : '',
       travelers,
       flightDetails.trip_type
-    );
-  };
-  
-  const handleToChange = (selectedOption) => {
-    setToValue(selectedOption);
-  
+    )
+  }
+
+  const handleToChange = selectedOption => {
+    setToValue(selectedOption)
+
     // Update the flightDetails with the selected to_city
-    setFlightDetails((prevDetails) => ({
+    setFlightDetails(prevDetails => ({
       ...prevDetails,
-      to_city: selectedOption ? selectedOption.label : '',
-    }));
+      to_city: selectedOption ? selectedOption.label : ''
+    }))
     calculateFlightPrice(
       fromValue ? fromValue.label : '',
       selectedOption ? selectedOption.label : '',
       travelers,
       flightDetails.trip_type
-    );
-  };
+    )
+  }
 
-  const handleTravelersChange = (event) => {
-    const numTravelers = parseInt(event.target.value, 10);
-    setTravelers(numTravelers);
-    
-    setFlightDetails((prevDetails) => ({
+  const handleTravelersChange = event => {
+    const numTravelers = parseInt(event.target.value, 10)
+    setTravelers(numTravelers)
+
+    setFlightDetails(prevDetails => ({
       ...prevDetails,
-      no_of_passenger: numTravelers.toString(),
-    }));
+      no_of_passenger: numTravelers.toString()
+    }))
 
     calculateFlightPrice(
       fromValue ? fromValue.label : '',
       toValue ? toValue.label : '',
       numTravelers,
       flightDetails.trip_type
-    );
-  };
-  
+    )
+  }
 
   const calculateFlightPrice = (from, to, numTravelers, tripType) => {
-    let price = 500;
+    let price = 500
 
     if (tripType === 'Round Trip') {
-      price *= 2;
+      price *= 2
     } else if (tripType === 'Chopper') {
-      price = 1500;
+      price = 1500
     } else if (tripType === 'Private Jet') {
-      price = 5000;
+      price = 5000
     }
     if (from === 'USA' && to === 'Canada') {
-      price = 300;
+      price = 300
     } else if (from === 'USA' && to === 'Mexico') {
-      price = 400;
+      price = 400
     } else if (from === 'Canada' && to === 'USA') {
-      price = 350;
+      price = 350
     } else if (from === 'Mexico' && to === 'USA') {
-      price = 450;
+      price = 450
     }
 
+    const totalPrice = price * numTravelers
 
-    const totalPrice = price * numTravelers;
-
-    setFlightPrice(totalPrice);
-    setFlightDetails((prevDetails) => ({
+    setFlightPrice(totalPrice)
+    setFlightDetails(prevDetails => ({
       ...prevDetails,
-      amount_paid: totalPrice,
-    }));
-  };
+      amount_paid: totalPrice
+    }))
+  }
 
-  const handleSubmitFlightBooking = async (e) => {
-    e.preventDefault();
-  
+  const handleSubmitFlightBooking = async e => {
+    e.preventDefault()
+
     try {
       // Retrieve the access token from local storage
-      const accessToken = localStorage.getItem('accessToken');
-  
+      const accessToken = localStorage.getItem('accessToken')
+
       // Make a POST request to the API with the flightDetails, including the access token in the headers
       const response = await axios.post(
         'https://kjm.zuuroo.com/api/create_booking',
@@ -123,29 +121,23 @@ function BookFlightForm() {
           amount_paid: flightDetails.amount_paid,
           departure_date: flightDetails.departure_date,
           arrival_date: flightDetails.arrival_date,
-          no_of_passenger: flightDetails.no_of_passenger,
+          no_of_passenger: flightDetails.no_of_passenger
         },
         {
           headers: {
             Accept: 'application/json',
-            Authorization: `Bearer ${accessToken}`, // Include the access token here
-          },
+            Authorization: `Bearer ${accessToken}` // Include the access token here
+          }
         }
-      );
-  
+      )
+
       // Handle the API response as needed
-      console.log('Booking successful:', response?.data);
-      if(response?.data?.success === 'true'){
-        navigate('/payment');
-      }
-      else{
-          alert(response?.data.message)
-      }
+      console.log('Booking successful:', response?.data)
+        navigate('/payment')
     } catch (err) {
-      console.error('Error:', err?.response?.data);
+      console.error('Error:', err?.response?.data)
     }
-  };
-  
+  }
 
   return (
     <div className='bg_flight'>
@@ -159,7 +151,12 @@ function BookFlightForm() {
                 name='trip_type'
                 value='Round Trip'
                 checked={flightDetails.trip_type === 'Round Trip'}
-                onChange={(e) => setFlightDetails({ ...flightDetails, trip_type: e.target.value })}
+                onChange={e =>
+                  setFlightDetails({
+                    ...flightDetails,
+                    trip_type: e.target.value
+                  })
+                }
               />
               Round Trip
               <span className='checkmark'></span>
@@ -170,7 +167,12 @@ function BookFlightForm() {
                 name='trip_type'
                 value='One Way'
                 checked={flightDetails.trip_type === 'One Way'}
-                onChange={(e) => setFlightDetails({ ...flightDetails, trip_type: e.target.value })}
+                onChange={e =>
+                  setFlightDetails({
+                    ...flightDetails,
+                    trip_type: e.target.value
+                  })
+                }
               />
               One Way
               <span className='checkmark'></span>
@@ -181,7 +183,12 @@ function BookFlightForm() {
                 name='trip_type'
                 value='Chopper'
                 checked={flightDetails.trip_type === 'Chopper'}
-                onChange={(e) => setFlightDetails({ ...flightDetails, trip_type: e.target.value })}
+                onChange={e =>
+                  setFlightDetails({
+                    ...flightDetails,
+                    trip_type: e.target.value
+                  })
+                }
               />
               Chopper
               <span className='checkmark'></span>
@@ -192,7 +199,12 @@ function BookFlightForm() {
                 name='trip_type'
                 value='Private Jet'
                 checked={flightDetails.trip_type === 'Private Jet'}
-                onChange={(e) => setFlightDetails({ ...flightDetails, trip_type: e.target.value })}
+                onChange={e =>
+                  setFlightDetails({
+                    ...flightDetails,
+                    trip_type: e.target.value
+                  })
+                }
               />
               Private Jet
               <span className='checkmark'></span>
@@ -232,8 +244,11 @@ function BookFlightForm() {
                 placeholder='Depart Date'
                 className='form-control'
                 name='departure_date'
-                onChange={(e) =>
-                  setFlightDetails({ ...flightDetails, departure_date: e.target.value })
+                onChange={e =>
+                  setFlightDetails({
+                    ...flightDetails,
+                    departure_date: e.target.value
+                  })
                 }
               />
               <div className='label' id='depart'></div>
@@ -245,8 +260,11 @@ function BookFlightForm() {
                 placeholder='Return Date'
                 name='arrival_date'
                 className='form-control'
-                onChange={(e) =>
-                  setFlightDetails({ ...flightDetails, arrival_date: e.target.value })
+                onChange={e =>
+                  setFlightDetails({
+                    ...flightDetails,
+                    arrival_date: e.target.value
+                  })
                 }
               />
               <div className='label' id='return'></div>
@@ -286,14 +304,16 @@ function BookFlightForm() {
             <p>dollars</p>
           </div>
           <div className='form-group my-3'>
-            <input type='submit' value="Book Flight" className='btn btn-primary rounded-0 d-flex justify-content-center text-center p-3'/>
-             
-           
+            <input
+              type='submit'
+              value='Book Flight'
+              className='btn btn-primary rounded-0 d-flex justify-content-center text-center p-3'
+            />
           </div>
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default BookFlightForm;
+export default BookFlightForm

@@ -9,10 +9,15 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const logout = () => {
+
     setIsUser(null);
-    setUserData(null); // Reset the userData state when the user logs out
-    navigate('/login');
-  };
+    setUserData(null); 
+
+    // CLEAR DATA FROM STORAGE
+    localStorage.clear();
+    sessionStorage.clear();
+
+    navigate('/login');}
 
   return (
     <AuthContext.Provider value={{ isUser, setIsUser, userDatas, setUserData, logout }}> 

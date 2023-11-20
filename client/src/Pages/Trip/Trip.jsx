@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/authContext'
 import axios from 'axios'
 
+import { IoAirplaneSharp } from 'react-icons/io5'
+
 
 
 function Trip () {
@@ -55,19 +57,19 @@ function Trip () {
             <>
               <h3 style={{background: '#042d37', color:'white'}} className='p-2'>Booked Flight</h3>
               {bookedFlights.length > 0 ? (
-                <div className='d-flex gap-2'>
+                <div className='row row-cols-2'>
                   {bookedFlights.map((flight, index) => {
                     return (
-                      <div key={index} className='booked___flight bg-white shadow p-3'>
-                        <p><b>Arrival Date:</b> {flight.arrival_date}</p>
-                        <p><b>Departure Date</b>{flight.departure_date}</p>
-                        <p><b>From:</b> {flight.from_city}</p>
-                        <p><b>To:</b> {flight.to_city}</p>
-                        <p><b>Passengers:</b> {flight.no_of_passenger}</p>
-                        <p><b>Trip Type:</b> {flight.trip_type}</p>
-                        <p><b>Amount Paid:</b> {flight.amount_paid}</p>
+                      <div key={index} className='bg-white shadow p-3'>
+                        <p><b>Arrival Date: </b> {flight.arrival_date}</p>
+                        <p><b>Departure Date: </b>{flight.departure_date}</p>
+                        <p><b>From: </b> {flight.from_city}</p>
+                        <p><b>To: </b> {flight.to_city}</p>
+                        <p><b>Passengers: </b> {flight.no_of_passenger}</p>
+                        <p><b>Trip Type: </b> {flight.trip_type}</p>
+                        <p><b>Amount Paid: </b> {flight.amount_paid}</p>
                         <p><b>Payment ref: </b>{flight.payment_ref}</p>
-                        <p><b>Payment Status:</b> {flight.payment_status}</p>
+                        <p><b>Payment Status: </b> {flight.payment_status}</p>
                         {flight.payment_status === 'pending' && (
                           <Link
                             to={'/payment'}
@@ -88,9 +90,36 @@ function Trip () {
                 <p>No booked flights found.</p>
               )}
 
-              <Link to={'/bookflight'} className='btn btn-primary p-2 fs-5 m-2'>
-                Click to Book a Flight
-              </Link>
+              {/* Book chopper and Private jet */}
+            <div className='d-flex flex-column justify-content-center align-items-center p-4'>
+            <p className='d-flex align-items-center gap-2 btn btn-primary p-3' style={{background: '#042d37'}}>
+             <IoAirplaneSharp id='tripbookicon' />
+                  <Link
+                    to={'chopper'}
+                    className='text-white'
+                  >
+                    Book a Chopper
+                  </Link>
+                </p>
+                <p  className='d-flex align-items-center gap-2 btn btn-primary p-3' style={{background: '#042d37'}}>
+                <IoAirplaneSharp id='tripbookicon' />
+                  <Link
+                    to={'privatejet'}
+                    className='text-white'
+                  >
+                    Book a Private Jet
+                  </Link>
+                </p>
+                <p  className='d-flex align-items-center gap-2 btn btn-primary p-3' style={{background: '#042d37'}}>
+                <IoAirplaneSharp id='tripbookicon' />
+                  <Link
+                    to={'bookflight'}
+                    className='text-white'
+                  >
+                    First Class, Business Class, and Economy Class flights
+                  </Link>
+                </p>
+            </div>
             </>
           ) : (
             <div>

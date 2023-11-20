@@ -14,6 +14,7 @@ function BookFlightForm () {
   const [flightPrice, setFlightPrice] = useState(0)
   const [flightDetails, setFlightDetails] = useState({
     trip_type: '',
+    class_type: 'Economy',
     from_city: '',
     to_city: '',
     departure_date: '',
@@ -23,38 +24,283 @@ function BookFlightForm () {
   })
 
   const navigate = useNavigate()
-  const options = useMemo(() => countryList().getData(), [])
+  const airports = useMemo(() => [
+    'Louisiana Offshore Oil Port (LOOP)',
+    'Louis Armstrong New Orleans International Airport (MSY)',
+    'Theodore Roosevelt Regional Airport',
+    'Repsol Oil Rig',
+    'Adolfo Suarez Madrid-Barajas Airport',
+    'Ted Stevens Anchorage International Airport',
+    'Louisiana Offshore Oil Port',
+    'MidAmerica in Mascoutah, IL',
+    'Evansville Regional Airport',
+    'Roanoke Virginia Regional Airport',
+    'Adolfo Suarez Madrid',
+    'Ted Stevens Anchorage International Airport',
+    'Adolfo Suarez Madrid',
+    'Evansville Regional Airport',
+    'Atlanta International Airport',
+    'Los Angeles International Airport',
+    "Chicago O'Hare International Airport",
+    'Dallas/Fort Worth International Airport',
+    'Denver International Airport',
+    'New York JFK International Airport',
+    'San Francisco International Airport',
+    'Seattle International Airport',
+    'Orlando International Airport',
+    'Las Vegas International Airport',
+    'Charlotte International Airport',
+    'Newark International Airport',
+    'Phoenix International Airport',
+    'Houston Bush International Airport',
+    'Miami International Airport',
+    'Boston Logan International Airport',
+    'Minneapolis International Airport',
+    'Detroit Metro Airport',
+    'Fort Lauderdale International Airport',
+    'Philadelphia International Airport',
+    'Atlanta Airport',
+    'Los Angeles Airport',
+    "Chicago O'Hare Airport",
+    'Dallas/Fort Worth Airport',
+    'Denver Airport',
+    'New York JFK Airport',
+    'San Francisco Airport',
+    'Seattle Airport',
+    'Orlando Airport',
+    'Las Vegas Airport',
+    'Charlotte Airport',
+    'Newark Airport',
+    'Phoenix Airport',
+    'Houston Bush Airport',
+    'Miami Airport',
+    'Boston Airport',
+    'Minneapolis Airport',
+    'Detroit Metro Airport',
+    'Fort Lauderdale Airport',
+    'Philadelphia Airport',
+    'New York LaGuardia Airport',
+    'Baltimore Airport',
+    'Salt Lake City Airport',
+    'San Diego Airport',
+    'Washington Dulles Airport',
+    'Washington Reagan Airport',
+    'Tampa Airport',
+    'Chicago Midway Airport',
+    'Honolulu Airport',
+    'Portland Airport',
+    'Nashville Airport',
+    'Austin Airport',
+    'Dallas Airport',
+    'St. Louis Airport',
+    'San Jose Airport',
+    'Houston Airport',
+    'Raleigh/Durham Airport',
+    'New Orleans Airport',
+    'Oakland Airport',
+    'Sacramento Airport',
+    'Kansas City Airport',
+    'Santa Ana Airport',
+    'Fort Myers Airport',
+    'San Antonio Airport',
+    'Cleveland Airport',
+    'Indianapolis Airport',
+    'Pittsburgh Airport',
+    'San Juan Airport',
+    'Cincinnati Airport',
+    'Columbus Airport',
+    'Kahului Airport',
+    'Jacksonville Airport',
+    'West Palm Beach/Palm Beach Airport',
+    'Milwaukee Airport',
+    'Hartford Airport',
+    'Burbank Airport',
+    'Ontario Airport',
+    'Anchorage Airport',
+    'Albuquerque Airport',
+    'Omaha Airport',
+    'Buffalo Airport',
+    'Charleston Airport',
+    'Memphis Airport',
+    'Richmond Airport',
+    'Reno Airport',
+    'Oklahoma City Airport',
+    'Boise Airport',
+    'Louisville Airport',
+    'Norfolk Airport',
+    'Providence Airport',
+    'Spokane Airport',
+    'Kona Airport',
+    'Tucson Airport',
+    'Grand Rapids Airport',
+    'Long Beach Airport',
+    'El Paso Airport',
+    'Lihue Airport',
+    'Birmingham Airport',
+    'Sanford Airport',
+    'Tulsa Airport',
+    'Albany Airport',
+    'Savannah Airport',
+    'Des Moines Airport',
+    'Palm Springs Airport',
+    'Myrtle Beach Airport',
+    'Rochester Airport',
+    'Greenville-Spartanburg Airport',
+    'Syracuse Airport',
+    'Knoxville Airport',
+    'Madison Airport',
+    'St. Petersburg Airport',
+    'Pensacola Airport',
+    'Portland Airport',
+    'Little Rock Airport',
+    'Greensboro/High Point Airport',
+    'Sarasota/Bradenton Airport',
+    'Fresno Airport',
+    'Fayetteville Airport',
+    'Phoenix Airport',
+    'White Plains Airport',
+    'Wichita Airport',
+    'Manchester Airport',
+    'Dayton Airport',
+    'Punta Gorda Airport',
+    'Colorado Springs Airport',
+    'Valparaiso Airport',
+    'Asheville Airport',
+    'Bozeman Airport',
+    'Islip Airport',
+    'Harrisburg Airport',
+    'Lexington Airport',
+    'Huntsville Airport',
+    'Burlington Airport',
+    'Midland/Odessa Airport',
+    'Cedar Rapids/Iowa City Airport',
+    'Columbia Airport',
+    'Panama City Airport',
+    'Eugene Airport',
+    'Hilo Airport',
+    'Springfield Airport',
+    'Sioux Falls Airport',
+    'Chattanooga Airport',
+    'Jackson/Vicksburg Airport',
+    'Fairbanks Airport',
+    'Wilmington Airport',
+    'Medford Airport',
+    'Atlantic City Airport',
+    'Lubbock Airport',
+    'Santa Barbara Airport',
+    'Key West Airport',
+    'Bend/Redmond Airport',
+    'Fargo Airport',
+    'Billings Airport',
+    'Trenton Airport',
+    'Missoula Airport',
+    'Jackson Airport',
+    'Pasco/Kennewick/Richland Airport',
+    'Allentown/Bethlehem/Easton Airport',
+    'Mission/McAllen/Edinburg Airport',
+    'Tallahassee Airport',
+    'South Bend Airport',
+    'Akron Airport',
+    'Fort Wayne Airport',
+    'Baton Rouge Airport',
+    'Everett Airport',
+    'Appleton Airport',
+    'Charlottesville Airport',
+    'Aguadilla Airport',
+    'Juneau Airport',
+    'Roanoke Airport',
+    'Kalispell Airport',
+    'Moline Airport',
+    'Amarillo Airport',
+    'Rapid City Airport',
+    'Green Bay Airport',
+    'Daytona Beach Airport',
+    'Peoria Airport',
+    'Harlingen/San Benito Airport',
+    'Bellingham Airport',
+    'Augusta Airport',
+    'Mobile Airport',
+    'Corpus Christi Airport',
+    'Shreveport Airport',
+    'Bismarck/Mandan Airport',
+    'Aspen Airport',
+    'Bangor Airport',
+    'Flint Airport',
+    'Scranton/Wilkes-Barre Airport',
+    'Traverse City Airport',
+    'Gulfport/Biloxi Airport',
+    'Gainesville Airport',
+    'San Luis Obispo Airport',
+    'Newburgh/Poughkeepsie Airport',
+    'Lafayette Airport',
+    'Grand Junction Airport',
+    'Evansville Airport',
+    'Santa Rosa Airport',
+    'Melbourne Airport',
+    'Monterey Airport',
+    'Charleston/Dunbar Airport',
+    'Bristol/Johnson City/Kingsport Airport',
+    'Fayetteville Airport',
+    'Newport News/Williamsburg Airport',
+    'Bloomington/Normal Airport',
+    'Durango Airport',
+    'Montgomery Airport',
+    'State College Airport',
+    'Eagle Airport',
+    'Rochester Airport',
+    'Concord Airport',
+    'Idaho Falls Airport',
+    'Great Falls Airport',
+    'Minot Airport',
+    'Lincoln Airport',
+    'Lansing Airport',
+    'Jacksonville/Camp Lejeune Airport',
+    'Montrose/Delta Airport',
+    'Elmira/Corning Airport',
+    'Bethel Airport',
+    'Latrobe Airport',
+    'Bucharest Henri Coandă International Airport',
+    'Cluj International Airport',
+    'Timișoara Traian Vuia International Airport',
+    'Iasi International Airport',
+    'George Enescu International Airport',
+    'Târgu Mureș Transylvania Airport',
+    'Sibiu International Airport',
+    'Craiova International Airport',
+  ], []);
+  
+
 
   const handleFromChange = selectedOption => {
-    setFromValue(selectedOption)
+    setFromValue(selectedOption);
 
-    // Update the flightDetails with the selected from_city
     setFlightDetails(prevDetails => ({
       ...prevDetails,
       from_city: selectedOption ? selectedOption.label : ''
-    }))
+    }));
+
     calculateFlightPrice(
       selectedOption ? selectedOption.label : '',
       toValue ? toValue.label : '',
       travelers,
       flightDetails.trip_type
-    )
+    );
   }
 
   const handleToChange = selectedOption => {
-    setToValue(selectedOption)
+    setToValue(selectedOption);
 
-    // Update the flightDetails with the selected to_city
     setFlightDetails(prevDetails => ({
       ...prevDetails,
       to_city: selectedOption ? selectedOption.label : ''
-    }))
+    }));
+
     calculateFlightPrice(
       fromValue ? fromValue.label : '',
       selectedOption ? selectedOption.label : '',
       travelers,
       flightDetails.trip_type
-    )
+    );
   }
 
   const handleTravelersChange = event => {
@@ -74,34 +320,47 @@ function BookFlightForm () {
     )
   }
 
-  const calculateFlightPrice = (from, to, numTravelers, tripType) => {
-    let price = 500
-
-    if (tripType === 'Round Trip') {
-      price *= 2
-    } else if (tripType === 'Chopper') {
-      price = 1500
-    } else if (tripType === 'Private Jet') {
-      price = 5000
-    }
-    if (from === 'USA' && to === 'Canada') {
-      price = 300
-    } else if (from === 'USA' && to === 'Mexico') {
-      price = 400
-    } else if (from === 'Canada' && to === 'USA') {
-      price = 350
-    } else if (from === 'Mexico' && to === 'USA') {
-      price = 450
-    }
-
-    const totalPrice = price * numTravelers
-
-    setFlightPrice(totalPrice)
-    setFlightDetails(prevDetails => ({
+  const handleClassChange = (selectedOption) => {
+    setFlightDetails((prevDetails) => ({
       ...prevDetails,
-      amount_paid: totalPrice
-    }))
-  }
+      class_type: selectedOption ? selectedOption.value : 'Economy',
+    }));
+
+    // Recalculate flight price based on the selected class
+    calculateFlightPrice(
+      fromValue ? fromValue.label : '',
+      toValue ? toValue.label : '',
+      travelers,
+      selectedOption ? selectedOption.value : 'Economy'
+    );
+  };
+
+
+  const calculateFlightPrice = (from, to, numTravelers, classType) => {
+    let price;
+
+    switch (classType) {
+      case 'Economy Class':
+        price = 500;
+        break;
+      case 'Business Class':
+        price = 2300;
+        break;
+      case 'First Class':
+        price = 3500;
+        break;
+      default:
+        price = 500; // Default to Economy Class
+    }
+
+    const totalPrice = price * numTravelers;
+
+    setFlightPrice(totalPrice);
+    setFlightDetails((prevDetails) => ({
+      ...prevDetails,
+      amount_paid: totalPrice,
+    }));
+  };
 
   const handleSubmitFlightBooking = async e => {
     e.preventDefault()
@@ -177,58 +436,42 @@ function BookFlightForm () {
               One Way
               <span className='checkmark'></span>
             </label>
-            <label className='option my-sm-0 my-2'>
-              <input
-                type='radio'
-                name='trip_type'
-                value='Chopper'
-                checked={flightDetails.trip_type === 'Chopper'}
-                onChange={e =>
-                  setFlightDetails({
-                    ...flightDetails,
-                    trip_type: e.target.value
-                  })
-                }
-              />
-              Chopper
-              <span className='checkmark'></span>
-            </label>
-            <label className='option my-sm-0 my-2'>
-              <input
-                type='radio'
-                name='trip_type'
-                value='Private Jet'
-                checked={flightDetails.trip_type === 'Private Jet'}
-                onChange={e =>
-                  setFlightDetails({
-                    ...flightDetails,
-                    trip_type: e.target.value
-                  })
-                }
-              />
-              Private Jet
-              <span className='checkmark'></span>
-            </label>
           </div>
-          <div className='form-group d-sm-flex margin'>
-            <div className='d-flex align-items-center flex-fill me-sm-1 my-sm-0 my-4 border-bottom position-relative'>
-              <b>From</b>
+
+          <div className='class-select d-flex align-items-center'>
+          <b className='w-50'>Class Type: </b>
+        <Select
+          name='class_type'
+          className='form-control'
+          options={[
+            { label: 'Economy Class', value: 'Economy Class' },
+            { label: 'Business Class', value: 'Business Class' },
+            { label: 'First Class', value: 'First Class' },
+          ]}
+          value={{ label: flightDetails.class_type, value: flightDetails.class_type }}
+          onChange={handleClassChange}
+        />
+      </div>
+
+          <div className='form-group d-flex flex-column'>
+            <div className='d-flex align-items-center flex-fill me-sm-1 my-sm-0 mt-3 border-bottom position-relative'>
+              <b>From: </b>
               <Select
-                name='from_city'
-                className='form-control'
-                options={options}
-                value={fromValue}
-                onChange={handleFromChange}
-              />
+        name='from_city'
+        className='form-control'
+        options={airports.map(airport => ({ label: airport, value: airport }))}
+        value={fromValue}
+        onChange={handleFromChange}
+      />
               <div className='label' id='from'></div>
               <span className='fas fa-dot-circle text-muted'></span>
             </div>
             <div className='d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative'>
-              <b>TO</b>
+              <b>TO: </b>
               <Select
                 name='to_city'
                 className='form-control'
-                options={options}
+                options={airports.map(airport => ({ label: airport, value: airport }))}
                 value={toValue}
                 onChange={handleToChange}
               />

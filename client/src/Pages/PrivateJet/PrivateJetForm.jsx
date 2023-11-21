@@ -14,15 +14,15 @@ function PrivateJetForm () {
   const [travelers, setTravelers] = useState(1)
   const [flightPrice, setFlightPrice] = useState(12000)
   const [flightDetails, setFlightDetails] = useState({
-    trip_type: '',
+    trip_type: 'Round Trip',
     class_type: 'Private Jet',
     from_city: '',
     to_city: '',
     departure_date: '',
     arrival_date: '',
-    no_of_passenger: '',
+    no_of_passenger: '1',
     amount_paid: ''
-  })
+  });
 
   const navigate = useNavigate()
   const airports = useMemo(
@@ -437,6 +437,7 @@ function PrivateJetForm () {
 
           from_city: flightDetails.from_city,
           trip_type: flightDetails.trip_type,
+          class_type: flightDetails.class_type,
           to_city: flightDetails.to_city,
           amount_paid: flightDetails.amount_paid,
           departure_date: flightDetails.departure_date,
@@ -501,12 +502,11 @@ function PrivateJetForm () {
           <div className='class-select d-flex align-items-center'>
             <b className='w-50'>Class Type: </b>
             <input
-    type='text'
-    className='form-control'
-    value={flightDetails.class_type}
-    readOnly
-    onChange={handleClassChange}
-  />
+  type='text'
+  className='form-control'
+  value={flightDetails.class_type}
+  onChange={handleClassChange}
+/>
           </div>
 
           <div className='form-group d-flex flex-column'>

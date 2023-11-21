@@ -1,8 +1,15 @@
 import React from 'react'
+import Navbar from '../../Components/Navbar/Navbar'
+import Footer from '../../Components/Footer/Footer'
+import PrivateJetForm from './PrivateJetForm'
 
 function PrivateJet() {
   return (
-    <div>PrivateJet</div>
+    <div>
+        <Navbar/>
+        <PrivateJetForm/>
+        <Footer/>
+    </div>
   )
 }
 

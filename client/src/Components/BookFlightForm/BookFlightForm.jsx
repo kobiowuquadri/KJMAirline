@@ -14,7 +14,7 @@ function BookFlightForm () {
   const [flightPrice, setFlightPrice] = useState(0)
   const [flightDetails, setFlightDetails] = useState({
     trip_type: '',
-    class_type: 'Economy Class',
+    class_type: '',
     from_city: '',
     to_city: '',
     departure_date: '',
@@ -396,21 +396,21 @@ function BookFlightForm () {
   }
 
   const handleClassChange = selectedOption => {
+    const selectedValue = selectedOption ? selectedOption.value : '---SELECT CLASS TYPE---';
+  
     setFlightDetails(prevDetails => ({
       ...prevDetails,
-      class_type: selectedOption
-        ? selectedOption.value
-        : '---SELECT CLASS TYPE---'
-    }))
-
+      class_type: selectedValue,
+    }));
+  
     calculateFlightPrice(
       fromValue ? fromValue.label : '',
       toValue ? toValue.label : '',
       travelers,
-      selectedOption ? selectedOption.value : '---SELECT CLASS TYPE---'
-    )
-  }
-
+      selectedValue
+    );
+  };
+  
   const calculateFlightPrice = (from, to, numTravelers, classType) => {
     let price
 
@@ -466,8 +466,14 @@ function BookFlightForm () {
         }
       )
 
-      console.log('Booking successful:', response?.data)
-      navigate('/payment')
+      if (response?.data?.success == 'true'){
+        console.log('Booking successful:', response?.data)
+        navigate('/payment')
+      }
+      else {
+        alert(response?.data?.message)
+        navigate('/mytrip')
+      }
     } catch (err) {
       console.error('Error:', err?.response?.data)
     }
@@ -613,7 +619,7 @@ function BookFlightForm () {
                   label: '---SELECT CLASS TYPE---',
                   value: '---SELECT CLASS TYPE---'
                 },
-                { label: 'Economy Class', value: 'Economy Class'  },
+                { label: 'Economy Class', value: 'Economy Class' },
                 { label: 'Business Class', value: 'Business Class' },
                 { label: 'First Class', value: 'First Class' }
               ]}

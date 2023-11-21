@@ -76,7 +76,7 @@ function Trip () {
                             to={'/payment'}
                             className='d-flex align-items-center text-danger justify-content-center gap-2'
                           >
-                            You're yet to make paymnt:{' '}
+                            If you're yet to make paymnt:{' '}
                             <button className='btn btn-danger'>Pay Now</button>
                           </Link>
                         )}

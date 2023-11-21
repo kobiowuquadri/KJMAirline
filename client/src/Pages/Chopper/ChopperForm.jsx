@@ -437,6 +437,7 @@ function ChopperForm () {
 
           from_city: flightDetails.from_city,
           trip_type: flightDetails.trip_type,
+          class_type: flightDetails.class_type,
           to_city: flightDetails.to_city,
           amount_paid: flightDetails.amount_paid,
           departure_date: flightDetails.departure_date,

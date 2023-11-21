@@ -252,6 +252,15 @@ function Home () {
                     Book a Private Jet
                   </Link>
                 </p>
+                <p  className='d-flex align-items-center gap-2 btn btn-primary p-3' style={{background: '#042d37'}}>
+                <IoAirplaneSharp id='tripbookicon' />
+                  <Link
+                    to={'/login'}
+                    className='text-white'
+                  >
+                     First Class, Business Class, and Economy Class flights
+                  </Link>
+                </p>
             </div>
 
 

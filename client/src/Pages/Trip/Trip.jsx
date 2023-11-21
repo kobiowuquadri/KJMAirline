@@ -70,6 +70,7 @@ function Trip () {
                         <p><b>Amount Paid: </b> {flight.amount_paid}</p>
                         <p><b>Payment ref: </b>{flight.payment_ref}</p>
                         <p><b>Payment Status: </b> {flight.payment_status}</p>
+                        <p><b>Class Type: </b> {flight.class_type}</p>
                         {flight.payment_status === 'pending' && (
                           <Link
                             to={'/payment'}

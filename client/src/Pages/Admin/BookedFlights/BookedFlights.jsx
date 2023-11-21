@@ -87,6 +87,7 @@ function BookedFlights() {
                   <p>Flight ID: {flights.id}</p>
                   <p>No of Passengers: {flights.no_of_passenger}</p>
                   <p>Trip Type: {flights.trip_type}</p>
+                  <p>Class Type: {flights.class_type}</p>
                </div>
 
                <div className='d-flex flex-column col-md-12'>

@@ -2,11 +2,10 @@ import React, { useState, useMemo } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import Select from 'react-select'
-import { CiCalendarDate } from "react-icons/ci"
+import { CiCalendarDate } from 'react-icons/ci'
 import axios from 'axios'
 import './bookfight.scss'
 import { useNavigate } from 'react-router-dom'
-
 
 function BookFlightForm () {
   const [fromValue, setFromValue] = useState('')
@@ -15,7 +14,7 @@ function BookFlightForm () {
   const [flightPrice, setFlightPrice] = useState(0)
   const [flightDetails, setFlightDetails] = useState({
     trip_type: '',
-    class_type: 'Economy',
+    class_type: 'Economy Class',
     from_city: '',
     to_city: '',
     departure_date: '',
@@ -399,15 +398,16 @@ function BookFlightForm () {
   const handleClassChange = selectedOption => {
     setFlightDetails(prevDetails => ({
       ...prevDetails,
-      class_type: selectedOption ? selectedOption.value : 'Economy'
+      class_type: selectedOption
+        ? selectedOption.value
+        : '---SELECT CLASS TYPE---'
     }))
-
 
     calculateFlightPrice(
       fromValue ? fromValue.label : '',
       toValue ? toValue.label : '',
       travelers,
-      selectedOption ? selectedOption.value : 'Economy'
+      selectedOption ? selectedOption.value : '---SELECT CLASS TYPE---'
     )
   }
 
@@ -415,6 +415,9 @@ function BookFlightForm () {
     let price
 
     switch (classType) {
+      case '---SELECT CLASS TYPE---':
+        price = 0
+        break
       case 'Economy Class':
         price = 500
         break
@@ -425,7 +428,7 @@ function BookFlightForm () {
         price = 3500
         break
       default:
-        price = 500 
+        price = 500
     }
 
     const totalPrice = price * numTravelers
@@ -441,16 +444,15 @@ function BookFlightForm () {
     e.preventDefault()
 
     try {
-
       const accessToken = localStorage.getItem('accessToken')
 
       const response = await axios.post(
         'https://kjm.zuuroo.com/api/create_booking',
         {
-
           from_city: flightDetails.from_city,
           trip_type: flightDetails.trip_type,
           to_city: flightDetails.to_city,
+          class_type: flightDetails.class_type,
           amount_paid: flightDetails.amount_paid,
           departure_date: flightDetails.departure_date,
           arrival_date: flightDetails.arrival_date,
@@ -459,7 +461,7 @@ function BookFlightForm () {
         {
           headers: {
             Accept: 'application/json',
-            Authorization: `Bearer ${accessToken}` 
+            Authorization: `Bearer ${accessToken}`
           }
         }
       )
@@ -511,24 +513,6 @@ function BookFlightForm () {
             </label>
           </div>
 
-          <div className='class-select d-flex align-items-center'>
-            <b className='w-50'>Class Type: </b>
-            <Select
-              name='class_type'
-              className='form-control'
-              options={[
-                { label: 'Economy Class', value: 'Economy Class' },
-                { label: 'Business Class', value: 'Business Class' },
-                { label: 'First Class', value: 'First Class' }
-              ]}
-              value={{
-                label: flightDetails.class_type,
-                value: flightDetails.class_type
-              }}
-              onChange={handleClassChange}
-            />
-          </div>
-
           <div className='form-group d-flex flex-column'>
             <div className='d-flex align-items-center flex-fill me-sm-1 my-sm-0 mt-3 border-bottom position-relative'>
               <b>From: </b>
@@ -564,7 +548,7 @@ function BookFlightForm () {
           <div className='form-group d-sm-flex margin'>
             <div className='d-flex align-items-center flex-fill me-sm1 my-sm-0 border-bottom position-relative'>
               <b id='not__show'>Departure Date: </b>
-              <CiCalendarDate id='not__show' style={{fontSize: '2rem'}}/>
+              <CiCalendarDate id='not__show' style={{ fontSize: '2rem' }} />
               <input
                 type='date'
                 required
@@ -580,8 +564,8 @@ function BookFlightForm () {
               {/* <div className='label' id='depart'></div> */}
             </div>
             <div className='d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative'>
-            <b id='not__show'>Return Date: </b>
-            <CiCalendarDate id='not__show' style={{fontSize: '2rem'}}/>
+              <b id='not__show'>Return Date: </b>
+              <CiCalendarDate id='not__show' style={{ fontSize: '2rem' }} />
               <input
                 type='date'
                 required
@@ -597,6 +581,7 @@ function BookFlightForm () {
               {/* <div className='label' id='return'></div> */}
             </div>
           </div>
+
           <div className='form-group border-bottom d-flex align-items-center position-relative'>
             <select
               className='form-control'
@@ -617,6 +602,31 @@ function BookFlightForm () {
             </select>
             <div className='label' id='psngr'></div>
             <span className='fas fa-users text-muted'></span>
+          </div>
+          <div className='class-select d-flex align-items-center'>
+            <b className='w-50'>Class Type: </b>
+            <Select
+              name='class_type'
+              className='form-control'
+              options={[
+                {
+                  label: '---SELECT CLASS TYPE---',
+                  value: '---SELECT CLASS TYPE---'
+                },
+                { label: 'Economy Class', value: 'Economy Class'  },
+                { label: 'Business Class', value: 'Business Class' },
+                { label: 'First Class', value: 'First Class' }
+              ]}
+              value={
+                flightDetails.class_type
+                  ? {
+                      label: flightDetails.class_type,
+                      value: flightDetails.class_type
+                    }
+                  : null
+              }
+              onChange={handleClassChange}
+            />
           </div>
           <div className='rounded-0 d-flex justify-content-center gap-2 align-items-center bg-white shadow p-3'>
             <input

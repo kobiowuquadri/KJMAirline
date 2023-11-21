@@ -503,9 +503,11 @@ function PrivateJetForm () {
             <b className='w-50'>Class Type: </b>
             <input
   type='text'
+  readOnly
   className='form-control'
   value={flightDetails.class_type}
   onChange={handleClassChange}
+  name='class_type'
 />
           </div>
 

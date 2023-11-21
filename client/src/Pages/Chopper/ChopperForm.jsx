@@ -14,7 +14,7 @@ function ChopperForm () {
   const [travelers, setTravelers] = useState(1)
   const [flightPrice, setFlightPrice] = useState(6700)
   const [flightDetails, setFlightDetails] = useState({
-    trip_type: '',
+    trip_type: 'Round Trip',
     class_type: 'Chopper',
     from_city: '',
     to_city: '',
@@ -502,6 +502,7 @@ function ChopperForm () {
             <b className='w-50'>Class Type: </b>
             <input
     type='text'
+    name='class_type'
     className='form-control'
     value={flightDetails.class_type}
     readOnly

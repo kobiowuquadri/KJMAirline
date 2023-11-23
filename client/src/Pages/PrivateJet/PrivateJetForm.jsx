@@ -2,11 +2,10 @@ import React, { useState, useMemo } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import Select from 'react-select'
-import { CiCalendarDate } from "react-icons/ci"
+import { CiCalendarDate } from 'react-icons/ci'
 import axios from 'axios'
 import '../../Components/BookFlightForm/bookfight.scss'
 import { useNavigate } from 'react-router-dom'
-
 
 function PrivateJetForm () {
   const [fromValue, setFromValue] = useState('')
@@ -22,7 +21,7 @@ function PrivateJetForm () {
     arrival_date: '',
     no_of_passenger: '1',
     amount_paid: ''
-  });
+  })
 
   const navigate = useNavigate()
   const airports = useMemo(
@@ -396,22 +395,6 @@ function PrivateJetForm () {
     )
   }
 
-  const handleClassChange = event => {
-    const selectedValue = event.target.value;
-    
-    setFlightDetails(prevDetails => ({
-      ...prevDetails,
-      class_type: selectedValue ? selectedValue : 'Private Jet'
-    }));
-  
-    calculateFlightPrice(
-      fromValue ? fromValue.label : '',
-      toValue ? toValue.label : '',
-      travelers,
-      selectedValue ? selectedValue : 'Private Jet'
-    );
-  };
-
   const calculateFlightPrice = (from, to, numTravelers, classType) => {
     let price = 12000
 
@@ -428,13 +411,11 @@ function PrivateJetForm () {
     e.preventDefault()
 
     try {
-
       const accessToken = localStorage.getItem('accessToken')
 
       const response = await axios.post(
         'https://kjm.zuuroo.com/api/create_booking',
         {
-
           from_city: flightDetails.from_city,
           trip_type: flightDetails.trip_type,
           class_type: flightDetails.class_type,
@@ -447,7 +428,7 @@ function PrivateJetForm () {
         {
           headers: {
             Accept: 'application/json',
-            Authorization: `Bearer ${accessToken}` 
+            Authorization: `Bearer ${accessToken}`
           }
         }
       )
@@ -501,14 +482,29 @@ function PrivateJetForm () {
 
           <div className='class-select d-flex align-items-center'>
             <b className='w-50'>Class Type: </b>
-            <input
-  type='text'
-  readOnly
-  className='form-control'
-  value={flightDetails.class_type}
-  onChange={handleClassChange}
-  name='class_type'
-/>
+            <Select
+              className='w-50'
+              name='class_type'
+              options={[{ label: 'Private Jet', value: 'Private Jet' }]}
+              value={{
+                label: flightDetails.class_type,
+                value: flightDetails.class_type
+              }}
+              onChange={selectedOption => {
+                setFlightDetails(prevDetails => ({
+                  ...prevDetails,
+                  class_type: selectedOption
+                    ? selectedOption.label
+                    : 'Private Jet'
+                }))
+                calculateFlightPrice(
+                  fromValue ? fromValue.label : '',
+                  toValue ? toValue.label : '',
+                  travelers,
+                  selectedOption ? selectedOption.label : 'Private Jet'
+                )
+              }}
+            />
           </div>
 
           <div className='form-group d-flex flex-column'>
@@ -546,7 +542,7 @@ function PrivateJetForm () {
           <div className='form-group d-sm-flex margin'>
             <div className='d-flex align-items-center flex-fill me-sm1 my-sm-0 border-bottom position-relative'>
               <b id='not__show'>Departure Date: </b>
-              <CiCalendarDate id='not__show' style={{fontSize: '2rem'}}/>
+              <CiCalendarDate id='not__show' style={{ fontSize: '2rem' }} />
               <input
                 type='date'
                 required
@@ -562,8 +558,8 @@ function PrivateJetForm () {
               {/* <div className='label' id='depart'></div> */}
             </div>
             <div className='d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative'>
-            <b id='not__show'>Return Date: </b>
-            <CiCalendarDate id='not__show' style={{fontSize: '2rem'}}/>
+              <b id='not__show'>Return Date: </b>
+              <CiCalendarDate id='not__show' style={{ fontSize: '2rem' }} />
               <input
                 type='date'
                 required
@@ -586,6 +582,9 @@ function PrivateJetForm () {
               onChange={handleTravelersChange}
               value={flightDetails.no_of_passenger}
             >
+              <option value='0' selected>
+                0
+              </option>
               <option value='1'>1</option>
               <option value='2'>2</option>
               <option value='3'>3</option>

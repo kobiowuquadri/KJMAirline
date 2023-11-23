@@ -57,7 +57,7 @@ function Trip () {
             <>
               <h3 style={{background: '#042d37', color:'white'}} className='p-2'>Booked Flight</h3>
               {bookedFlights.length > 0 ? (
-                <div className='row row-cols-2'>
+                <div className='row row-cols-lg-2 row-cols-md-1'>
                   {bookedFlights.map((flight, index) => {
                     return (
                       <div key={index} className='bg-white shadow p-3'>
@@ -76,7 +76,7 @@ function Trip () {
                             to={'/payment'}
                             className='d-flex align-items-center text-danger justify-content-center gap-2'
                           >
-                            If you're yet to make paymnt:{' '}
+                            If you're yet to make payment:{' '}
                             <button className='btn btn-danger'>Pay Now</button>
                           </Link>
                         )}

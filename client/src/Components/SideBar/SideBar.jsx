@@ -55,10 +55,12 @@ const Slidebar = () =>  {
             </MDBRipple>
 
             <MDBRipple rippleTag='span'>
+            <Link to={'/admin/dashboard/prices'}>
               <MDBListGroupItem tag='a' href='#' action className='border-0 rounded'>
                 <MDBIcon fas icon="money-bill me-3" />
-                Logout
+                Price
               </MDBListGroupItem>
+            </Link>
             </MDBRipple>
           </MDBListGroup>
         </div>

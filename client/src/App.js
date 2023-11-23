@@ -16,6 +16,7 @@ import AllUsers from './Pages/Admin/AllUsers/AllUsers'
 import BookedFlights from './Pages/Admin/BookedFlights/BookedFlights'
 import Chopper from './Pages/Chopper/Chopper'
 import PrivateJet from './Pages/PrivateJet/PrivateJet'
+import Prices from './Pages/Admin/Prices/Prices'
 
 function App () {
   return (
@@ -40,6 +41,7 @@ function App () {
           <Route path='dashboard' element={<Outlet />}>
             <Route index element={<AdminDashboard />}></Route>
             <Route path='bookedflights' element={<BookedFlights />}></Route>
+            <Route path='prices' element={<Prices />}></Route>
           </Route>
         </Route>
       </Routes>

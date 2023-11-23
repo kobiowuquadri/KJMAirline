@@ -16,7 +16,7 @@ function BookingPending() {
         <h1 className='btn btn-success tw-px-2'>Booking Confimed! </h1>
          <p className='text-danger'>Payment Pending...</p>
          <p>Your payment will be confirmed in few minutes by the Admin!</p>
-         <p>You will be redirect shortly to view your booked flight details</p>
+         <p>Once the payment is Approved by the admin, kindly check your mail to get your booking receipt</p>
     </div>
   )
 }

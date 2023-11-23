@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import logo from '../../Assets/Images/kjm-logo.png'
 import { useNavigate, Link } from 'react-router-dom'
 import Navbar from '../../Components/Navbar/Navbar'
 
 function Signup() {
   const [userData, setUserData] = useState({
-    name: '', // Use 'name' here
+    name: '',
     username: '',
     email: '',
     password: '',
@@ -19,7 +18,6 @@ function Signup() {
 
 
   useEffect(() => {
-    // Check local storage for user data when the Navbar component is mounted
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
       setUser(storedUser);

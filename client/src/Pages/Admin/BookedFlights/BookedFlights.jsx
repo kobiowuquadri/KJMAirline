@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import Slidebar from '../../../Components/SideBar/SideBar'
+import { useNavigate } from 'react-router-dom'
 
 
 function BookedFlights() {
       const [allBookedFlights, getAllBookedFlights] = useState([])
       // const { setUserData  } = useContext(AuthContext);
+      const navigate = useNavigate()
 
       // console.log(setUserData())
 
@@ -42,7 +44,8 @@ function BookedFlights() {
       })
       console.log(response?.data)
       await sendReceiptToUser(paymentRef);
-      
+      alert('Payment Approved!')
+      navigate('/admin/dashboard/bookedflights')
       }
       catch(err){
          console.error(err?.response?.data)

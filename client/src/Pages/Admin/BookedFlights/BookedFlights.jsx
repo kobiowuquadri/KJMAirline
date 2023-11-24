@@ -44,7 +44,7 @@ function BookedFlights() {
       })
       console.log(response?.data)
       await sendReceiptToUser(paymentRef);
-      alert('Payment Approved!')
+      alert('Payment Approved!,a receipt has been sent to the user, Kindly refersh to see the lastest changes')
       navigate('/admin/dashboard/bookedflights')
       }
       catch(err){

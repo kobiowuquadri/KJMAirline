@@ -5,9 +5,28 @@
         flex-direction: column;
         gap: 5px;
     }
+
+    form {
+        margin-top: -10%;
+    }
     
     input {
         border: 1px solid black;
         border-radius: 5px;
+        padding: 10px;
+        outline: none;
+    }
+}
+
+@media(max-width:768px){
+    #update__prices{
+
+        input{
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+        }
     }
 }

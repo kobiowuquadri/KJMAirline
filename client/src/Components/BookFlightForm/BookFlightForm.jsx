@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import Select from 'react-select'
@@ -478,6 +478,26 @@ function BookFlightForm () {
       console.error('Error:', err?.response?.data)
     }
   }
+
+  const handlePrices = async () => {
+   try {
+    
+    const response = await axios.get('http://kjm.zuuroo.com/api/all_pricing', {
+      headers:{
+        Accept: 'application/json',
+        'Content-Type':'application/json',
+        Authorization:`Bearer ${accessToken}`
+      }
+    })
+
+    console.log(response?.data)
+   } catch (error) {
+     console.log(error?.response?.data)
+   }
+  }
+  useEffect(() => {
+    handlePrices()
+  }, [])
 
   return (
     <div className='bg_flight'>

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import Select from 'react-select'
@@ -11,7 +11,7 @@ function PrivateJetForm () {
   const [fromValue, setFromValue] = useState('')
   const [toValue, setToValue] = useState('')
   const [travelers, setTravelers] = useState(1)
-  const [flightPrice, setFlightPrice] = useState(12000)
+  const [flightPrice, setFlightPrice] = useState(null)
   const [flightDetails, setFlightDetails] = useState({
     trip_type: 'Round Trip',
     class_type: 'Private Jet',
@@ -19,7 +19,7 @@ function PrivateJetForm () {
     to_city: '',
     departure_date: '',
     arrival_date: '',
-    no_of_passenger: '1',
+    no_of_passenger: '0',
     amount_paid: ''
   })
 
@@ -396,16 +396,15 @@ function PrivateJetForm () {
   }
 
   const calculateFlightPrice = (from, to, numTravelers, classType) => {
-    let price = 12000
+    if (flightPrice !== null) {
+      const totalPrice = parseFloat(flightPrice) * numTravelers;
 
-    const totalPrice = price * numTravelers
-
-    setFlightPrice(totalPrice)
-    setFlightDetails(prevDetails => ({
-      ...prevDetails,
-      amount_paid: totalPrice
-    }))
-  }
+      setFlightDetails((prevDetails) => ({
+        ...prevDetails,
+        amount_paid: totalPrice,
+      }));
+    }
+  };
 
   const handleSubmitFlightBooking = async e => {
     e.preventDefault()
@@ -439,6 +438,42 @@ function PrivateJetForm () {
       console.error('Error:', err?.response?.data)
     }
   }
+
+
+    const getFlightPrice = async () => {
+      try {
+        const accessToken = localStorage.getItem('accessToken')
+        console.log(accessToken)
+        const response = await axios.get(
+          'https://kjm.zuuroo.com/api/get_price/3',
+          {
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${accessToken}`
+            }
+          }
+        )
+        console.log(response?.data)
+        const { flight_price } = response?.data
+        console.log(flight_price)
+        setFlightPrice(parseFloat(flight_price))
+        const parsedFlightPrice = parseInt(flight_price, 10);
+
+        if (!isNaN(parsedFlightPrice)) {
+          setFlightPrice(parsedFlightPrice);
+        } else {
+          console.error('Invalid flight price:', flight_price);
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    useEffect(() => {
+      getFlightPrice()
+    }, [])
+
 
   return (
     <div className='bg_flight'>
@@ -606,7 +641,7 @@ function PrivateJetForm () {
               className='form-control'
               name='amount_paid'
               placeholder='price in dollar'
-              value={flightPrice}
+              value={flightPrice !== null ? flightPrice : ''}
               readOnly
             />
             <p>dollars</p>

@@ -8,9 +8,7 @@ import { BiChevronRight } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/authContext'
 import axios from 'axios'
-
 import { IoAirplaneSharp } from 'react-icons/io5'
-
 
 
 function Trip () {
@@ -45,7 +43,7 @@ function Trip () {
 
   useEffect(() => {
     handleUserBookedFlights()
-  }, )
+  }, [])
 
   return (
     <div>

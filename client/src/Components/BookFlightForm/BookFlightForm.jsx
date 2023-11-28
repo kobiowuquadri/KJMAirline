@@ -481,6 +481,7 @@ function BookFlightForm () {
 
   const handlePrices = async () => {
    try {
+    const accessToken = localStorage.getItem('accessToken')
     
     const response = await axios.get('http://kjm.zuuroo.com/api/all_pricing', {
       headers:{

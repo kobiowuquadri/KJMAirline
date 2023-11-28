@@ -11,7 +11,7 @@ function PrivateJetForm () {
   const [fromValue, setFromValue] = useState('')
   const [toValue, setToValue] = useState('')
   const [travelers, setTravelers] = useState(1)
-  const [flightPrice, setFlightPrice] = useState(null)
+  const [flightPrice, setFlightPrice] = useState(12000)
   const [flightDetails, setFlightDetails] = useState({
     trip_type: 'Round Trip',
     class_type: 'Private Jet',
@@ -19,7 +19,7 @@ function PrivateJetForm () {
     to_city: '',
     departure_date: '',
     arrival_date: '',
-    no_of_passenger: '0',
+    no_of_passenger: '',
     amount_paid: ''
   })
 
@@ -396,14 +396,14 @@ function PrivateJetForm () {
   }
 
   const calculateFlightPrice = (from, to, numTravelers, classType) => {
-    if (flightPrice !== null) {
-      const totalPrice = parseFloat(flightPrice) * numTravelers;
-
+    let price = 12000
+    const totalPrice = price * numTravelers
+    setFlightPrice(totalPrice)
       setFlightDetails((prevDetails) => ({
         ...prevDetails,
         amount_paid: totalPrice,
       }));
-    }
+
   };
 
   const handleSubmitFlightBooking = async e => {
@@ -459,7 +459,7 @@ function PrivateJetForm () {
         console.log(flight_price)
         setFlightPrice(parseFloat(flight_price))
         const parsedFlightPrice = parseInt(flight_price, 10);
-
+        console.log(!isNaN(parsedFlightPrice))
         if (!isNaN(parsedFlightPrice)) {
           setFlightPrice(parsedFlightPrice);
         } else {

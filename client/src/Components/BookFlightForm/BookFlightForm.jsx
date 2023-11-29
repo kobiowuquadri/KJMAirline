@@ -341,7 +341,9 @@ function BookFlightForm () {
       'Bodrum Milas Airport',
       'Trabzon Airport',
       'Erzurum Airport',
-      'Adana Şakirpaşa Airport'
+      'Adana Şakirpaşa Airport',
+      'Larnaca Cyprus',
+      'Vancouver International AirPort British Columbia Canada'
     ],
     []
   )

@@ -11,7 +11,7 @@ function PrivateJetForm () {
   const [fromValue, setFromValue] = useState('')
   const [toValue, setToValue] = useState('')
   const [travelers, setTravelers] = useState(1)
-  const [flightPrice, setFlightPrice] = useState(12000)
+  const [flightPrice, setFlightPrice] = useState(1200)
   const [flightDetails, setFlightDetails] = useState({
     trip_type: 'Round Trip',
     class_type: 'Private Jet',
@@ -341,7 +341,9 @@ function PrivateJetForm () {
       'Bodrum Milas Airport',
       'Trabzon Airport',
       'Erzurum Airport',
-      'Adana Şakirpaşa Airport'
+      'Adana Şakirpaşa Airport',
+      'Larnaca Cyprus',
+      'Vancouver International AirPort British Columbia Canada'
     ],
     []
   )
@@ -396,14 +398,15 @@ function PrivateJetForm () {
   }
 
   const calculateFlightPrice = (from, to, numTravelers, classType) => {
-    let price = 12000
-    const totalPrice = price * numTravelers
-    setFlightPrice(totalPrice)
+    if (flightPrice !== null) {
+      const totalPrice = flightPrice * numTravelers;
       setFlightDetails((prevDetails) => ({
         ...prevDetails,
         amount_paid: totalPrice,
       }));
-
+    } else {
+      console.error('Invalid flight price:', flightPrice);
+    }
   };
 
   const handleSubmitFlightBooking = async e => {
@@ -455,16 +458,15 @@ function PrivateJetForm () {
           }
         )
         console.log(response?.data)
-        const { flight_price } = response?.data
-        console.log(flight_price)
-        setFlightPrice(parseFloat(flight_price))
-        const parsedFlightPrice = parseInt(flight_price, 10);
-        console.log(!isNaN(parsedFlightPrice))
-        if (!isNaN(parsedFlightPrice)) {
-          setFlightPrice(parsedFlightPrice);
-        } else {
-          console.error('Invalid flight price:', flight_price);
-        }
+        const { flight_price } = response?.data;
+
+      // Check if flight_price is a valid number
+      const parsedFlightPrice = parseFloat(flight_price);
+      if (!isNaN(parsedFlightPrice)) {
+        setFlightPrice(parsedFlightPrice);
+      } else {
+        console.error('Invalid flight price:', flight_price);
+      }
       } catch (err) {
         console.log(err)
       }

@@ -14,7 +14,7 @@ function BookedFlights() {
     const adminAccessToken = localStorage.getItem('adminAccessToken')
     const handleBookedFlight = async () => {
        try{
-        const response = await axios.get('https://kjm.zuuroo.com/api/admin/get_allbookings', {
+        const response = await axios.get('https://server.kjmairline.com/api/admin/get_allbookings', {
             headers:{
                 Accept: 'application/json',
                 'Content-Type' : 'application/json',
@@ -34,7 +34,7 @@ function BookedFlights() {
 
     const approvePayment = async (paymentRef) => {
       try {
-        const response = await axios.get(`https://kjm.zuuroo.com/api/admin/activate_booking/${paymentRef}`, {
+        const response = await axios.get(`https://server.kjmairline.com/api/admin/activate_booking/${paymentRef}`, {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',

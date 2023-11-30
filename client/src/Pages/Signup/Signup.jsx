@@ -29,7 +29,7 @@ function Signup() {
 
     try {
       const response = await axios.post(
-        'https://kjm.zuuroo.com/api/auth/register',
+        'https://server.kjmairline.com/api/auth/register',
         userData
       )
       // Redirect the user to the login page upon success

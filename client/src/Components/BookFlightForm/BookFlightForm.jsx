@@ -449,7 +449,7 @@ function BookFlightForm () {
       const accessToken = localStorage.getItem('accessToken')
 
       const response = await axios.post(
-        'https://kjm.zuuroo.com/api/create_booking',
+        'https://server.kjmairline.com/api/create_booking',
         {
           from_city: flightDetails.from_city,
           trip_type: flightDetails.trip_type,
@@ -485,7 +485,7 @@ function BookFlightForm () {
    try {
     const accessToken = localStorage.getItem('accessToken')
     
-    const response = await axios.get('http://kjm.zuuroo.com/api/all_pricing', {
+    const response = await axios.get('https://server.kjmairline.com/api/all_pricing', {
       headers:{
         Accept: 'application/json',
         'Content-Type':'application/json',

@@ -19,7 +19,7 @@ function SignIn () {
   
     try {
       const response = await axios.post(
-        'https://kjm.zuuroo.com/api/auth/login',
+        'https://server.kjmairline.com/api/auth/login',
         {
           email,
           password
@@ -37,7 +37,7 @@ function SignIn () {
       // Call checkUser function after setting the accessToken state
       const checkUser = async () => {
         try {
-          const response = await axios.get('https://kjm.zuuroo.com/api/auth/user', {
+          const response = await axios.get('https://server.kjmairline.com/api/auth/user', {
             headers: {
               Accept: 'application/json',
               'Content-Type': 'application/json',

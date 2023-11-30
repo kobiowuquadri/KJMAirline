@@ -14,7 +14,7 @@ function AdminDashboard () {
   const handleTotelUsers = async () => {
     try {
       const response = await axios.get(
-        'https://kjm.zuuroo.com/api/admin/total_user',
+        'https://server.kjmairline.com/api/admin/total_user',
         {
           headers: {
             Accept: 'application/json',
@@ -34,7 +34,7 @@ function AdminDashboard () {
   const handleAllUsers = async () => {
     try {
       const response = await axios.get(
-        'https://kjm.zuuroo.com/api/admin/all_user',
+        'https://server.kjmairline.com/api/admin/all_user',
         {
           headers: {
             Accept: 'application/json',

@@ -17,7 +17,7 @@ function Prices () {
     e.preventDefault()
     try {
       const response = await axios.post(
-        'https://kjm.zuuroo.com/api/admin/update_price',
+        'https://server.kjmairline.com/api/admin/update_price',
         {
          name: selectedFlight?.value,
           price,
@@ -41,7 +41,7 @@ function Prices () {
   const showAllFlightPrices = async () => {
     try {
       const response = await axios.get(
-        'https://kjm.zuuroo.com/api/admin/all_pricing',
+        'https://server.kjmairline.com/api/admin/all_pricing',
         {
           headers: {
             Accept: 'application/json',

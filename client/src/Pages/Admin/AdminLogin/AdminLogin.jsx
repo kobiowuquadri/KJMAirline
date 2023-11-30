@@ -14,7 +14,7 @@ function AdminLogin() {
       
         try {
           const response = await axios.post(
-            'https://kjm.zuuroo.com/api/admin/login',
+            'https://server.kjmairline.com/api/admin/login',
             {
               email,
               password

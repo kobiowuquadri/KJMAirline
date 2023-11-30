@@ -20,7 +20,7 @@ function AdminRegister() {
     
         try {
           const response = await axios.post(
-            'https://kjm.zuuroo.com/api/admin/register',
+            'https://server.kjmairline.com/api/admin/register',
             adminData
           )
           console.log(response?.data)

@@ -434,7 +434,7 @@ function ChopperForm () {
       const accessToken = localStorage.getItem('accessToken')
 
       const response = await axios.post(
-        'https://kjm.zuuroo.com/api/create_booking',
+        'https://server.kjmairline.com/api/create_booking',
         {
 
           from_city: flightDetails.from_city,

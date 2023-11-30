@@ -21,7 +21,7 @@ function Trip () {
   const handleUserBookedFlights = async () => {
     try {
       const response = await axios.get(
-        'https://kjm.zuuroo.com/api/get_my_booking',
+        'https://server.kjmairline.com/api/get_my_booking',
         {
           headers: {
             Accept: 'application/json',

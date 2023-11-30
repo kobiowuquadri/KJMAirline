@@ -33,6 +33,7 @@ function Signup() {
         userData
       )
       // Redirect the user to the login page upon success
+      console.log(response)
       navigate('/login')
     } catch (error) {
       if (error.response && error.response.status === 409) {

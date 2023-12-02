@@ -6,6 +6,7 @@ import { CiCalendarDate } from "react-icons/ci"
 import axios from 'axios'
 import '../../Components/BookFlightForm/bookfight.scss'
 import { useNavigate } from 'react-router-dom'
+import { ClipLoader } from 'react-spinners'
 
 
 function ChopperForm () {
@@ -23,6 +24,7 @@ function ChopperForm () {
     no_of_passenger: '',
     amount_paid: ''
   })
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
   const airports = useMemo(
@@ -428,6 +430,7 @@ function ChopperForm () {
 
   const handleSubmitFlightBooking = async e => {
     e.preventDefault()
+    setLoading(true)
 
     try {
 
@@ -458,6 +461,9 @@ function ChopperForm () {
       navigate('/payment')
     } catch (err) {
       console.error('Error:', err?.response?.data)
+    }
+    finally {
+      setLoading(false) // Set loading to false after the API response is received
     }
   }
 
@@ -621,6 +627,7 @@ function ChopperForm () {
               className='btn btn-primary rounded-0 d-flex justify-content-center text-center p-3'
             />
           </div>
+          <p>{loading && <ClipLoader color='#36699E' />}</p>
         </form>
       </div>
     </div>

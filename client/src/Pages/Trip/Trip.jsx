@@ -9,16 +9,19 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/authContext'
 import axios from 'axios'
 import { IoAirplaneSharp } from 'react-icons/io5'
+import { ClipLoader } from 'react-spinners'
 
 
 function Trip () {
   const { isUser } = useContext(AuthContext)
   const [bookedFlights, setBookedFlights] = useState([])
   console.log(isUser)
+  const [loading, setLoading] = useState(false)
 
   const accessToken = localStorage.getItem('accessToken')
   console.log(accessToken)
   const handleUserBookedFlights = async () => {
+    setLoading(true)
     try {
       const response = await axios.get(
         'https://server.kjmairline.com/api/get_my_booking',
@@ -38,6 +41,9 @@ function Trip () {
       console.log(bookedFlights)
     } catch (err) {
       console.log(err?.response?.data)
+    }
+    finally {
+      setLoading(false) // Set loading to false after the API response is received
     }
   }
 
@@ -88,7 +94,7 @@ function Trip () {
               ) : (
                 <p>No booked flights found.</p>
               )}
-
+                <p>{loading && <ClipLoader color='#36699E' />}</p>
               {/* Book chopper and Private jet */}
             <div className='d-flex flex-column justify-content-center align-items-center p-4'>
             <p className='d-flex align-items-center gap-2 btn btn-primary p-3' style={{background: '#042d37'}}>

@@ -2,17 +2,20 @@ import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import Slidebar from '../../../Components/SideBar/SideBar'
 import { useNavigate } from 'react-router-dom'
+import { ClipLoader } from 'react-spinners'
 
 
 function BookedFlights() {
       const [allBookedFlights, getAllBookedFlights] = useState([])
       // const { setUserData  } = useContext(AuthContext);
       const navigate = useNavigate()
+      const [loading, setLoading] = useState(false)
 
       // console.log(setUserData())
 
     const adminAccessToken = localStorage.getItem('adminAccessToken')
     const handleBookedFlight = async () => {
+      setLoading(true)
        try{
         const response = await axios.get('https://server.kjmairline.com/api/admin/get_allbookings', {
             headers:{
@@ -28,11 +31,15 @@ function BookedFlights() {
        catch(err) {
           console.error(err?.response?.data)
        }
+       finally {
+         setLoading(false) // Set loading to false after the API response is received
+       }
 
 
     }
 
     const approvePayment = async (paymentRef) => {
+      setLoading(true)
       try {
         const response = await axios.get(`https://server.kjmairline.com/api/admin/activate_booking/${paymentRef}`, {
         headers: {
@@ -51,6 +58,9 @@ function BookedFlights() {
          console.error(err?.response?.data)
 
       }
+      finally {
+         setLoading(false) // Set loading to false after the API response is received
+       }
     }
 
     const sendReceiptToUser = async (paymentRef) => {
@@ -71,6 +81,7 @@ function BookedFlights() {
    <div className='admin__dashbaord'>
     <Slidebar/>
    <div className='main__admin2 shadow mt-2'>
+   {/* <p className='d-flex align-items-center justify-content-center min-vh-100'>{loading && <ClipLoader color='#36699E' />}</p> */}
    {allBookedFlights.map((flights, index) => {
       return (
             <div key={index} className='d-flex justify-content-around row row-cols-lg-3 p-4 border-2 text-white rounded-5' style={{background: 'rgb(55,105,159)'}}>
@@ -98,7 +109,7 @@ function BookedFlights() {
                   <p>Payment: {flights.payment_status}</p>
                   <p>Payment ref: {flights.payment_ref}</p>
                   <p>Amount Paid: {flights.amount_paid}</p>
-                  <button className='btn btn-success cursor-pointer' onClick={() => approvePayment(flights.payment_ref)}>Approve Payment</button>
+                  <button className='btn btn-success cursor-pointer' onClick={() => approvePayment(flights.payment_ref)}>Approve Payment  <span>{loading && <ClipLoader color='#36699E' />}</span></button>
                </div>
             </div>
       )

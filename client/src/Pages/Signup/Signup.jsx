@@ -2,30 +2,31 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
 import Navbar from '../../Components/Navbar/Navbar'
+import { ClipLoader } from 'react-spinners'
 
-function Signup() {
+function Signup () {
   const [userData, setUserData] = useState({
     name: '',
     username: '',
     email: '',
-    password: '',
+    password: ''
   })
-  
-  
-  const [error, setError] = useState('')
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate()
 
+  const [error, setError] = useState('')
+  const [user, setUser] = useState(null)
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const storedUser = JSON.parse(localStorage.getItem('user'))
     if (storedUser) {
-      setUser(storedUser);
+      setUser(storedUser)
     }
-  }, []);
+  }, [])
 
   const handleSubmit = async event => {
     event.preventDefault()
+    setLoading(true)
 
     try {
       const response = await axios.post(
@@ -43,6 +44,8 @@ function Signup() {
       } else {
         setError('An error occurred. Please try again later.')
       }
+    } finally {
+      setLoading(false) // Set loading to false after the API response is received
     }
   }
 
@@ -56,7 +59,7 @@ function Signup() {
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <div id='signuphero'>
         <div id='signupform'>
           <h2>Create an Account</h2>
@@ -101,7 +104,10 @@ function Signup() {
             <button type='submit' id='signupsubmit'>
               Submit
             </button>
-            <p>Already have an account? <Link to='/login'>Login</Link></p>
+            <p>{loading && <ClipLoader color='#36699E' />}</p>
+            <p>
+              Already have an account? <Link to='/login'>Login</Link>
+            </p>
             {error && <div className='error-message'>{error}</div>}
           </form>
         </div>

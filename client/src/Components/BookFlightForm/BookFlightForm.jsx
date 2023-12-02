@@ -6,6 +6,8 @@ import { CiCalendarDate } from 'react-icons/ci'
 import axios from 'axios'
 import './bookfight.scss'
 import { useNavigate } from 'react-router-dom'
+import { ClipLoader } from 'react-spinners'
+
 
 function BookFlightForm () {
   const [fromValue, setFromValue] = useState('')
@@ -22,6 +24,7 @@ function BookFlightForm () {
     no_of_passenger: '',
     amount_paid: ''
   })
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
   const airports = useMemo(
@@ -444,6 +447,7 @@ function BookFlightForm () {
 
   const handleSubmitFlightBooking = async e => {
     e.preventDefault()
+    setLoading(true)
 
     try {
       const accessToken = localStorage.getItem('accessToken')
@@ -479,28 +483,31 @@ function BookFlightForm () {
     } catch (err) {
       console.error('Error:', err?.response?.data)
     }
+    finally {
+      setLoading(false) // Set loading to false after the API response is received
+    }
   }
 
-  const handlePrices = async () => {
-   try {
-    const accessToken = localStorage.getItem('accessToken')
+  // const handlePrices = async () => {
+  //  try {
+  //   const accessToken = localStorage.getItem('accessToken')
     
-    const response = await axios.get('https://server.kjmairline.com/api/all_pricing', {
-      headers:{
-        Accept: 'application/json',
-        'Content-Type':'application/json',
-        Authorization:`Bearer ${accessToken}`
-      }
-    })
+  //   const response = await axios.get('https://server.kjmairline.com/api/all_pricing', {
+  //     headers:{
+  //       Accept: 'application/json',
+  //       'Content-Type':'application/json',
+  //       Authorization:`Bearer ${accessToken}`
+  //     }
+  //   })
 
-    console.log(response?.data)
-   } catch (error) {
-     console.log(error?.response?.data)
-   }
-  }
-  useEffect(() => {
-    handlePrices()
-  }, [])
+  //   console.log(response?.data)
+  //  } catch (error) {
+  //    console.log(error?.response?.data)
+  //  }
+  // }
+  // useEffect(() => {
+  //   handlePrices()
+  // }, [])
 
   return (
     <div className='bg_flight'>
@@ -677,6 +684,7 @@ function BookFlightForm () {
               className='btn btn-primary rounded-0 d-flex justify-content-center text-center p-3'
             />
           </div>
+          <p>{loading && <ClipLoader color='#36699E' />}</p>
         </form>
       </div>
     </div>

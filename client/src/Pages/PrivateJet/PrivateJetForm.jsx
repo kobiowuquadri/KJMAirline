@@ -6,6 +6,7 @@ import { CiCalendarDate } from 'react-icons/ci'
 import axios from 'axios'
 import '../../Components/BookFlightForm/bookfight.scss'
 import { useNavigate } from 'react-router-dom'
+import { ClipLoader } from 'react-spinners'
 
 function PrivateJetForm () {
   const [fromValue, setFromValue] = useState('')
@@ -22,6 +23,8 @@ function PrivateJetForm () {
     no_of_passenger: '',
     amount_paid: ''
   })
+
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
   const airports = useMemo(
@@ -397,20 +400,38 @@ function PrivateJetForm () {
     )
   }
 
+  const handleClassChange = event => {
+    const selectedValue = event.target.value;
+    
+    setFlightDetails(prevDetails => ({
+      ...prevDetails,
+      class_type: selectedValue ? selectedValue : 'Private jet'
+    }));
+  
+    calculateFlightPrice(
+      fromValue ? fromValue.label : '',
+      toValue ? toValue.label : '',
+      travelers,
+      selectedValue ? selectedValue : 'Private Jet'
+    );
+  };
+
   const calculateFlightPrice = (from, to, numTravelers, classType) => {
-    if (flightPrice !== null) {
-      const totalPrice = flightPrice * numTravelers;
-      setFlightDetails((prevDetails) => ({
-        ...prevDetails,
-        amount_paid: totalPrice,
-      }));
-    } else {
-      console.error('Invalid flight price:', flightPrice);
-    }
+    let price = 12000
+
+    const totalPrice = price * numTravelers
+
+    setFlightPrice(totalPrice)
+    setFlightDetails(prevDetails => ({
+      ...prevDetails,
+      amount_paid: totalPrice
+    }))
   };
 
   const handleSubmitFlightBooking = async e => {
     e.preventDefault()
+
+    setLoading(true)
 
     try {
       const accessToken = localStorage.getItem('accessToken')
@@ -440,41 +461,44 @@ function PrivateJetForm () {
     } catch (err) {
       console.error('Error:', err?.response?.data)
     }
+    finally {
+      setLoading(false) // Set loading to false after the API response is received
+    }
   }
 
 
-    const getFlightPrice = async () => {
-      try {
-        const accessToken = localStorage.getItem('accessToken')
-        console.log(accessToken)
-        const response = await axios.get(
-          'https://server.kjmairline.com/api/get_price/3',
-          {
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${accessToken}`
-            }
-          }
-        )
-        console.log(response?.data)
-        const { flight_price } = response?.data;
+    // const getFlightPrice = async () => {
+    //   try {
+    //     const accessToken = localStorage.getItem('accessToken')
+    //     console.log(accessToken)
+    //     const response = await axios.get(
+    //       'https://server.kjmairline.com/api/get_price/3',
+    //       {
+    //         headers: {
+    //           Accept: 'application/json',
+    //           'Content-Type': 'application/json',
+    //           Authorization: `Bearer ${accessToken}`
+    //         }
+    //       }
+    //     )
+    //     console.log(response?.data)
+    //     const { flight_price } = response?.data;
 
-      // Check if flight_price is a valid number
-      const parsedFlightPrice = parseFloat(flight_price);
-      if (!isNaN(parsedFlightPrice)) {
-        setFlightPrice(parsedFlightPrice);
-      } else {
-        console.error('Invalid flight price:', flight_price);
-      }
-      } catch (err) {
-        console.log(err)
-      }
-    }
+    //   // Check if flight_price is a valid number
+    //   const parsedFlightPrice = parseFloat(flight_price);
+    //   if (!isNaN(parsedFlightPrice)) {
+    //     setFlightPrice(parsedFlightPrice);
+    //   } else {
+    //     console.error('Invalid flight price:', flight_price);
+    //   }
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    // }
 
-    useEffect(() => {
-      getFlightPrice()
-    }, [])
+    // useEffect(() => {
+    //   getFlightPrice()
+    // }, [])
 
 
   return (
@@ -519,29 +543,14 @@ function PrivateJetForm () {
 
           <div className='class-select d-flex align-items-center'>
             <b className='w-50'>Class Type: </b>
-            <Select
-              className='w-50'
-              name='class_type'
-              options={[{ label: 'Private Jet', value: 'Private Jet' }]}
-              value={{
-                label: flightDetails.class_type,
-                value: flightDetails.class_type
-              }}
-              onChange={selectedOption => {
-                setFlightDetails(prevDetails => ({
-                  ...prevDetails,
-                  class_type: selectedOption
-                    ? selectedOption.label
-                    : 'Private Jet'
-                }))
-                calculateFlightPrice(
-                  fromValue ? fromValue.label : '',
-                  toValue ? toValue.label : '',
-                  travelers,
-                  selectedOption ? selectedOption.label : 'Private Jet'
-                )
-              }}
-            />
+            <input
+    type='text'
+    name='class_type'
+    className='form-control'
+    value={flightDetails.class_type}
+    readOnly
+    onChange={handleClassChange}
+  />
           </div>
 
           <div className='form-group d-flex flex-column'>
@@ -619,9 +628,6 @@ function PrivateJetForm () {
               onChange={handleTravelersChange}
               value={flightDetails.no_of_passenger}
             >
-              <option value='0' selected>
-                0
-              </option>
               <option value='1'>1</option>
               <option value='2'>2</option>
               <option value='3'>3</option>
@@ -643,7 +649,7 @@ function PrivateJetForm () {
               className='form-control'
               name='amount_paid'
               placeholder='price in dollar'
-              value={flightPrice !== null ? flightPrice : ''}
+              value={flightPrice}
               readOnly
             />
             <p>dollars</p>
@@ -655,6 +661,7 @@ function PrivateJetForm () {
               className='btn btn-primary rounded-0 d-flex justify-content-center text-center p-3'
             />
           </div>
+          <p>{loading && <ClipLoader color='#36699E' />}</p>
         </form>
       </div>
     </div>

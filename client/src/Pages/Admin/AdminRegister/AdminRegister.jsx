@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import logo from '../../../Assets/Images/kjm-logo.png'
+import { ClipLoader } from 'react-spinners'
 
 function AdminRegister() {
     const [adminData, setAdminData] = useState({
@@ -10,7 +11,7 @@ function AdminRegister() {
         email: '',
         password: '',
       })
-      
+      const [loading, setLoading] = useState(false)
       
       const [error, setError] = useState('')
       const navigate = useNavigate()
@@ -18,6 +19,7 @@ function AdminRegister() {
       const handleSubmit = async event => {
         event.preventDefault()
     
+        setLoading(true)
         try {
           const response = await axios.post(
             'https://server.kjmairline.com/api/admin/register',
@@ -34,6 +36,9 @@ function AdminRegister() {
           } else {
             setError('An error occurred. Please try again later.')
           }
+        }
+        finally {
+          setLoading(false) // Set loading to false after the API response is received
         }
       }
     
@@ -98,6 +103,7 @@ function AdminRegister() {
           <button type='submit' id='signupsubmit'>
             Submit
           </button>
+          <p>{loading && <ClipLoader color='#36699E' />}</p>
           <p>Already have an account? <Link to='login'>Login</Link></p>
           {error && <div className='error-message'>{error}</div>}
         </form>

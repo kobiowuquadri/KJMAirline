@@ -2,16 +2,19 @@ import React, {useState} from 'react'
 import logo from '../../../Assets/Images/kjm-logo.png'
 import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
+import { ClipLoader } from 'react-spinners'
 
 function AdminLogin() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
+    const [loading, setLoading] = useState(false)
 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
       
+        setLoading(true)
         try {
           const response = await axios.post(
             'https://server.kjmairline.com/api/admin/login',
@@ -28,6 +31,9 @@ function AdminLogin() {
         catch(err){
            console.log(err.message)
            console.error(err.response?.data);
+        }
+        finally {
+          setLoading(false) // Set loading to false after the API response is received
         }
         }
 
@@ -61,6 +67,7 @@ function AdminLogin() {
             <button type='submit' id='signupsubmit'>
               Submit
             </button>
+            <p>{loading && <ClipLoader color='#36699E' />}</p>
           </form>
         </div>
       </div>

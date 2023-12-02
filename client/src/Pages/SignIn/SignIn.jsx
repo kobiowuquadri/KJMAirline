@@ -5,18 +5,19 @@ import { useNavigate, Link } from 'react-router-dom'
 import '../Signup/Signup.scss'
 import { AuthContext } from '../../contexts/authContext'
 import Navbar from '../../Components/Navbar/Navbar'
-
-
+import { ClipLoader } from 'react-spinners'
 
 function SignIn () {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
-  const { setIsUser, setUserData } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false)
+  const { setIsUser, setUserData } = useContext(AuthContext)
 
   const handleSubmit = async event => {
-    event.preventDefault();
-  
+    event.preventDefault()
+    setLoading(true)
+
     try {
       const response = await axios.post(
         'https://server.kjmairline.com/api/auth/login',
@@ -24,49 +25,53 @@ function SignIn () {
           email,
           password
         }
-      );
-  
-      const { access_token } = response.data;
-      localStorage.setItem('accessToken', access_token);
+      )
+
+      const { access_token } = response.data
+      localStorage.setItem('accessToken', access_token)
       console.log(access_token)
       // console.log(accessToken);
-      setIsUser(response.data);
-  
-      console.log(response.data);
-  
+      setIsUser(response.data)
+
+      console.log(response.data)
+
       // Call checkUser function after setting the accessToken state
       const checkUser = async () => {
         try {
-          const response = await axios.get('https://server.kjmairline.com/api/auth/user', {
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${access_token}`, // Use template literal
-            },
-          });
-  
-          console.log(access_token);
-          const userData = response?.data;
-          setUserData(userData)
-          console.log(userData);
-        } catch (err) {
-          console.log(err.message);
-        }
-      };
-  
-      checkUser(); // Call the checkUser function here
-  
-      navigate('/mytrip');
-    } catch (error) {
-      console.error(error.response?.data);
-      console.log(error.message);
-    }
-  };
+          const response = await axios.get(
+            'https://server.kjmairline.com/api/auth/user',
+            {
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${access_token}` // Use template literal
+              }
+            }
+          )
 
+          console.log(access_token)
+          const userData = response?.data
+          setUserData(userData)
+          console.log(userData)
+        } catch (err) {
+          console.log(err.message)
+        }
+      }
+
+      checkUser() // Call the checkUser function here
+
+      navigate('/mytrip')
+    } catch (error) {
+      console.error(error.response?.data)
+      console.log(error.message)
+    } finally {
+      setLoading(false) // Set loading to false after the API response is received
+    }
+  }
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <div id='signuphero'>
         <div id='signupform'>
           <h2>Login to your account</h2>
@@ -92,7 +97,10 @@ function SignIn () {
             <button type='submit' id='signupsubmit'>
               Submit
             </button>
-            <p>Don't have an account? <Link to='/signup'>Register</Link></p>
+            <p>{loading && <ClipLoader color='#36699E' />}</p>
+            <p>
+              Don't have an account? <Link to='/signup'>Register</Link>
+            </p>
           </form>
         </div>
       </div>

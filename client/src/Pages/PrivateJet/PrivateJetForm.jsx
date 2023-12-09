@@ -346,7 +346,10 @@ function PrivateJetForm () {
       'Erzurum Airport',
       'Adana Şakirpaşa Airport',
       'Larnaca Cyprus',
-      'Vancouver International AirPort British Columbia Canada'
+      'Vancouver International AirPort British Columbia Canada',
+      'Piedmont Triad International Airport',
+      'Shanghai Pudong International Airport'
+      
     ],
     []
   )

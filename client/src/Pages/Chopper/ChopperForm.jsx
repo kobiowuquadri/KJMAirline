@@ -348,7 +348,9 @@ function ChopperForm () {
       'Larnaca Cyprus',
       'Vancouver International AirPort British Columbia Canada',
       'Piedmont Triad International Airport',
-      'Shanghai Pudong International Airport'
+      'Shanghai Pudong International Airport',
+      'Parker drilling chopper space',
+      'Houston Texas airport'
     ],
     []
   )

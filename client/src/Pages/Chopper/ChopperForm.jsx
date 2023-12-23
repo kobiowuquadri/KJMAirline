@@ -350,7 +350,8 @@ function ChopperForm () {
       'Piedmont Triad International Airport',
       'Shanghai Pudong International Airport',
       'Parker drilling chopper space',
-      'Houston Texas airport'
+      'Houston Texas airport',
+      'SINOPEC Shanghai Offshore Oil & Gas Company'
     ],
     []
   )

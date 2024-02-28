@@ -13,7 +13,7 @@ function ChopperForm () {
   const [fromValue, setFromValue] = useState('')
   const [toValue, setToValue] = useState('')
   const [travelers, setTravelers] = useState(1)
-  const [flightPrice, setFlightPrice] = useState(1300)
+  const [flightPrice, setFlightPrice] = useState(2000)
   const [flightDetails, setFlightDetails] = useState({
     trip_type: 'Round Trip',
     class_type: 'Chopper',
@@ -424,7 +424,7 @@ function ChopperForm () {
   };
 
   const calculateFlightPrice = (from, to, numTravelers, classType) => {
-    let price = 1300
+    let price = 2000
 
     const totalPrice = price * numTravelers
 

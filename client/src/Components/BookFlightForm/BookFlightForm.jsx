@@ -431,7 +431,7 @@ function BookFlightForm () {
         price = 0
         break
       case 'Economy Class':
-        price = 250
+        price = 800
         break
       case 'Business Class':
         price = 2300

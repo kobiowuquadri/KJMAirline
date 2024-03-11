@@ -26,6 +26,52 @@ function BookFlightForm () {
   })
   const [loading, setLoading] = useState(false)
 
+  const fetchFlightPrice = async (classType, accessToken) => {
+    try {
+      const response = await axios.get(`https://server.kjmairline.com/api/get_price/${classType}`, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+
+      const price = response?.data?.data?.flight_price;
+      return price;
+    } catch (error) {
+      console.log(error?.response?.data);
+      return 0;
+    }
+  };
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+
+    const fetchData = async () => {
+      // Fetch prices for different flight classes
+      const economyPrice = await fetchFlightPrice(4, accessToken);
+      const businessPrice = await fetchFlightPrice(5, accessToken);
+      const firstClassPrice = await fetchFlightPrice(6, accessToken);
+
+      // Update flight price based on class type
+      switch (flightDetails.class_type) {
+        case 'Economy Class':
+          setFlightPrice(economyPrice);
+          break;
+        case 'Business Class':
+          setFlightPrice(businessPrice);
+          break;
+        case 'First Class':
+          setFlightPrice(firstClassPrice);
+          break;
+        default:
+          setFlightPrice(0);
+      }
+    };
+
+    fetchData();
+  }, [flightDetails.class_type]);
+
   const navigate = useNavigate()
   const airports = useMemo(
     () => [
@@ -423,35 +469,40 @@ function BookFlightForm () {
     );
   };
   
-  const calculateFlightPrice = (from, to, numTravelers, classType) => {
-    let price
-
-    switch (classType) {
-      case '---SELECT CLASS TYPE---':
-        price = 0
-        break
-      case 'Economy Class':
-        price = 800
-        break
-      case 'Business Class':
-        price = 2300
-        break
-      case 'First Class':
-        price = 800
-        break
-      default:
-        price = 500
+  const calculateFlightPrice = async (from, to, numTravelers, classType) => {
+    try {
+      const accessToken = localStorage.getItem('accessToken');
+      let price = 0;
+  
+      switch (classType) {
+        case '---SELECT CLASS TYPE---':
+          price = 0;
+          break;
+        case 'Economy Class':
+          price = await fetchFlightPrice(4, accessToken); // Fetch price for Economy Class
+          break;
+        case 'Business Class':
+          price = await fetchFlightPrice(5, accessToken); // Fetch price for Business Class
+          break;
+        case 'First Class':
+          price = await fetchFlightPrice(6, accessToken); // Fetch price for First Class
+          break;
+        default:
+          price = 0;
+      }
+  
+      const totalPrice = price * numTravelers;
+  
+      setFlightPrice(totalPrice);
+      setFlightDetails(prevDetails => ({
+        ...prevDetails,
+        amount_paid: totalPrice
+      }));
+    } catch (error) {
+      console.log(error);
     }
-
-    const totalPrice = price * numTravelers
-
-    setFlightPrice(totalPrice)
-    setFlightDetails(prevDetails => ({
-      ...prevDetails,
-      amount_paid: totalPrice
-    }))
-  }
-
+  };
+  
   const handleSubmitFlightBooking = async e => {
     e.preventDefault()
     setLoading(true)
@@ -495,26 +546,7 @@ function BookFlightForm () {
     }
   }
 
-  // const handlePrices = async () => {
-  //  try {
-  //   const accessToken = localStorage.getItem('accessToken')
-    
-  //   const response = await axios.get('https://server.kjmairline.com/api/all_pricing', {
-  //     headers:{
-  //       Accept: 'application/json',
-  //       'Content-Type':'application/json',
-  //       Authorization:`Bearer ${accessToken}`
-  //     }
-  //   })
 
-  //   console.log(response?.data)
-  //  } catch (error) {
-  //    console.log(error?.response?.data)
-  //  }
-  // }
-  // useEffect(() => {
-  //   handlePrices()
-  // }, [])
 
   return (
     <div className='bg_flight'>

@@ -1,19 +1,18 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import Select from 'react-select'
-import { CiCalendarDate } from "react-icons/ci"
+import { CiCalendarDate } from 'react-icons/ci'
 import axios from 'axios'
 import '../../Components/BookFlightForm/bookfight.scss'
 import { useNavigate } from 'react-router-dom'
 import { ClipLoader } from 'react-spinners'
 
-
 function ChopperForm () {
   const [fromValue, setFromValue] = useState('')
   const [toValue, setToValue] = useState('')
   const [travelers, setTravelers] = useState(1)
-  const [flightPrice, setFlightPrice] = useState(2000)
+  const [flightPrice, setFlightPrice] = useState(null)
   const [flightDetails, setFlightDetails] = useState({
     trip_type: 'Round Trip',
     class_type: 'Chopper',
@@ -25,6 +24,30 @@ function ChopperForm () {
     amount_paid: ''
   })
   const [loading, setLoading] = useState(false)
+
+
+  const accessToken = localStorage.getItem('accessToken')
+
+  useEffect(() => {
+    const getChooperPrice = async () => {
+      try {
+        const response = await axios.get('https://server.kjmairline.com/api/get_price/2', {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}` // Make sure accessToken is defined
+          }
+        });
+        const price = response?.data?.data?.flight_price;
+        setFlightPrice(price);
+      } catch (error) {
+        console.log(error?.response?.data);
+      }
+    };
+
+    getChooperPrice();
+  }, []);
+
 
   const navigate = useNavigate()
   const airports = useMemo(
@@ -408,23 +431,24 @@ function ChopperForm () {
   }
 
   const handleClassChange = event => {
-    const selectedValue = event.target.value;
-    
+    const selectedValue = event.target.value
+
     setFlightDetails(prevDetails => ({
       ...prevDetails,
       class_type: selectedValue ? selectedValue : 'Chopper'
-    }));
-  
+    }))
+
     calculateFlightPrice(
       fromValue ? fromValue.label : '',
       toValue ? toValue.label : '',
       travelers,
       selectedValue ? selectedValue : 'Chopper'
-    );
-  };
+    )
+  }
 
   const calculateFlightPrice = (from, to, numTravelers, classType) => {
-    let price = 2000
+    let price = flightPrice
+    console.log(price)
 
     const totalPrice = price * numTravelers
 
@@ -440,13 +464,11 @@ function ChopperForm () {
     setLoading(true)
 
     try {
-
       const accessToken = localStorage.getItem('accessToken')
 
       const response = await axios.post(
         'https://server.kjmairline.com/api/create_booking',
         {
-
           from_city: flightDetails.from_city,
           trip_type: flightDetails.trip_type,
           class_type: flightDetails.class_type,
@@ -459,7 +481,7 @@ function ChopperForm () {
         {
           headers: {
             Accept: 'application/json',
-            Authorization: `Bearer ${accessToken}` 
+            Authorization: `Bearer ${accessToken}`
           }
         }
       )
@@ -468,8 +490,7 @@ function ChopperForm () {
       navigate('/payment')
     } catch (err) {
       console.error('Error:', err?.response?.data)
-    }
-    finally {
+    } finally {
       setLoading(false) // Set loading to false after the API response is received
     }
   }
@@ -517,13 +538,13 @@ function ChopperForm () {
           <div className='class-select d-flex align-items-center'>
             <b className='w-50'>Class Type: </b>
             <input
-    type='text'
-    name='class_type'
-    className='form-control'
-    value={flightDetails.class_type}
-    readOnly
-    onChange={handleClassChange}
-  />
+              type='text'
+              name='class_type'
+              className='form-control'
+              value={flightDetails.class_type}
+              readOnly
+              onChange={handleClassChange}
+            />
           </div>
 
           <div className='form-group d-flex flex-column'>
@@ -561,7 +582,7 @@ function ChopperForm () {
           <div className='form-group d-sm-flex margin'>
             <div className='d-flex align-items-center flex-fill me-sm1 my-sm-0 border-bottom position-relative'>
               <b id='not__show'>Departure Date: </b>
-              <CiCalendarDate id='not__show' style={{fontSize: '2rem'}}/>
+              <CiCalendarDate id='not__show' style={{ fontSize: '2rem' }} />
               <input
                 type='date'
                 required
@@ -577,8 +598,8 @@ function ChopperForm () {
               {/* <div className='label' id='depart'></div> */}
             </div>
             <div className='d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative'>
-            <b id='not__show'>Return Date: </b>
-            <CiCalendarDate id='not__show' style={{fontSize: '2rem'}}/>
+              <b id='not__show'>Return Date: </b>
+              <CiCalendarDate id='not__show' style={{ fontSize: '2rem' }} />
               <input
                 type='date'
                 required

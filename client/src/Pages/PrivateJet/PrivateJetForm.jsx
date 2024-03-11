@@ -12,7 +12,7 @@ function PrivateJetForm () {
   const [fromValue, setFromValue] = useState('')
   const [toValue, setToValue] = useState('')
   const [travelers, setTravelers] = useState(1)
-  const [flightPrice, setFlightPrice] = useState(1200)
+  const [flightPrice, setFlightPrice] = useState(null)
   const [flightDetails, setFlightDetails] = useState({
     trip_type: 'Round Trip',
     class_type: 'Private Jet',
@@ -24,7 +24,30 @@ function PrivateJetForm () {
     amount_paid: ''
   })
 
+
   const [loading, setLoading] = useState(false)
+
+  const accessToken = localStorage.getItem('accessToken')
+
+  useEffect(() => {
+    const getPrivateJetPrice = async () => {
+      try {
+        const response = await axios.get('https://server.kjmairline.com/api/get_price/3', {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}` // Make sure accessToken is defined
+          }
+        });
+        const price = response?.data?.data?.flight_price;
+        setFlightPrice(price);
+      } catch (error) {
+        console.log(error?.response?.data);
+      }
+    };
+
+    getPrivateJetPrice();
+  }, []);
 
   const navigate = useNavigate()
   const airports = useMemo(
@@ -425,7 +448,7 @@ function PrivateJetForm () {
   };
 
   const calculateFlightPrice = (from, to, numTravelers, classType) => {
-    let price = 12000
+    let price = flightPrice
 
     const totalPrice = price * numTravelers
 

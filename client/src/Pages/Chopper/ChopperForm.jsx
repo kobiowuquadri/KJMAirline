@@ -25,29 +25,30 @@ function ChopperForm () {
   })
   const [loading, setLoading] = useState(false)
 
-
   const accessToken = localStorage.getItem('accessToken')
 
   useEffect(() => {
     const getChooperPrice = async () => {
       try {
-        const response = await axios.get('https://server.kjmairline.com/api/get_price/2', {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${accessToken}` // Make sure accessToken is defined
+        const response = await axios.get(
+          'https://server.kjmairline.com/api/get_price/2',
+          {
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${accessToken}` // Make sure accessToken is defined
+            }
           }
-        });
-        const price = response?.data?.data?.flight_price;
-        setFlightPrice(price);
+        )
+        const price = response?.data?.data?.flight_price
+        setFlightPrice(price)
       } catch (error) {
-        console.log(error?.response?.data);
+        console.log(error?.response?.data)
       }
-    };
+    }
 
-    getChooperPrice();
-  }, []);
-
+    getChooperPrice()
+  }, [])
 
   const navigate = useNavigate()
   const airports = useMemo(
@@ -382,52 +383,61 @@ function ChopperForm () {
   )
 
   const handleFromChange = selectedOption => {
-    setFromValue(selectedOption)
-
+    if(selectedOption && selectedOption.label === airports[0]) {
+      // If the selected option is the first option, set the value to null
+      setFromValue(null);
+    } else {
+      setFromValue(selectedOption);
+    }
+  
     setFlightDetails(prevDetails => ({
       ...prevDetails,
       from_city: selectedOption ? selectedOption.label : ''
-    }))
-
+    }));
+  
     calculateFlightPrice(
       selectedOption ? selectedOption.label : '',
       toValue ? toValue.label : '',
       travelers,
       flightDetails.trip_type
-    )
+    );
   }
-
+  
   const handleToChange = selectedOption => {
-    setToValue(selectedOption)
-
+    if(selectedOption && selectedOption.label === airports[0]) {
+      // If the selected option is the first option, set the value to null
+      setToValue(null);
+    } else {
+      setToValue(selectedOption);
+    }
+  
     setFlightDetails(prevDetails => ({
       ...prevDetails,
       to_city: selectedOption ? selectedOption.label : ''
-    }))
-
+    }));
+  
     calculateFlightPrice(
       fromValue ? fromValue.label : '',
       selectedOption ? selectedOption.label : '',
       travelers,
       flightDetails.trip_type
-    )
+    );
   }
+  
 
   const handleTravelersChange = event => {
     const numTravelers = parseInt(event.target.value, 10)
     setTravelers(numTravelers)
 
+    const singlePassengerPrice = flightPrice ? flightPrice : 0
+    const totalPrice = singlePassengerPrice * numTravelers
+
     setFlightDetails(prevDetails => ({
       ...prevDetails,
-      no_of_passenger: numTravelers.toString()
+      no_of_passenger: numTravelers.toString(),
+      amount_paid: totalPrice.toString()
     }))
-
-    calculateFlightPrice(
-      fromValue ? fromValue.label : '',
-      toValue ? toValue.label : '',
-      numTravelers,
-      flightDetails.trip_type
-    )
+    setFlightPrice(totalPrice)
   }
 
   const handleClassChange = event => {
@@ -622,6 +632,7 @@ function ChopperForm () {
               onChange={handleTravelersChange}
               value={flightDetails.no_of_passenger}
             >
+              <option value='0'>0</option>
               <option value='1'>1</option>
               <option value='2'>2</option>
               <option value='3'>3</option>
@@ -643,8 +654,14 @@ function ChopperForm () {
               className='form-control'
               name='amount_paid'
               placeholder='price in dollar'
-              value={flightPrice}
               readOnly
+              value={flightDetails.amount_paid}
+              onChange={e =>
+                setFlightDetails({
+                  ...flightDetails,
+                  amount_paid: e.target.value
+                })
+              }
             />
             <p>dollars</p>
           </div>

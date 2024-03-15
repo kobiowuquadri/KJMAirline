@@ -27,6 +27,7 @@ function PrivateJetForm () {
 
   const [loading, setLoading] = useState(false)
 
+  const navigate = useNavigate()
   const accessToken = localStorage.getItem('accessToken')
 
   useEffect(() => {
@@ -47,9 +48,8 @@ function PrivateJetForm () {
     };
 
     getPrivateJetPrice();
-  }, []);
+  }, [accessToken]);
 
-  const navigate = useNavigate()
   const airports = useMemo(
     () => [
       'Louisiana Offshore Oil Port (LOOP)',
@@ -415,21 +415,26 @@ function PrivateJetForm () {
   }
 
   const handleTravelersChange = event => {
-    const numTravelers = parseInt(event.target.value, 10)
-    setTravelers(numTravelers)
-
+    const numTravelers = parseInt(event.target.value, 10);
+    setTravelers(numTravelers);
+  
+    let totalPrice;
+  
+    if (numTravelers === 1) {
+      totalPrice = flightPrice;
+    } else {
+      totalPrice = flightPrice ? flightPrice * numTravelers : null;
+    }
+  
     setFlightDetails(prevDetails => ({
       ...prevDetails,
-      no_of_passenger: numTravelers.toString()
-    }))
-
-    calculateFlightPrice(
-      fromValue ? fromValue.label : '',
-      toValue ? toValue.label : '',
-      numTravelers,
-      flightDetails.trip_type
-    )
-  }
+      no_of_passenger: numTravelers.toString(),
+      amount_paid: totalPrice
+    }));
+    setFlightPrice(totalPrice); // Update the flight price when the number of passengers changes
+  };
+  
+  
 
   const handleClassChange = event => {
     const selectedValue = event.target.value;

@@ -415,24 +415,18 @@ function PrivateJetForm () {
   }
 
   const handleTravelersChange = event => {
-    const numTravelers = parseInt(event.target.value, 10);
-    setTravelers(numTravelers);
-  
-    let totalPrice;
-  
-    if (numTravelers === 1) {
-      totalPrice = flightPrice;
-    } else {
-      totalPrice = flightPrice ? flightPrice * numTravelers : null;
-    }
-  
+    const numTravelers = parseInt(event.target.value, 10)
+    setTravelers(numTravelers)
+
+    const singlePassengerPrice = flightPrice ? flightPrice : 0
+    const totalPrice = singlePassengerPrice * numTravelers
+
     setFlightDetails(prevDetails => ({
       ...prevDetails,
       no_of_passenger: numTravelers.toString(),
-      amount_paid: totalPrice
-    }));
-    setFlightPrice(totalPrice); // Update the flight price when the number of passengers changes
-  };
+      amount_paid: totalPrice.toString()
+    }))
+  }
   
   
 
@@ -454,6 +448,7 @@ function PrivateJetForm () {
 
   const calculateFlightPrice = (from, to, numTravelers, classType) => {
     let price = flightPrice
+    console.log(price)
 
     const totalPrice = price * numTravelers
 
@@ -664,6 +659,7 @@ function PrivateJetForm () {
               onChange={handleTravelersChange}
               value={flightDetails.no_of_passenger}
             >
+            <option value='0'>0</option>
               <option value='1'>1</option>
               <option value='2'>2</option>
               <option value='3'>3</option>
@@ -685,8 +681,14 @@ function PrivateJetForm () {
               className='form-control'
               name='amount_paid'
               placeholder='price in dollar'
-              value={flightPrice}
               readOnly
+              value={flightDetails.amount_paid}
+              onChange={e =>
+                setFlightDetails({
+                  ...flightDetails,
+                  amount_paid: e.target.value
+                })
+              }
             />
             <p>dollars</p>
           </div>

@@ -48,7 +48,7 @@ function ChopperForm () {
     }
 
     getChooperPrice()
-  }, [])
+  }, [accessToken])
 
   const navigate = useNavigate()
   const airports = useMemo(
@@ -383,47 +383,46 @@ function ChopperForm () {
   )
 
   const handleFromChange = selectedOption => {
-    if(selectedOption && selectedOption.label === airports[0]) {
+    if (selectedOption && selectedOption.label === airports[0]) {
       // If the selected option is the first option, set the value to null
-      setFromValue(null);
+      setFromValue(null)
     } else {
-      setFromValue(selectedOption);
+      setFromValue(selectedOption)
     }
-  
+
     setFlightDetails(prevDetails => ({
       ...prevDetails,
       from_city: selectedOption ? selectedOption.label : ''
-    }));
-  
+    }))
+
     calculateFlightPrice(
       selectedOption ? selectedOption.label : '',
       toValue ? toValue.label : '',
       travelers,
       flightDetails.trip_type
-    );
+    )
   }
-  
+
   const handleToChange = selectedOption => {
-    if(selectedOption && selectedOption.label === airports[0]) {
+    if (selectedOption && selectedOption.label === airports[0]) {
       // If the selected option is the first option, set the value to null
-      setToValue(null);
+      setToValue(null)
     } else {
-      setToValue(selectedOption);
+      setToValue(selectedOption)
     }
-  
+
     setFlightDetails(prevDetails => ({
       ...prevDetails,
       to_city: selectedOption ? selectedOption.label : ''
-    }));
-  
+    }))
+
     calculateFlightPrice(
       fromValue ? fromValue.label : '',
       selectedOption ? selectedOption.label : '',
       travelers,
       flightDetails.trip_type
-    );
+    )
   }
-  
 
   const handleTravelersChange = event => {
     const numTravelers = parseInt(event.target.value, 10)
@@ -437,7 +436,6 @@ function ChopperForm () {
       no_of_passenger: numTravelers.toString(),
       amount_paid: totalPrice.toString()
     }))
-    setFlightPrice(totalPrice)
   }
 
   const handleClassChange = event => {
@@ -501,7 +499,7 @@ function ChopperForm () {
     } catch (err) {
       console.error('Error:', err?.response?.data)
     } finally {
-      setLoading(false) // Set loading to false after the API response is received
+      setLoading(false)
     }
   }
 
